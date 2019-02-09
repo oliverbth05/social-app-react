@@ -1,0 +1,39 @@
+.button {
+    transition: all .2s;
+    padding: .5rem .65rem .5rem .65rem;
+    border-radius: 3px;
+    background: $color5;
+    color: white;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+
+    &:active, &:focus {
+        outline: none;
+    }
+    
+    &:hover {
+        background: $color5-dark;
+    }
+    
+    &-block {
+        transition: all .2s;
+        padding: .6rem;
+        border-radius: 3px;
+        background: $color5;
+        color: white;
+        border: none;
+        cursor: pointer;
+        display: block;
+        width: 100%;
+        
+        &:active, &:focus {
+            outline: none;
+        }
+        
+        &:hover {
+            background: $color5-dark;
+        }
+    }
+}

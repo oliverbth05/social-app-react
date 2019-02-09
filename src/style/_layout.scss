@@ -1,0 +1,110 @@
+
+.container {
+    margin: auto;
+    max-width: 100%;
+    padding: 1rem;
+    
+    @include respond(phone) {
+        padding: .3rem;
+    }
+    
+    @include respond(tablet) {
+        padding: .5rem;
+    }
+}
+
+.container-flex-center {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container-700 {
+    width: 700px;
+}
+
+.card-container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+} 
+
+.card {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    background: $grey-5;
+    cursor: pointer;
+    transition: padding .2s;
+    color: $color3;
+    padding: 1rem;
+    
+    &:hover {
+        background: $grey-4;
+    }
+    
+    &__title {
+        display: block;
+        margin: 0;
+        padding: 0;
+        
+        
+    }
+}
+
+.tag__container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.tag {
+    border-radius: 3px;
+    background: $color5;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    
+    p {
+        padding: .7rem;
+        display: inline-block;
+        margin-right: 5px;
+        height: 100%;
+    }
+    
+    i {
+        font-size: 1.3rem;
+        padding: .7rem;
+        background: $color2;
+        display: inline-block;
+        height: 100%;
+        cursor: pointer;
+        
+        &:hover {
+            background: $color2-dark;
+        }
+    }
+}
+
+.box {
+    padding: 1rem;
+    border: 1px solid $grey-1;
+    border-radius: 5px;
+}
+
+.avatar {
+    display: block;
+    height: 6rem;
+    width: 6rem;
+    background: rgb(220, 220, 220);
+    border-radius: 50%;
+    margin: auto;
+}

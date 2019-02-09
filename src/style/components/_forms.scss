@@ -1,0 +1,45 @@
+.auth-form {
+    padding: 2rem;
+    border: 1px solid $grey-1;
+    border-radius: 5px;
+    width: 100%;
+    
+    &__divider {
+        margin-top: 15px;
+    }
+    
+    &__label {
+        display: block;
+        padding-bottom: 5px;
+    }
+    
+    &__alert {
+        display: block;
+        padding: .7rem;
+        color: $color2;
+        border: 1px solid $color2;
+        border-radius: 5px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    @include respond(tablet) {
+        margin-top: 0;
+    }
+}
+
+
+.post-form {
+    padding: 2rem;
+    border: 1px solid $grey-3;
+
+    &__label {
+        display: block;
+        margin-bottom: .5rem;
+    }
+    
+    &__divider {
+        margin-top: 1.5rem;
+    }
+}
+

@@ -1,0 +1,36 @@
+.input-small {
+    @include inputStyle;
+    display: inline-block;
+}
+
+.input-block {
+    @include inputStyle;
+    display: block;
+    width: 100%;
+
+    &-error {
+    transition: all .2s;
+    padding: .5rem;
+    height: 40px;
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid $color2;
+    outline: none;
+    box-shadow: $input-shadow-before;
+            
+        &:focus {
+            outline: none;
+            box-shadow: $input-shadow-after;
+            border-color: $color5;
+        }
+    }
+}
+
+.textarea {
+    @include inputStyle;
+    display: block;
+    width: 100%;
+    min-height: 4rem;
+    resize: none;
+}

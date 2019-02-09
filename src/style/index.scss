@@ -1,0 +1,55 @@
+@import './_mixins.scss';
+@import './_variables.scss';
+@import './_layout.scss';
+@import './_typography.scss';
+@import './_animations.scss';
+@import './_helpers.scss';
+
+@import './components/_nav.scss';
+@import './components/_forms.scss';
+@import './components/_inputs.scss';
+@import './components/_buttons.scss';
+@import './components/_comment.scss'; 
+@import './components/_loader.scss';
+@import './components/_post-menu.scss';
+
+
+* {  
+    font-family: 'Source Sans Pro', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} 
+
+body {
+    margin-left: 8rem;
+}
+
+    
+html { 
+    //The default browser font-size is 16px
+    //We want every relative unit (rem) to correspond to 10px
+    //==> Set the font-size to 62.5% of the default of 16, ===> 10px
+
+    font-size: 62.5%;
+    
+    @include respond(huge) {
+        font-size: 100%; // 14.4px
+    }
+
+    @include respond(desktop) {
+        font-size: 95%; // 12.8px
+    }
+
+    @include respond(laptop) {
+        font-size: 85%;  //12px
+    }
+
+    @include respond(tablet) {
+        font-size: 80%; //11.2px
+    }
+
+    @include respond(phone) {
+        font-size: 75%; //10px
+    }
+}
