@@ -5,7 +5,7 @@ import logger from 'redux-logger';
 
 import reducer from './reducers';
 
-export default createStore(reducer, applyMiddleware(thunk));
+export default createStore(reducer, applyMiddleware(logger, thunk));
 
 /*
 

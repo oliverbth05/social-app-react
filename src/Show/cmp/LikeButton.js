@@ -11,3 +11,4 @@ export default function LikeButton(props) {
     return <button onClick={() => { props.likePost(props.post_id, props.user_id) }} className='button m-r-1'><i className="far fa-thumbs-up"></i> Like</button>
   }
 }
+ 

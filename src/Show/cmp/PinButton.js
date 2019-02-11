@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function PinButton(props) {
-  console.log(props)
+
   if (props.loading) {
     return <button className='button m-r-1'><div className='loader-button'></div></button>
   }

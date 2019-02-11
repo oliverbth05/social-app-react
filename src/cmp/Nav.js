@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from '../store/actions/auth';
+import { logout } from '../Auth/actions';
 
 class Nav extends React.Component {
 
@@ -40,7 +40,6 @@ class Nav extends React.Component {
     }
 
     render() {
-        console.log(this.props)
 
         if (!this.props.authenticated) {
             return (
@@ -73,7 +72,7 @@ class Nav extends React.Component {
                         <div className='nav__container'>
                             <h3 className='nav__title'>S | A</h3>
                             <div className='nav__links'>
-                                <img className='nav__avatar' src={`https://api.adorable.io/avatars/130/${this.props.user.first_name} ${this.props.user.last_name}.png`} />
+                                <img alt = 'user avatar' className='nav__avatar' src={`https://api.adorable.io/avatars/130/${this.props.user.first_name} ${this.props.user.last_name}.png`} />
                                 <p className='nav__avatar__name m-b-2'>{this.props.user.first_name}</p>
                                 <NavLink exact to='/home' className='nav__link' activeClassName = 'nav__link-active'><i className="fas fa-home"></i></NavLink>
                                 <NavLink exact to='/user' className='nav__link' activeClassName = 'nav__link-active'><i className="fas fa-user"></i></NavLink>

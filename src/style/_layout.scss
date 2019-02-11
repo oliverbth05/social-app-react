@@ -41,10 +41,15 @@
     width: 100%;
     margin-top: 10px;
     cursor: pointer;
-    transition: padding .2s;
+    transition: all .2s;
     color: $color3;
-    padding: 1rem;
-    border: 1px solid $grey-1;
+    box-shadow: $box-shadow;
+    padding: .5rem;
+    &__details {
+        
+        padding: .3rem 0 .3rem 0;
+        border-radius: 0px 15px 0 0;
+    }
     
     &:hover {
         background: $grey-4;
@@ -80,12 +85,12 @@
         display: inline-block;
         margin-right: 5px;
         height: 100%;
+        color: white;
     }
     
     i {
         font-size: 1.3rem;
         padding: .7rem;
-        background: $color2;
         display: inline-block;
         height: 100%;
         cursor: pointer;

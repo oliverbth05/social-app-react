@@ -10,7 +10,7 @@ const Loader = (props) => {
         )
     }
     
-    return <i class="fas fa-spinner loader"></i>
+    return <i className="fas fa-spinner loader"></i>
    
 }
 

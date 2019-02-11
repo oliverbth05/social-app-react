@@ -1,16 +1,19 @@
 import { combineReducers } from 'redux';
-import user from './user';
+import user from '../../Auth/reducer';
 import loading from './loading';
-import home from './home';
-import show from './show';
+import home from '../../Home/reducer';
 import error from './error';
+
+import comments from '../../Show/comments_reducer';
+import post from '../../Show/post_reducer';
 
 const appReducer = combineReducers({
     user,
     loading,
     error,
     home,
-    show
+    comments,
+    post,
 });
 
 const rootReducer = (state, action) => { //Solution for resetting state on logout

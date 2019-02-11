@@ -1,18 +1,34 @@
-import server from '../../api';
+import server from '../api';
 
 export const fetchPost = (id) => {
     return dispatch => {
+        dispatch({type: 'POST_LOADING'})
         server.get(`/post/${id}`)
             .then(res => {
                 dispatch({
                     type: 'FETCH_POST',
                     payload: res.data
                 })
+                dispatch({type: '!POST_LOADING'})
 
             })
             .catch(err => {
                 console.log(err)
             })
+    }
+}
+
+export const fetchComments = (post_id) => {
+    return dispatch => {
+        dispatch({type: 'COMMENTS_LOADING'})
+        server.get(`/post/${post_id}/comments`)
+        .then(res => {
+            dispatch({type: 'FETCH_COMMENTS', payload: res.data})
+            dispatch({type: '!COMMENTS_LOADING'})
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 }
 
@@ -23,11 +39,11 @@ export const likePost = (post_id, user_id) => {
         })
         server.post(`/post/${post_id}/like`, { user_id })
             .then(res => {
+                dispatch({ type: '!LIKE_LOADING' })
                 dispatch({
                     type: 'LIKE_POST',
                     payload: user_id
                 })
-                dispatch({ type: '!LIKE_LOADING' })
             })
             .catch(err => {
 

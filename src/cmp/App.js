@@ -2,11 +2,11 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 
-import Login from '../views/Login';
-import Register from '../views/Register';
-import Home from '../views/Home';
-import Show from '../views/Show';
-import New from '../views/New';
+import Login from '../Auth/Login';
+import Register from '../Auth/Register';
+import Home from '../Home/Home';
+import Show from '../Show/Show';
+import New from '../New/New';
 
 import Nav from './Nav';
 

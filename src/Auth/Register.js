@@ -1,13 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login } from '../store/actions/auth';
+import { register } from './actions';
 
 import Loader from '../cmp/Loader';
 
-class Login extends React.Component {
+class Register extends React.Component {
     
     state = {
         email: '',
+        first_name: '',
+        last_name: '',
+        confirm_password: '',
         password: ''
     }
     
@@ -29,9 +32,16 @@ class Login extends React.Component {
         })
     }
     
+    
     submitHandler(e) {
         e.preventDefault();
-        this.props.login(this.state.email, this.state.password);
+        this.props.register({
+            email: this.state.email,
+            password: this.state.password,
+            first_name: this.state.first_name,
+            last_name: this.state.last_name
+        });
+
     }
     
     render() {
@@ -43,13 +53,14 @@ class Login extends React.Component {
         return (
             <div className = 'container-flex-center'>
             
+                
+            
                 <div className = 'container-700'>
                     <form onSubmit = {this.submitHandler.bind(this)} className = 'auth-form'>
                     
-                        <h2 className = 'font-normal m-b-1'>Log In</h2>
+                        <h2 className = 'font-normal'>Register</h2>
                         
-
-                        {this.props.error ? <p className = 'auth-form__alert'><i className="fas fa-times"></i> Error Logging In</p> : null }
+                        {this.props.error ? <p className = 'auth-form__alert'><i className="fas fa-times"></i> Error Registering</p> : null }
 
                         <div className = 'auth-form__divider'>
                             <label className = 'auth-form__label'>Email</label>
@@ -57,8 +68,23 @@ class Login extends React.Component {
                         </div>
                         
                         <div className = 'auth-form__divider'>
+                            <label className = 'auth-form__label'>First Name</label>
+                            <input onChange = {this.inputHandler.bind(this)} className = 'input-block' name = 'first_name' />
+                        </div>
+                        
+                        <div className = 'auth-form__divider'>
+                            <label className = 'auth-form__label'>Last Name</label>
+                            <input onChange = {this.inputHandler.bind(this)} className = 'input-block' name = 'last_name' />
+                        </div>
+                        
+                        <div className = 'auth-form__divider'>
                             <label className = 'auth-form__label'>Password</label>
                             <input onChange = {this.inputHandler.bind(this)} className = 'input-block' type = 'password' name = 'password' />
+                        </div>
+                        
+                        <div className = 'auth-form__divider'>
+                            <label className = 'auth-form__label'>Confirm Password</label>
+                            <input onChange = {this.inputHandler.bind(this)} className = 'input-block' type = 'password' name = 'confirm_password' />
                         </div>
                         
                         <div className = 'auth-form__divider'>
@@ -75,9 +101,9 @@ class Login extends React.Component {
 const mapStateToProps = state => {
     return {
         authenticated: state.user.authenticated,
-        loading: state.loading.login_loading,
-        error: state.error.login_error
+        loading: state.loading.register_loading,
+        error: state.error.register_error
     }
 }
 
-export default connect(mapStateToProps, {login})(Login);
+export default connect(mapStateToProps, {register})(Register);

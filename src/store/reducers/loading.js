@@ -4,9 +4,9 @@ const initialState = {
     posts_loading: false,
     post_loading: false,
     like_loading: false,
-    pin_loading: false
+    pin_loading: false,
+    comments_loading: false,
 }
-
 
 const loading = (state = initialState, action) => {
     switch (action.type) {
@@ -81,6 +81,18 @@ const loading = (state = initialState, action) => {
             return {
                 ...state,
                 pin_loading: false
+            }
+            
+        case 'COMMENTS_LOADING':
+            return {
+                ...state,
+                comments_loading: true
+            }
+
+        case '!COMMENTS_LOADING':
+            return {
+                ...state,
+                comments_loading: false
             }
 
         default:

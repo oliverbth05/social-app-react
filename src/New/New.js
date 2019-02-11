@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import isAuthenticated from '../hoc/isAuthenticated';
 
-import { createPost } from '../store/actions/new';
+import { createPost } from './actions';
 import Tag from '../cmp/Tag';
 
 class New extends Component {
@@ -81,9 +81,9 @@ class New extends Component {
             </div>
 
             <div class='post-form__divider'>
-              <label class='post-form__label'>Tags</label>
-              <input onChange={this.inputHandler} class='input-block' type='text' value={this.state.tagField} name='tagField' />
-              <button onClick={this.addTag} class='button m-t-1' >Add tag</button>
+              <label className='post-form__label'>Tags</label>
+              <input onChange={this.inputHandler} className='input-block' type='text' value={this.state.tagField} name='tagField' />
+              <button onClick={this.addTag} className='button m-t-1' >Add tag</button>
 
               <div class='tag__container'>
                 {this.state.tags.length > 0 ?

@@ -1,11 +1,10 @@
 import React from 'react';
 import isAuthenticated from '../hoc/isAuthenticated';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../store/actions/home';
+import { fetchPosts } from './actions';
 import Loader from '../cmp/Loader';
-import PostCard from '../cmp/PostCard';
+import PostCard from './cmp/PostCard';
 import { Link } from 'react-router-dom';
-import moment from 'moment';
 import { isMember } from '../util';
 
 class Home extends React.Component {
@@ -40,10 +39,10 @@ class Home extends React.Component {
         return (
             <div className='container m-t-3'>
 
-                <nav class = 'home-nav'>
-                    <Link className = 'button m-r-1' to='/new'><i class="fas fa-pen"></i> New Post</Link>
+                <nav className = 'home-nav'>
+                    <Link className = 'button m-r-1' to='/new'><i className="fas fa-pen"></i> New Post</Link>
                     <div>
-                    <input class = 'input-small' /> <button class = 'button'><i class="fas fa-search"></i></button>
+                    <input className = 'input-small' /> <button className = 'button'><i className="fas fa-search"></i></button>
                     </div>
                 </nav>
 
