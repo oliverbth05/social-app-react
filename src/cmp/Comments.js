@@ -5,7 +5,7 @@ const Comments = (props) => {
     return (
         <div className = 'box-m-t-1' >
             {props.comments.map(comment => {
-                return <Comment {...comment} />
+                return <Comment key = {comment._id} {...comment} />
             })
             }
         </div>

@@ -8,11 +8,72 @@
     background: linear-gradient(to bottom, $color5, $color5-dark);
     box-shadow: inset -1px 0px 25px 0px rgba(0,0,0,0.23);
 
-  
+    @include respond(tablet) {
+        display: none;
+    }
+
+    &__mobile-btn {
+        display: none;
+        position: fixed;
+        font-size: 1.2rem;
+        padding: 1rem;
+        top: 10px;
+        right: 10px;
+        background: $color5;
+        color: white;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 5;
+        @include respond(tablet) {
+            display: block;
+        }
+    }
+
+    &__drawer {
+        left: 0;
+        top: 0;
+        height: 100vh;
+        background: $color5;
+        width: 100px;
+        position: fixed;
+        transition: all .2s;
+
+
+
+        &-show {
+            transform: translateX(0);
+            z-index: 3;
+        }
+
+        &-hide {
+            z-index: -1;
+            transform: translateX(-100%);
+        }
+
+        &__backdrop {
+            transition: all .2s;
+            cursor: pointer;
+            height: 100vh;
+            width: 100vh;
+            top: 0;
+            left: 0;
+            position: fixed;
+            background: rgba(0, 0, 0, 0.3);
+
+            &-show {
+                z-index: 2;
+                opacity: 1;
+            }
+
+            &-hide {
+                z-index: -1;
+                opacity: 0;
+            }
+        }
+    }
 
     &__title {
         display: block;
-        
         color: white;
         text-align: center;
         padding-top: 1rem;
@@ -56,6 +117,10 @@
         &:hover {
             background: $color5-dark;
         }
+
+        &-active {
+            background: $color5-dark;
+        }
     }
 }
 
@@ -71,6 +136,10 @@
     align-items: center;
     justify-content: start;
     padding: 0 1rem 0 1rem;
+
+    @include respond(tablet) {
+        left: 0;
+    }
 }
 
 .home-nav__spacer {

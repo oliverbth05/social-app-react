@@ -1,42 +1,98 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from '../store/actions';
+import { logout } from '../store/actions/auth';
+
 class Nav extends React.Component {
-    
+
+    constructor() {
+        super();
+        this.state = {
+            drawer: false
+        }
+        this.showDrawer = this.showDrawer.bind(this)
+        this.hideDrawer = this.hideDrawer.bind(this)
+        this.toggleDrawer = this.toggleDrawer.bind(this)
+    }
+
+
+    showDrawer() {
+        this.setState({
+            drawer: true
+        })
+    }
+
+    hideDrawer() {
+        this.setState({
+            drawer: false
+        })
+    }
+
+    toggleDrawer() {
+        this.setState({
+            drawer: !this.state.drawer
+        })
+    }
+
+
+    componentDidMount() {
+
+    }
+
     render() {
-        
+        console.log(this.props)
+
         if (!this.props.authenticated) {
             return (
-                <nav className = 'nav'>
-                    <div className = 'nav__container'>
-                        <h3 className = 'nav__title'>S | A</h3>
-                        <div className = 'nav__links'>
-                            <NavLink to = '/login' className = 'nav__link'>Log In</NavLink>
-                            <NavLink to = '/register' className = 'nav__link'>Register</NavLink>
+                <div>
+                    <nav className='nav'>
+                        <div className='nav__container'>
+                            <h3 className='nav__title'>S | A</h3>
+                            <div className='nav__links'>
+                                <NavLink exact to='/login' className='nav__link' activeClassName = 'nav__link-active'>Log In</NavLink>
+                                <NavLink exact to='/register' className='nav__link' activeClassName = 'nav__link-active'>Register</NavLink>
+                            </div>
                         </div>
-                    </div>
-                </nav>    
+                    </nav>
+
+                    <i onClick={this.toggleDrawer} className="fas fa-bars nav__mobile-btn"></i>
+                    
+                    <nav className={this.state.drawer ? 'nav__drawer nav__drawer-show' : 'nav__drawer nav__drawer-hide'}>
+                    </nav>
+
+                    <div onClick={this.hideDrawer} className={this.state.drawer ? 'nav__drawer__backdrop nav__drawer__backdrop-show' : 'nav__drawer__backdrop nav__drawer__backdrop-hide'}></div>
+
+                </div>
             )
         }
-         
+
         if (this.props.user !== null) {
-            console.log(this.props.user)
             return (
-                <nav className = 'nav'>
-                    <div className = 'nav__container'>
-                        <h3 className = 'nav__title'>S | A</h3>
-                        <div className = 'nav__links'>
-                            <img class = 'nav__avatar' src = { `https://api.adorable.io/avatars/130/${this.props.user.first_name} ${this.props.user.last_name}.png`} />
-                            <p class = 'nav__avatar__name m-b-2'>{this.props.user.first_name}</p>
-                            <NavLink to = '/home' className = 'nav__link'><i class="fas fa-home"></i></NavLink>
-                            <NavLink to = '/user' className = 'nav__link'><i class="fas fa-user"></i></NavLink>
-                            <NavLink to = '/notifications' className = 'nav__link'><i class="fas fa-bell"></i></NavLink>
-                            <NavLink to = '/contacts' className = 'nav__link'><i class="fas fa-address-book"></i></NavLink>
-                            <a onClick = {() => {this.props.logout()}} className = 'nav__link'><i class="fas fa-sign-out-alt"></i></a>
+                <div>
+                    <nav className='nav'>
+                        <div className='nav__container'>
+                            <h3 className='nav__title'>S | A</h3>
+                            <div className='nav__links'>
+                                <img className='nav__avatar' src={`https://api.adorable.io/avatars/130/${this.props.user.first_name} ${this.props.user.last_name}.png`} />
+                                <p className='nav__avatar__name m-b-2'>{this.props.user.first_name}</p>
+                                <NavLink exact to='/home' className='nav__link' activeClassName = 'nav__link-active'><i className="fas fa-home"></i></NavLink>
+                                <NavLink exact to='/user' className='nav__link' activeClassName = 'nav__link-active'><i className="fas fa-user"></i></NavLink>
+                                <NavLink exact to='/notifications' className='nav__link' activeClassName = 'nav__link-active'><i className="fas fa-bell"></i></NavLink>
+                                <NavLink exact to='/contacts' className='nav__link' activeClassName = 'nav__link-active'><i className="fas fa-address-book"></i></NavLink>
+                                <a onClick={() => { this.props.logout() }} className='nav__link'><i className="fas fa-sign-out-alt"></i></a>
+                            </div>
                         </div>
-                    </div>
-                </nav>
+
+                    </nav>
+
+                    <i onClick={this.toggleDrawer} className="fas fa-bars nav__mobile-btn"></i>
+
+                    <nav className={this.state.drawer ? 'nav__drawer nav__drawer-show' : 'nav__drawer nav__drawer-hide'}>
+                    
+                    </nav>
+                    
+                    <div onClick={this.hideDrawer} className={this.state.drawer ? 'nav__drawer__backdrop nav__drawer__backdrop-show' : 'nav__drawer__backdrop nav__drawer__backdrop-hide'}></div>
+                </div>
             )
         }
     }
@@ -44,9 +100,9 @@ class Nav extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        authenticated: state.auth.authenticated,
-        user: state.auth.user
+        user: state.user.userData,
+        authenticated: state.user.authenticated
     }
 }
 
-export default connect(mapStateToProps, {logout})(Nav);
+export default connect(mapStateToProps, { logout })(Nav);

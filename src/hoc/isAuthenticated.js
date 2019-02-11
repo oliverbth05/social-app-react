@@ -13,7 +13,7 @@ export default (Child) => {
         
         componentDidUpdate() {
             if (!this.props.authenticated) {
-                    this.props.history.push('/login')
+                this.props.history.push('/login')
             }
         }
         
@@ -24,7 +24,7 @@ export default (Child) => {
     
     const mapStateToProps = state => {
         return {
-            authenticated: state.auth.authenticated
+            authenticated: state.user.authenticated
         }
     }
     

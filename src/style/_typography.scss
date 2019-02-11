@@ -1,5 +1,6 @@
 h1, h2, h3, h4 {
     color: $text-heading;
+    font-family: 'Sarabun', sans-serif
 }
 
 h1 {
@@ -22,6 +23,10 @@ p, li, a, button, input, textarea, label {
     font-size: 1rem;
     white-space: pre-wrap;
     color: $text-body;
+}
+
+span {
+    font-size: 1rem;
 }
 
 a {
@@ -51,4 +56,8 @@ ul {
 
 .color-primary {
     color: $color5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid $color5
 }

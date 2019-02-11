@@ -1,40 +1,48 @@
 import React from 'react';
-import ActionButton from './ActionButton';
+
+import LikeButton from './LikeButton';
+import PinButton from './PinButton';
 
 const PostMenu = (props) => {
+
     return (
-        <div className = 'post-menu m-b-1'>
-            <ActionButton
-                disabledText = {'Liked'} 
-                onClick = {props.postLike} 
-                disabled = {!props.canLike} 
-                loading = {props.like_loading}>
-            <i class="far fa-thumbs-up"></i> Like</ActionButton>
-            
-            <ActionButton 
-                disabledText = {'Pinned'}
-                onClick = {props.postPin}
-                disabled = {!props.canPin}
-                loading = {props.pin_loading}>
-            <i class="fas fa-map-pin"></i> Pin </ActionButton>
+        <div className='post-menu m-b-1'>
+
+            <LikeButton
+                loading={props.like_loading}
+                likePost={props.likePost}
+                disabled={!props.canLike}
+                post_id={props.post_id}
+                user_id={props.user_id}
+            ></LikeButton>
+
+            <PinButton
+             loading={props.pin_loading}
+             pinPost={props.pinPost}
+             disabled={!props.canPin}
+             post_id={props.post_id}
+             post_title={props.post_title}
+             user_id={props.user_id}    
+            ></PinButton>
+
+
+
+
         </div>
     )
 }
-
-//Required Props
-
 /*
 
     Required Props:
     
-    like_loading,
-    pin_loading,
-    
-    canLike,
-    canPin,
-    
-    postLike
-    postPin
+        like_loading,
+        pin_loading,
+        
+        canLike,
+        canPin,
+        
+        postLike
+        postPin
 
 */
 

@@ -24,6 +24,7 @@
 
 .container-700 {
     width: 700px;
+    margin: auto;
 }
 
 .card-container {
@@ -32,17 +33,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+ 
 } 
 
 .card {
     display: block;
     width: 100%;
     margin-top: 10px;
-    background: $grey-5;
     cursor: pointer;
     transition: padding .2s;
     color: $color3;
     padding: 1rem;
+    border: 1px solid $grey-1;
     
     &:hover {
         background: $grey-4;

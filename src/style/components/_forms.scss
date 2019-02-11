@@ -1,8 +1,8 @@
 .auth-form {
     padding: 2rem;
-    border: 1px solid $grey-1;
     border-radius: 5px;
     width: 100%;
+    box-shadow: $box-shadow;
     
     &__divider {
         margin-top: 15px;
@@ -31,7 +31,7 @@
 
 .post-form {
     padding: 2rem;
-    border: 1px solid $grey-3;
+    box-shadow: $box-shadow;
 
     &__label {
         display: block;

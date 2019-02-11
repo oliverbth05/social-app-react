@@ -1,10 +1,89 @@
-const loading = (state = false, action) => {
+const initialState = {
+    login_loading: false,
+    register_loading: false,
+    posts_loading: false,
+    post_loading: false,
+    like_loading: false,
+    pin_loading: false
+}
+
+
+const loading = (state = initialState, action) => {
     switch (action.type) {
-        case 'LOADING':
-            return true
-        case '!LOADING':
-            return false
-        default :
+        case 'LOGIN_LOADING':
+            return {
+                ...state,
+                login_loading: true
+            }
+
+        case '!LOGIN_LOADING':
+            return {
+                ...state,
+                login_loading: false
+            }
+
+        case 'REGISTER_LOADING':
+            return {
+                ...state,
+                register_loading: true
+            }
+
+        case '!REGISTER_LOADING':
+            return {
+                ...state,
+                register_loading: false
+            }
+
+        case 'POSTS_LOADING':
+            return {
+                ...state,
+                posts_loading: true
+            }
+
+        case '!POSTS_LOADING':
+            return {
+                ...state,
+                posts_loading: false
+            }
+
+
+        case 'POST_LOADING':
+            return {
+                ...state,
+                post_loading: true
+            }
+
+        case '!POST_LOADING':
+            return {
+                ...state,
+                post_loading: false
+            }
+
+        case 'LIKE_LOADING':
+            return {
+                ...state,
+                like_loading: true
+            }
+
+        case '!LIKE_LOADING':
+            return {
+                ...state,
+                like_loading: false
+            }
+
+        case 'PIN_LOADING':
+            return {
+                ...state,
+                pin_loading: true
+            }
+
+        case '!PIN_LOADING':
+            return {
+                ...state,
+                pin_loading: false
+            }
+
+        default:
             return state
     }
 }

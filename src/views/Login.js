@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login } from '../store/actions';
+import { login } from '../store/actions/auth';
 
 import Loader from '../cmp/Loader';
 
@@ -29,11 +29,9 @@ class Login extends React.Component {
         })
     }
     
-    
     submitHandler(e) {
         e.preventDefault();
         this.props.login(this.state.email, this.state.password);
-
     }
     
     render() {
@@ -45,13 +43,14 @@ class Login extends React.Component {
         return (
             <div className = 'container-flex-center'>
             
-                
-            
                 <div className = 'container-700'>
                     <form onSubmit = {this.submitHandler.bind(this)} className = 'auth-form'>
                     
-                        <h2 className = 'font-normal'>Log In</h2>
+                        <h2 className = 'font-normal m-b-1'>Log In</h2>
                         
+
+                        {this.props.error ? <p className = 'auth-form__alert'><i className="fas fa-times"></i> Error Logging In</p> : null }
+
                         <div className = 'auth-form__divider'>
                             <label className = 'auth-form__label'>Email</label>
                             <input onChange = {this.inputHandler.bind(this)} className = 'input-block' type = 'email' name = 'email' />
@@ -75,8 +74,9 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        authenticated: state.auth.authenticated,
-        loading: state.loading
+        authenticated: state.user.authenticated,
+        loading: state.loading.login_loading,
+        error: state.error.login_error
     }
 }
 

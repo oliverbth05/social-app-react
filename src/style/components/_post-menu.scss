@@ -4,7 +4,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    background: $grey-1;
+    min-height: 4.3rem;
+    border: 1px solid $color5;
     border-radius: 3px;
+
 }

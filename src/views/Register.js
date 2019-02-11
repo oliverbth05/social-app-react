@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { register } from '../store/actions';
+import { register } from '../store/actions/auth';
 
 import Loader from '../cmp/Loader';
 
@@ -60,6 +60,8 @@ class Register extends React.Component {
                     
                         <h2 className = 'font-normal'>Register</h2>
                         
+                        {this.props.error ? <p className = 'auth-form__alert'><i className="fas fa-times"></i> Error Registering</p> : null }
+
                         <div className = 'auth-form__divider'>
                             <label className = 'auth-form__label'>Email</label>
                             <input onChange = {this.inputHandler.bind(this)} className = 'input-block' type = 'email' name = 'email' />
@@ -98,8 +100,9 @@ class Register extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        authenticated: state.auth.authenticated,
-        loading: state.loading
+        authenticated: state.user.authenticated,
+        loading: state.loading.register_loading,
+        error: state.error.register_error
     }
 }
 
