@@ -41,6 +41,7 @@ class Post extends React.Component {
         </div>
       
         <PostMenu
+          token = {this.props.token}
           post_id={this.props.post._id}
           post_title={this.props.post.title}
           user_id={this.props.user._id}
@@ -63,6 +64,7 @@ const mapStateToProps = state => {
   return {
     post: state.post,
     user: state.user.userData,
+    token: state.user.token,
     post_loading: state.loading.post_loading,
     like_loading: state.loading.like_loading,
     pin_loading: state.loading.pin_loading,

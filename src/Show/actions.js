@@ -32,17 +32,34 @@ export const fetchComments = (post_id) => {
     }
 }
 
-export const likePost = (post_id, user_id) => {
+export const postComment = (data) => {
+    return dispatch => {
+        dispatch({type: 'COMMENTS_LOADING'})
+        server.post(`/post/${data.post_id}/comments`, data)
+        .then(res => {
+            dispatch({
+                type: 'POST_COMMENT',
+                payload: res.data
+            })
+            dispatch({type: '!COMMENTS_LOADING'})
+        })
+        .catch(err => {
+            
+        })
+    }
+}
+
+export const likePost = (data) => {
     return dispatch => {
         dispatch({
             type: 'LIKE_LOADING'
         })
-        server.post(`/post/${post_id}/like`, { user_id })
+        server.post(`/post/${data.post_id}/like`, data)
             .then(res => {
                 dispatch({ type: '!LIKE_LOADING' })
                 dispatch({
                     type: 'LIKE_POST',
-                    payload: user_id
+                    payload: data.user_id
                 })
             })
             .catch(err => {
@@ -51,16 +68,16 @@ export const likePost = (post_id, user_id) => {
     }
 }
 
-export const pinPost = (post_id, user_id, post_title) => {
+export const pinPost = (data) => {
     return dispatch => {
         dispatch({ type: 'PIN_LOADING' })
-        server.post(`/user/${user_id}/pins`, { post_id, post_title })
+        server.post(`/user/${data.user_id}/pins`, data)
             .then(res => {
                 dispatch({
                     type: 'PIN_POST',
                     payload: {
-                        post_id,
-                        post_title,
+                        post_id: data.post_id,
+                        post_title: data.post_title,
                         pin_date: new Date()
                     }
                 })

@@ -4,6 +4,9 @@ const comments = (state = null, action) => {
         case 'FETCH_COMMENTS':
             return action.payload
             
+        case 'POST_COMMENT':
+            return state.concat(action.payload)
+            
         default: 
             return state
     }   

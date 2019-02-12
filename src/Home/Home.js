@@ -17,13 +17,10 @@ class Home extends React.Component {
 
     renderPosts(posts) {
         return posts.map(post => {
-
             var pinned = this.props.user.pins.map(pin => {
                 return pin.post_id
             })
-
             var isPinned = isMember(pinned, post._id)
-
             return (
                 <PostCard key={post._id} {...post} user_id = {this.props.user._id} isPinned = {isPinned}/>
             )
@@ -41,8 +38,10 @@ class Home extends React.Component {
 
                 <nav className = 'home-nav'>
                     <Link className = 'button m-r-1' to='/new'><i className="fas fa-pen"></i> New Post</Link>
+                    <Link className = 'button m-r-1' to = '/user'><i className="fas fa-map-pin"></i> View Pinned</Link>
+                    
                     <div>
-                    <input className = 'input-small' /> <button className = 'button'><i className="fas fa-search"></i></button>
+                        <input className = 'input-small' /> <button className = 'button'><i className="fas fa-search"></i></button>
                     </div>
                 </nav>
 

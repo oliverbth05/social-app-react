@@ -6,6 +6,7 @@ export default (Child) => {
     class isAuthenticated extends React.Component {
         
         componentDidMount() {
+
             if (!this.props.authenticated) {
                 this.props.history.push('/login')
             }

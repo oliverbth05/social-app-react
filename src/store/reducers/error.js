@@ -1,6 +1,6 @@
 const initialState = {
-  login_error: false,
-  register_error: false,
+  login_error: null,
+  register_error: null,
   posts_error: false,
   post_error: false,
   comment_error: false
@@ -11,25 +11,25 @@ const error = (state = initialState, action) => {
     case 'LOGIN_ERROR':
       return {
         ...state,
-        login_error: true
+        login_error: action.payload
       }
 
     case '!LOGIN_ERROR':
       return {
         ...state,
-        login_error: false
+        login_error: null
       }
 
     case 'REGISTER_ERROR':
       return {
         ...state,
-        register_error: true
+        register_error: action.payload
       }
 
     case '!REGISTER_ERROR':
       return {
         ...state,
-        register_error: false
+        register_error: null
       }
 
     case 'POSTS_ERROR':

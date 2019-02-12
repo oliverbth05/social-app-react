@@ -58,9 +58,9 @@ class Register extends React.Component {
                 <div className = 'container-700'>
                     <form onSubmit = {this.submitHandler.bind(this)} className = 'auth-form'>
                     
-                        <h2 className = 'font-normal'>Register</h2>
+                        <h2 className = 'font-normal m-b-1'>Register</h2>
                         
-                        {this.props.error ? <p className = 'auth-form__alert'><i className="fas fa-times"></i> Error Registering</p> : null }
+                        {this.props.error ? <p className = 'auth-form__alert'><i className="fas fa-times"></i> {this.props.error}</p> : null }
 
                         <div className = 'auth-form__divider'>
                             <label className = 'auth-form__label'>Email</label>

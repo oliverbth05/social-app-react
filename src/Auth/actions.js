@@ -17,7 +17,7 @@ export const login = (email, password) => {
         })
         .catch(err => {
             dispatch({type: '!LOGIN_LOADING'})
-            dispatch({type: 'LOGIN_ERROR'})
+            dispatch({type: 'LOGIN_ERROR', payload: err.response.data.error})
         })
     }
 }
@@ -45,7 +45,7 @@ export const register = (data) => {
             dispatch({type: '!REGISTER_LOADING'})
         })
         .catch(err => {
-            dispatch({type: 'REGISTER_ERROR'})
+            dispatch({type: 'REGISTER_ERROR', payload: err.response.data.error})
             dispatch({type: '!REGISTER_LOADING'})
         })
     }

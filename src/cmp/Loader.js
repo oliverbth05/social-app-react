@@ -10,6 +10,14 @@ const Loader = (props) => {
         )
     }
     
+    if (props.center) {
+        return (
+            <div className = 'p-a-3'>
+                
+            </div>
+        )
+    }
+    
     return <i className="fas fa-spinner loader"></i>
    
 }

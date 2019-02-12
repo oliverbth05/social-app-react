@@ -49,7 +49,7 @@ class Login extends React.Component {
                         <h2 className = 'font-normal m-b-1'>Log In</h2>
                         
 
-                        {this.props.error ? <p className = 'auth-form__alert'><i className="fas fa-times"></i> Error Logging In</p> : null }
+                        {this.props.error ? <p className = 'auth-form__alert'><i className="fas fa-times"></i> {this.props.error}</p> : null }
 
                         <div className = 'auth-form__divider'>
                             <label className = 'auth-form__label'>Email</label>

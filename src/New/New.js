@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import isAuthenticated from '../hoc/isAuthenticated';
+import Loader from '../cmp/Loader';
 
 import { createPost } from './actions';
 import Tag from '../cmp/Tag';
@@ -8,7 +9,7 @@ import Tag from '../cmp/Tag';
 class New extends Component {
 
   constructor() {
-    super();
+    super(); 
     this.inputHandler = this.inputHandler.bind(this);
     this.addTag = this.addTag.bind(this);
     this.removeTag = this.removeTag.bind(this);
@@ -55,13 +56,18 @@ class New extends Component {
         body: this.state.body,
         tags: this.state.tags,
         user_id: this.props.user._id,
-        user_name: `${this.props.user.first_name} ${this.props.user.last_name}`
-      })
+        user_name: `${this.props.user.first_name} ${this.props.user.last_name}`,
+        token: this.props.token
+      }, this.props)
     }
 
   }
 
   render() {
+    
+    if (this.props.loading) {
+      return <Loader fullscreen />
+    }
     return (
       <div className='container-flex-center'>
 
@@ -109,7 +115,9 @@ class New extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user.userData
+    user: state.user.userData,
+    token: state.user.token,
+    loading: state.loading.new_loading
   }
 }
 

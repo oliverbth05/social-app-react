@@ -9,6 +9,7 @@ const PostMenu = (props) => {
         <div className='post-menu m-b-1'>
 
             <LikeButton
+                token = {props.token}
                 loading={props.like_loading}
                 likePost={props.likePost}
                 disabled={!props.canLike}
@@ -17,6 +18,7 @@ const PostMenu = (props) => {
             ></LikeButton>
 
             <PinButton
+            token = {props.token}
              loading={props.pin_loading}
              pinPost={props.pinPost}
              disabled={!props.canPin}
