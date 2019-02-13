@@ -1,7 +1,7 @@
 .comment {
-    border: 1px solid $grey-1;
+    box-shadow: $box-shadow;
     margin-bottom: .75rem;
-    
+    border-radius: 3px;
     &__top {
         display: flex;
         align-items: center;
@@ -20,14 +20,7 @@
     }
     
     &__info {
-        background: $grey-4;
         padding: .2rem .5rem .2rem .5rem;
-        p {
-            display: inline-block;
-            font-size: .9rem;
-        }
-        
-
     }
     
 }

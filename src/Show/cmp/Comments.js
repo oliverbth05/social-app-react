@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchComments } from '../actions';
 
 import Loader from '../../cmp/Loader';
+import CommentForm from './CommentForm';
 
 class Comments extends React.Component {
     
@@ -33,9 +34,12 @@ class Comments extends React.Component {
         }
         
         return (
-            <div className = 'box'>
-                <h3 className = 'font-normal'>Comments</h3>
+            <div>
+                
+                <h3 className = 'font-normal m-b-1 m-t-3 border-bottom p-b-1'>Comments <span className = 'font-light color-primary'>{this.props.comments.length} showing</span></h3>
+                <CommentForm routerparam = {this.props.routerparam} />
                 {this.renderComments(this.props.comments)}
+                <button className = 'button-block'>Show More</button>
             </div>
         )
     }

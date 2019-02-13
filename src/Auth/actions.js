@@ -16,6 +16,7 @@ export const login = (email, password) => {
             dispatch({type: '!LOGIN_ERROR'})
         })
         .catch(err => {
+            console.log(err.response.data)
             dispatch({type: '!LOGIN_LOADING'})
             dispatch({type: 'LOGIN_ERROR', payload: err.response.data.error})
         })

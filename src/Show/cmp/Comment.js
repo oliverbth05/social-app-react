@@ -1,4 +1,6 @@
 import React from 'react';
+import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 const Comment = (props) => {
         return (
@@ -9,8 +11,8 @@ const Comment = (props) => {
                 </div>
                 
                 <div className = 'comment__info'>
-                    <a href = {'/user/' + props.user_id}>{props.user_name}</a>
-                    <p>{props.date}</p>
+                    <Link className = 'inline m-r-1' to = {'/user/' + props.user_id}>{props.user_name}</Link>
+                    <span className = 'font-light'>{moment(props.date).fromNow()}</span>
                 </div>
             </div>
         )

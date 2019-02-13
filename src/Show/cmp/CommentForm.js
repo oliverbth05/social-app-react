@@ -42,10 +42,10 @@ class CommentForm extends React.Component {
     
     render() {
         return (
-            <div className = 'box'>
-                <form onSubmit = {this.submitHandler.bind(this)}>
+            <div>
+                <form onSubmit = {this.submitHandler.bind(this)} className = 'm-b-1'>
                     {this.state.error ? <p className = 'color-primary font-light m-b-1'>Cannot submit empty comment.</p> : null }
-                    <input disabled = {this.props.loading ? true : false} onChange = {this.inputHandler.bind(this)} value = {this.state.commentField} className = 'input-small m-r-s'/>
+                    <input disabled = {this.props.loading ? true : false} onChange = {this.inputHandler.bind(this)} value = {this.state.commentField} className = 'input-small m-r-s' placeholder = 'Leave a comment.'></input>
                     <button  disabled = {this.props.loading ? true : false} className = 'button'>Post</button>
                 </form>
             </div>
