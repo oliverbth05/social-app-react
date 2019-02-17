@@ -1,6 +1,8 @@
 h1, h2, h3, h4 {
     color: $text-heading;
-    font-family: 'Sarabun', sans-serif
+    font-family: 'Sarabun', sans-serif;
+    line-height: 2.4rem;
+    letter-spacing: .4px;
 }
 
 h1 {
@@ -8,7 +10,7 @@ h1 {
 }
 
 h2 {
-    font-size: 2.25rem
+    font-size: 2.25rem;
 }
 
 h3 {
@@ -19,10 +21,15 @@ h4 {
     font-size: 1.125rem
 }
 
-p, li, a, button, input, textarea, label {
+p, li, a, button, input, textarea, label, span {
     font-size: 1rem;
     white-space: pre-wrap;
     color: $text-body;
+   
+}
+
+.article-body {
+    font-size: 1rem;
 }
 
 span {
@@ -64,4 +71,55 @@ ul {
 
 .font-small {
     font-size: .9rem;
+}
+
+.line-height {
+    line-height: 1.8rem;
+}
+
+.post-body {
+    font-size: 1.2rem;
+    color: $text-body;
+    margin-top: 2rem;
+    line-height: 2.1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid $grey-1;
+    padding-bottom: 2rem;
+    
+}
+
+.post-heading {
+    font-size: 2.5rem;
+    color: $text-heading;
+    font-weight: normal;
+    margin-bottom: .5rem;
+    line-height: 2.8rem;
+}
+
+.post-caption {
+    font-size: 1.6rem;
+    color: $text-caption;
+    font-weight: lighter;
+    line-height: 2.3rem;
+
+}
+
+.post-image {
+    width: 100%;
+    margin: 1rem 0 1rem 0;
+}
+
+.formatted-h1 {
+    font-size: 1.7rem;
+    display: inline-block;
+}
+
+.formatted-h2 {
+    font-size: 1.4rem;
+    display: inline-block;
+}
+
+.formatted-h3 {
+    font-size: 1.3rem;
+    display: inline-block;
 }

@@ -10,10 +10,10 @@ const Loader = (props) => {
         )
     }
     
-    if (props.center) {
+    if (props.halfscreen) {
         return (
-            <div className = 'p-a-3'>
-                
+            <div className = 'half-section-flex-center'>
+                <i className="fas fa-spinner loader"></i>
             </div>
         )
     }

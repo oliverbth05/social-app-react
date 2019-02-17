@@ -3,7 +3,10 @@ import {Link} from 'react-router-dom';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import PostMenu from './PostMenu';
+import Author from './Author';
+
 import { isMember } from '../../util';
+import { tagTypes, replaceTags, replaceScriptTags } from '../../util';
 import { fetchPost, likePost, pinPost } from '../actions';
 import Loader from '../../cmp/Loader';
 class Post extends React.Component {
@@ -16,26 +19,47 @@ class Post extends React.Component {
   render() {
     
     if (this.props.post_loading || this.props.post === undefined || this.props.post === null) {
-      return <Loader />
+      return <Loader halfscreen />
     }
+    
+    var parsedBody = this.props.post.body
+    
+    for (var i = 0; i < tagTypes.length; i++) {
+        parsedBody = replaceTags(parsedBody, tagTypes[i][0], tagTypes[i][1]);
+    }
+    
+    parsedBody = replaceScriptTags(parsedBody);
+
+    
 
     let likes = this.props.post.likes;
     let user_id = this.props.user._id;
     let canLike = !isMember(likes, user_id)
             
     let pins = this.props.user.pins.map(pin => pin.post_id);
-    let post_id = this.props.post._id;
+    let post_id = this.props.post._id; 
     let canPin = !isMember(pins, post_id)
     
     return (
       
-      <div>
-        <div className='box m-b-1'>
-          <img alt = 'user avatar' className='avatar' src={`https://api.adorable.io/avatars/130/${this.props.user.user_name}.png`} />
-          <Link to={`/user/${this.props.user_id}`} className='text-center font-normal m-b-2'> {this.props.user.user_name}</Link>
-          <h3 className='m-b-1 text-center font-normal'>{this.props.post.title}</h3>
-          <p className='m-b-1'>{this.props.post.body}</p>
-          <p>{moment(this.props.post.date).fromNow()}</p>
+      <div  >
+        <div className = 'm-t-3 m-b-1'>
+          
+          
+          <h2 className='post-heading'>{this.props.post.title}</h2>
+          {this.props.post.caption ? <h4 className = 'post-caption'>{this.props.post.caption}</h4> : null }
+          {this.props.post.image ? <img src = {this.props.post.image} className = 'post-image' /> : null }
+          <Author
+          date = {this.props.post.date}
+          user_name = {this.props.post.user_name}
+          user_id = {this.props.post.user_id}
+          />
+          <p className='post-body' dangerouslySetInnerHTML = {{__html: parsedBody}}></p>
+          
+          
+          
+
+
           <span><i className="far fa-eye"></i> {this.props.post.views}  </span>
           <span><i className="far fa-thumbs-up"></i> {this.props.post.likes.length} </span>
         </div>

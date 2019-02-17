@@ -7,6 +7,7 @@ import Register from '../Auth/Register';
 import Home from '../Home/Home';
 import Show from '../Show/Show';
 import New from '../New/New';
+import Profile from '../Profile/Profile';
 
 import Nav from './Nav';
 
@@ -22,6 +23,7 @@ class App extends React.Component {
                         <Route exact path = '/home' component = {Home} />
                         <Route exact path = '/show/:id' component = {Show} />
                         <Route exact path = '/new' component = {New} />
+                        <Route exact path = '/profile/:id' component = {Profile} />
                     </Switch>
                 </div>
         )

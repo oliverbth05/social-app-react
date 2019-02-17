@@ -13,6 +13,14 @@
     }
 }
 
+.half-section-flex-center {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
 .container-flex-center {
     width: 100%;
     padding: 1rem;
@@ -20,6 +28,12 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+}
+
+.container-1000 {
+    max-width: 1000px;
+    margin: auto;
+    padding: .8rem;
 }
 
 .container-700 {
@@ -72,7 +86,7 @@
 }
 
 .tag {
-    border-radius: 3px;
+    border-radius: 3px; 
     background: $color5;
     color: white;
     display: flex;
@@ -109,9 +123,40 @@
 
 .avatar {
     display: block;
-    height: 6rem;
-    width: 6rem;
+    height: 8rem;
+    width: 8rem;
     background: rgb(220, 220, 220);
     border-radius: 50%;
-    margin: auto;
+}
+
+
+.flex-grid {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.flex-2 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.flex-item {
+    width: 100%;
+}
+
+.preview-container {
+    max-height: 80vh;
+    overflow: scroll;
+}
+
+.code-section {
+    background: $color4;
+    font-family: 'Roboto Mono', monospace;
+    color: $color1;
+    padding: 1rem;
+    display: block;
+    width: 100%;
 }

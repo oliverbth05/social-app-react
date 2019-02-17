@@ -6,7 +6,8 @@ const initialState = {
     like_loading: false,
     pin_loading: false,
     comments_loading: false,
-    new_loading: false
+    new_loading: false,
+    profile_loading: false
 }
 
 const loading = (state = initialState, action) => {
@@ -107,6 +108,20 @@ const loading = (state = initialState, action) => {
                 ...state,
                 new_loading: false
             }
+            
+        case 'PROFILE_LOADING' :
+            return {
+                ...state,
+                profile_loading: true
+            }
+            
+        case '!PROFILE_LOADING' :
+            return {
+                ...state,
+                profile_loading: false
+            }
+            
+            
 
         default:
             return state

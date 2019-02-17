@@ -10,7 +10,7 @@ class Show extends React.Component {
     render() {
         return (
  
-            <div className='container'>
+            <div className='container-1000'>
 
                 <Post routerparam = {this.props.match.params.id}/>
                 
