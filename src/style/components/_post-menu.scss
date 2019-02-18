@@ -1,11 +1,12 @@
 .post-menu {
-    padding: 1rem;
-    
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     min-height: 4.3rem;
-    border: 1px solid $color5;
+    border-bottom: 1px solid $grey-1;
     border-radius: 3px;
-
-}
+    padding: 1rem;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+} 

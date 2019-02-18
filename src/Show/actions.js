@@ -18,11 +18,12 @@ export const fetchPost = (id) => {
     }
 }
 
-export const fetchComments = (post_id) => {
+export const fetchComments = (post_id, page) => {
     return dispatch => {
         dispatch({type: 'COMMENTS_LOADING'})
-        server.get(`/post/${post_id}/comments`)
+        server.get(`/post/${post_id}/comments?page=${page}`)
         .then(res => {
+            console.log(res.data, 'COMMENTS RECEIVED')
             dispatch({type: 'FETCH_COMMENTS', payload: res.data})
             dispatch({type: '!COMMENTS_LOADING'})
         })
@@ -31,6 +32,22 @@ export const fetchComments = (post_id) => {
         })
     }
 }
+
+export const fetchMoreComments = (post_id, page) => {
+    return dispatch => {
+        dispatch({type: 'COMMENTS_LOADING'})
+        server.get(`/post/${post_id}/comments?page=${page}`)
+        .then(res => {
+            console.log(res.data, 'COMMENTS RECEIVED')
+            dispatch({type: 'FETCH_MORE_COMMENTS', payload: res.data})
+            dispatch({type: '!COMMENTS_LOADING'})
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+}
+
 
 export const postComment = (data) => {
     return dispatch => {

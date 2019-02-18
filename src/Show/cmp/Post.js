@@ -48,23 +48,19 @@ class Post extends React.Component {
           
           <h2 className='post-heading'>{this.props.post.title}</h2>
           {this.props.post.caption ? <h4 className = 'post-caption'>{this.props.post.caption}</h4> : null }
-          {this.props.post.image ? <img src = {this.props.post.image} className = 'post-image' /> : null }
           <Author
           date = {this.props.post.date}
           user_name = {this.props.post.user_name}
           user_id = {this.props.post.user_id}
           />
+          {this.props.post.image ? <img src = {this.props.post.image} className = 'post-image' /> : null }
+          
           <p className='post-body' dangerouslySetInnerHTML = {{__html: parsedBody}}></p>
-          
-          
-          
-
-
-          <span><i className="far fa-eye"></i> {this.props.post.views}  </span>
-          <span><i className="far fa-thumbs-up"></i> {this.props.post.likes.length} </span>
         </div>
       
         <PostMenu
+          views = {this.props.post.views}
+          likes = {this.props.post.likes.length}
           token = {this.props.token}
           post_id={this.props.post._id}
           post_title={this.props.post.title}

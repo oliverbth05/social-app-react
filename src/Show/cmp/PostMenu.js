@@ -6,26 +6,37 @@ import PinButton from './PinButton';
 const PostMenu = (props) => {
 
     return (
-        <div className='post-menu m-b-1'>
+        <div className='post-menu'>
+            
+            <div>
+                <span className = 'm-r-1 font-light'><i className="far fa-thumbs-up"></i> Likes: {props.likes}</span>
+                <span className = 'font-light'><i className="far fa-eye"></i>  Views: {props.views}</span>
+            </div>
 
-            <LikeButton
+
+
+            <div>
+                <LikeButton
+                    token = {props.token}
+                    loading={props.like_loading}
+                    likePost={props.likePost}
+                    disabled={!props.canLike}
+                    post_id={props.post_id}
+                    user_id={props.user_id}
+                ></LikeButton>
+
+                <PinButton
                 token = {props.token}
-                loading={props.like_loading}
-                likePost={props.likePost}
-                disabled={!props.canLike}
+                loading={props.pin_loading}
+                pinPost={props.pinPost}
+                disabled={!props.canPin}
                 post_id={props.post_id}
-                user_id={props.user_id}
-            ></LikeButton>
-
-            <PinButton
-            token = {props.token}
-             loading={props.pin_loading}
-             pinPost={props.pinPost}
-             disabled={!props.canPin}
-             post_id={props.post_id}
-             post_title={props.post_title}
-             user_id={props.user_id}    
-            ></PinButton>
+                post_title={props.post_title}
+                user_id={props.user_id}    
+                ></PinButton>
+            </div>
+ 
+           
 
 
 

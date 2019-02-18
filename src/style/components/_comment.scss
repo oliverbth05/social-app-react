@@ -1,26 +1,67 @@
+// .comment {
+//    
+//     margin-bottom: .75rem;
+//     border-radius: 3px;
+//     &__top {
+//         display: flex;
+//         align-items: center;
+//     }
+    
+//     &__body {
+//         padding: .7rem .5rem .7rem .5rem;
+
+//     }
+    
+//     &__avatar {
+//         height: 100%;
+//     }
+    
+//     &__info {
+//         padding: .2rem .5rem .2rem .5rem;
+//     }
+    
+// } 
+
 .comment {
     box-shadow: $box-shadow;
-    margin-bottom: .75rem;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: .8rem;
     border-radius: 3px;
-    &__top {
-        display: flex;
-        align-items: center;
-    }
-    
-    &__body {
-        padding: .7rem .5rem .7rem .5rem;
+    margin-bottom: .5rem;
 
-    }
-    
-    &__avatar {
-        margin: .5rem;
-        height: 3.5rem;
-        width: 3.5rem;
+    img {
+        max-height: 4rem;
         border-radius: 50%;
     }
-    
-    &__info {
-        padding: .2rem .5rem .2rem .5rem;
+
+    &__main {
+        margin-left: 1rem;
     }
-    
+
+    &__details {
+        padding-bottom: .5rem;
+    }
+
+    &__options {
+        padding-top: 1rem;
+    }
+
+    &__user {
+        display: inline-block;
+        margin-right: .5rem;
+        font-size: .8rem;
+        &:hover {
+            color: $color5;
+            text-decoration: underline;
+        }
+    }
+
+    &__date {
+        font-size: .7rem;
+        font-weight: lighter;
+        display: inline-block;
+    }
 }

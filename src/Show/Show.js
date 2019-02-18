@@ -11,11 +11,8 @@ class Show extends React.Component {
         return (
  
             <div className='container-1000'>
-
                 <Post routerparam = {this.props.match.params.id}/>
-                
                 <Comments routerparam = {this.props.match.params.id} />
-                
             </div>
             
         )
