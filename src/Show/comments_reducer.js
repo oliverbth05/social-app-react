@@ -8,7 +8,7 @@ const initialState = {
 const comments = (state = initialState, action) => {
     switch (action.type) {
 
-        case 'FETCH_COMMENTS': 
+        case 'FETCH_COMMENTS':
             return {
                 comments: action.payload.comments,
                 count: action.payload.count,
@@ -20,15 +20,15 @@ const comments = (state = initialState, action) => {
                 comments: state.comments.concat(action.payload),
                 commentsPage: state.commentsPage + 1
             }
-            
+
         case 'POST_COMMENT':
             return {
                 comments: state.concat(action.payload),
                 commentsPage: state.commentsPage
             }
-        default: 
+        default:
             return state
-    }   
+    }
 }
 
 export default comments;

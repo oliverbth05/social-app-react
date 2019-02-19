@@ -31,7 +31,7 @@ class Comments extends React.Component {
             <div className='m-b-3 m-t-1'>
                 <CommentForm routerparam={this.props.routerparam} />
                 {this.renderComments(this.props.comments)}
-                {this.props.comments.length > 0 ? <button className='button-block' onClick = { () => {this.props.fetchMoreComments(this.props.routerparam, this.props.commentsPage)}} >Show More</button> : null}
+                {this.props.comments.length > 0 ? <button className='button-block' onClick={() => { this.props.fetchMoreComments(this.props.routerparam, this.props.commentsPage) }} >Show More</button> : null}
             </div>
         )
     }

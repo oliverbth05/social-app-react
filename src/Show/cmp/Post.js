@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import PostMenu from './PostMenu';
@@ -10,58 +10,58 @@ import { tagTypes, replaceTags, replaceScriptTags } from '../../util';
 import { fetchPost, likePost, pinPost } from '../actions';
 import Loader from '../../cmp/Loader';
 class Post extends React.Component {
-  
-  
+
+
   componentDidMount() {
     this.props.fetchPost(this.props.routerparam)
   }
-  
+
   render() {
-    
+
     if (this.props.post_loading || this.props.post === undefined || this.props.post === null) {
       return <Loader halfscreen />
     }
-    
+
     var parsedBody = this.props.post.body
-    
+
     for (var i = 0; i < tagTypes.length; i++) {
-        parsedBody = replaceTags(parsedBody, tagTypes[i][0], tagTypes[i][1]);
+      parsedBody = replaceTags(parsedBody, tagTypes[i][0], tagTypes[i][1]);
     }
-    
+
     parsedBody = replaceScriptTags(parsedBody);
 
-    
+
 
     let likes = this.props.post.likes;
     let user_id = this.props.user._id;
     let canLike = !isMember(likes, user_id)
-            
+
     let pins = this.props.user.pins.map(pin => pin.post_id);
-    let post_id = this.props.post._id; 
+    let post_id = this.props.post._id;
     let canPin = !isMember(pins, post_id)
-    
+
     return (
-      
+
       <div  >
-        <div className = 'm-t-3 m-b-1'>
-          
-          
+        <div className='m-t-3 m-b-1'>
+
+
           <h2 className='post-heading'>{this.props.post.title}</h2>
-          {this.props.post.caption ? <h4 className = 'post-caption'>{this.props.post.caption}</h4> : null }
+          {this.props.post.caption ? <h4 className='post-caption'>{this.props.post.caption}</h4> : null}
           <Author
-          date = {this.props.post.date}
-          user_name = {this.props.post.user_name}
-          user_id = {this.props.post.user_id}
+            date={this.props.post.date}
+            user_name={this.props.post.user_name}
+            user_id={this.props.post.user_id}
           />
-          {this.props.post.image ? <img src = {this.props.post.image} className = 'post-image' /> : null }
-          
-          <p className='post-body' dangerouslySetInnerHTML = {{__html: parsedBody}}></p>
+          {this.props.post.image ? <img src={this.props.post.image} className='post-image' /> : null}
+
+          <p className='post-body' dangerouslySetInnerHTML={{ __html: parsedBody }}></p>
         </div>
-      
+
         <PostMenu
-          views = {this.props.post.views}
-          likes = {this.props.post.likes.length}
-          token = {this.props.token}
+          views={this.props.post.views}
+          likes={this.props.post.likes.length}
+          token={this.props.token}
           post_id={this.props.post._id}
           post_title={this.props.post.title}
           user_id={this.props.user._id}
@@ -72,12 +72,11 @@ class Post extends React.Component {
           pinPost={this.props.pinPost}
           likePost={this.props.likePost}
         />
-        
-      </div>
-   
-  )
-  }
 
+      </div>
+
+    )
+  }
 }
 
 const mapStateToProps = state => {
@@ -91,4 +90,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {fetchPost, likePost, pinPost})(Post)
+export default connect(mapStateToProps, { fetchPost, likePost, pinPost })(Post)
