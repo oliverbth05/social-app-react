@@ -5,7 +5,8 @@
     bottom: 0; 
     position: fixed;
     width: 8rem;
-    background: linear-gradient(to bottom, $color5, $color5-dark);
+    /* background: linear-gradient(to bottom, $color5, $color5-dark); */
+    background: $grey-1;
     box-shadow: inset -1px 0px 25px 0px rgba(0,0,0,0.23);
 
     @include respond(tablet) {
@@ -118,9 +119,7 @@
             background: $color5-dark;
         }
 
-        &-active {
-            background: $color5-dark;
-        }
+        
     }
 }
 
@@ -145,4 +144,8 @@
 .home-nav__spacer {
     display: block;
     height: 3.5rem;
+}
+
+.active {
+    background: $color5-dark;
 }

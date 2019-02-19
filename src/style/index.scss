@@ -13,7 +13,8 @@
 @import './components/_loader.scss';
 @import './components/_post-menu.scss';
 @import './components/_author.scss';
-@import './components/modal.scss';
+@import './components/_modal.scss';
+@import './components/_pin.scss';
 
 * {  
     font-family: 'Open Sans', sans-serif;
@@ -24,7 +25,8 @@
 
 body {
     margin-left: 8rem;
-
+    
+    
     @include respond(tablet) {
         margin-left: 0;
     }

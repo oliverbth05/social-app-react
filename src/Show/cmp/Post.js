@@ -16,7 +16,7 @@ class Post extends React.Component {
     this.props.fetchPost(this.props.routerparam)
   }
   
-  render() {
+  render() { 
     
     if (this.props.post_loading || this.props.post === undefined || this.props.post === null) {
       return <Loader halfscreen />
@@ -56,6 +56,9 @@ class Post extends React.Component {
           {this.props.post.image ? <img src = {this.props.post.image} className = 'post-image' /> : null }
           
           <p className='post-body' dangerouslySetInnerHTML = {{__html: parsedBody}}></p>
+          {this.props.post.tags.map(tag => {
+            return <span className = 'color-primary font-light m-r-s'>{tag }</span>
+          })}
         </div>
       
         <PostMenu

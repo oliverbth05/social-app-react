@@ -18,13 +18,16 @@ export const fetchPost = (id) => {
     }
 }
 
-export const fetchComments = (post_id, page) => {
+export const fetchComments = (post_id) => {
     return dispatch => {
+        dispatch({type: '!END_COMMENTS'})
         dispatch({type: 'COMMENTS_LOADING'})
-        server.get(`/post/${post_id}/comments?page=${page}`)
+        server.get(`/post/${post_id}/comments?page=1`)
         .then(res => {
-            console.log(res.data, 'COMMENTS RECEIVED')
             dispatch({type: 'FETCH_COMMENTS', payload: res.data})
+            if (res.data.comments.length < 10) {
+                dispatch({type: 'END_COMMENTS'})
+            }
             dispatch({type: '!COMMENTS_LOADING'})
         })
         .catch(err => {
@@ -36,9 +39,12 @@ export const fetchComments = (post_id, page) => {
 export const fetchMoreComments = (post_id, page) => {
     return dispatch => {
         dispatch({type: 'COMMENTS_LOADING'})
+        
         server.get(`/post/${post_id}/comments?page=${page}`)
         .then(res => {
-            console.log(res.data, 'COMMENTS RECEIVED')
+            if (res.data.comments.length < 10) {
+                dispatch({type: 'END_COMMENTS'})
+            }
             dispatch({type: 'FETCH_MORE_COMMENTS', payload: res.data})
             dispatch({type: '!COMMENTS_LOADING'})
         })
@@ -86,6 +92,7 @@ export const likePost = (data) => {
 }
 
 export const pinPost = (data) => {
+    console.log('data from action', data)
     return dispatch => {
         dispatch({ type: 'PIN_LOADING' })
         server.post(`/user/${data.user_id}/pins`, data)

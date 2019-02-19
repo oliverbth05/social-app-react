@@ -13,3 +13,17 @@ export const fetchUserProfile = id => {
         })
     }
 }
+
+export const removePin = data => {
+    return dispatch => {
+        dispatch({type: 'PROFILE_LOADING'})
+        server.delete(`/user/${data.user_id}/pins/${data.post_id}`)
+        .then(res => {
+            dispatch({type: 'REMOVE_PIN', payload: data})
+            dispatch({type: '!PROFILE_LOADING'})
+        })
+        .catch(err => {
+            
+        })
+    }
+}

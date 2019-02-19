@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../Auth/actions';
 
@@ -48,8 +48,8 @@ class Nav extends React.Component {
                         <div className='nav__container'>
                             <h3 className='nav__title'>S | A</h3>
                             <div className='nav__links'>
-                                <NavLink exact to='/login' className='nav__link' activeClassName = 'nav__link-active'>Log In</NavLink>
-                                <NavLink exact to='/register' className='nav__link' activeClassName = 'nav__link-active'>Register</NavLink>
+                                <NavLink exact to='/login' className='nav__link'>Log In</NavLink>
+                                <NavLink exact to='/register' className='nav__link'>Register</NavLink>
                             </div>
                         </div>
                     </nav>
@@ -74,10 +74,10 @@ class Nav extends React.Component {
                             <div className='nav__links'>
                                 <img alt = 'user avatar' className='nav__avatar' src={`https://api.adorable.io/avatars/130/${this.props.user.first_name} ${this.props.user.last_name}.png`} />
                                 <p className='nav__avatar__name m-b-2'>{this.props.user.first_name}</p>
-                                <NavLink exact to='/home' className='nav__link' activeClassName = 'nav__link-active'><i className="fas fa-home"></i></NavLink>
-                                <NavLink exact to= {`/profile/${this.props.user._id}`} className='nav__link' activeClassName = 'nav__link-active'><i className="fas fa-user"></i></NavLink>
-                                <NavLink exact to='/notifications' className='nav__link' activeClassName = 'nav__link-active'><i className="fas fa-bell"></i></NavLink>
-                                <NavLink exact to='/contacts' className='nav__link' activeClassName = 'nav__link-active'><i className="fas fa-address-book"></i></NavLink>
+                                <NavLink exact to='/home' className='nav__link' ><i className="fas fa-home"></i></NavLink>
+                                <NavLink exact to= {`/profile/${this.props.user._id}`} className='nav__link' ><i className="fas fa-user"></i></NavLink>
+                                <NavLink exact to='/notifications' className='nav__link' ><i className="fas fa-bell"></i></NavLink>
+                                <NavLink exact to='/contacts' className='nav__link' ><i className="fas fa-address-book"></i></NavLink>
                                 <a onClick={() => { this.props.logout() }} className='nav__link'><i className="fas fa-sign-out-alt"></i></a>
                             </div>
                         </div>
@@ -104,4 +104,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { logout })(Nav);
+export default connect(mapStateToProps, { logout }, null, {pure: false})(withRouter(Nav));

@@ -38,17 +38,11 @@ class Home extends React.Component {
 
                 <nav className = 'home-nav'>
                     <Link className = 'button m-r-1' to='/new'><i className="fas fa-pen"></i> New Post</Link>
-                    <Link className = 'button m-r-1' to = '/user'><i className="fas fa-map-pin"></i> View Pinned</Link>
-                    
                     <div>
                         <input className = 'input-small' /> <button className = 'button'><i className="fas fa-search"></i></button>
                     </div>
                 </nav>
-
-
                 
-
-
                 <h2 className='font-light border-bottom'>Feed <span className = 'color-primary'>{this.props.posts.length} showing</span></h2>
                 {this.renderPosts(this.props.posts)}
             </div>

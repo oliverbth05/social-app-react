@@ -23,6 +23,9 @@ const Preview = (props) => {
               {props.caption ? <h4 className = 'post-caption'>{props.caption}</h4> : null }
               {props.image ? <img className = 'post-image' src = {props.image} /> : null }
               <p dangerouslySetInnerHTML = {{__html:parsedBody}} className='post-body'></p>
+              {props.tags.map(tag => {
+                return <span className = 'color-primary font-light m-r-s'>{tag }</span>
+              })}
             </div>
             : <h4 className = 'font-light  text-center p-t-3' >Start typing to see your preview.</h4> }
             

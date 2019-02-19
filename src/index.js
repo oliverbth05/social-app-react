@@ -3,7 +3,7 @@ import './style/index.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+
 
 import store from './store';
 import App from './cmp/App';
@@ -25,9 +25,7 @@ if (user && token && authenticated) {
 
 ReactDOM.render(
     <Provider store = {store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+        <App />
     </Provider>,
     document.getElementById('root')
 );
