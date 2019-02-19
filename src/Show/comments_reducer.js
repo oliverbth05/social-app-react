@@ -10,21 +10,37 @@ const comments = (state = initialState, action) => {
 
         case 'FETCH_COMMENTS':
             return {
+                ...state,
                 comments: action.payload.comments,
                 count: action.payload.count,
-                commentsPage: 1
+                commentsPage: 2
             }
 
         case 'FETCH_MORE_COMMENTS':
             return {
-                comments: state.comments.concat(action.payload),
-                commentsPage: state.commentsPage + 1
+                ...state,
+                comments: state.comments.concat(action.payload.comments),
+                commentsPage: state.commentsPage + 1,
+                count: action.payload.count
+            }
+            
+        case 'END_COMMENTS' :
+            return {
+                ...state,
+                noMoreComments: true
+            }
+            
+        case '!END_COMMENTS' :
+            return {
+                ...state,
+                noMoreComments: false
             }
 
         case 'POST_COMMENT':
             return {
-                comments: state.concat(action.payload),
-                commentsPage: state.commentsPage
+                ...state,
+                comments: [action.payload, ...state.comments],
+                count: state.count + 1
             }
         default:
             return state

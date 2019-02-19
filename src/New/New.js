@@ -144,6 +144,7 @@ class New extends Component {
             caption = {this.state.caption}
             body= {this.state.body}
             image = {this.state.image}
+            tags = {this.state.tags}
           />
       
       </div>

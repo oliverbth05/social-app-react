@@ -5,11 +5,19 @@
     bottom: 0; 
     position: fixed;
     width: 8rem;
-    background: linear-gradient(to bottom, $color5, $color5-dark);
-    box-shadow: inset -1px 0px 25px 0px rgba(0,0,0,0.23);
+    /* background: linear-gradient(to bottom, $color5, $color5-dark); */
+    background: $dark;
+    // box-shadow: inset -1px 0px 25px 0px rgba(0,0,0,0.23);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     @include respond(tablet) {
         display: none;
+    }
+
+    &__spacer {
+        flex-grow: 1;
     }
 
     &__mobile-btn {
@@ -86,9 +94,11 @@
         width: 4rem;
         border-radius: 50%;
         margin: auto;
-        margin-top: 5rem;
-        box-shadow: $input-shadow-after;
+        margin-top: 4rem;
+        border-bottom: 1px solid $primary;
+
         &__name {
+            font-weight: lighter;
             padding-top: .65rem;
             text-align: center;
             color: white;
@@ -97,41 +107,42 @@
     }
     
     &__links {
-        margin-top: 5rem;
         display: flex;
         align-items: center;
-        justify-content: stretch;
         flex-direction: column;
+        width: 100%;
     }
 
     &__link {
         width: 100%;
         transition: all .2s;
-        color: white;
+        color: $white-faded;
         cursor: pointer;
         padding: 1rem;
         text-decoration: none;
         text-align: center;
         font-size: 1.15rem;
-        border-bottom: 1px solid $color5-dark;
+        border-bottom: 1px solid black;
+        
         &:hover {
-            background: $color5-dark;
+            color: $white;
+            i {
+                transform: scale(1.1);
+            }
+            
         }
 
-        &-active {
-            background: $color5-dark;
-        }
+        
     }
 }
 
 .home-nav {
-    background: $grey-4;
+    background: $white;
     top: 0;
     left: 8rem;
     width: 100%;
     position: fixed;
-    height: 3.5rem;
-    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.23);
+    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: start;
@@ -145,4 +156,9 @@
 .home-nav__spacer {
     display: block;
     height: 3.5rem;
+}
+
+.active {
+    color: $white;
+    background: black;
 }

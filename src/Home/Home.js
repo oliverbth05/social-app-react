@@ -34,23 +34,20 @@ class Home extends React.Component {
         }
 
         return (
-            <div className='container m-t-3'>
+            <div className='container m-t-3 bg-gradient'>
 
                 <nav className = 'home-nav'>
                     <Link className = 'button m-r-1' to='/new'><i className="fas fa-pen"></i> New Post</Link>
-                    <Link className = 'button m-r-1' to = '/user'><i className="fas fa-map-pin"></i> View Pinned</Link>
-                    
                     <div>
                         <input className = 'input-small' /> <button className = 'button'><i className="fas fa-search"></i></button>
                     </div>
                 </nav>
-
-
                 
-
-
-                <h2 className='font-light border-bottom'>Feed <span className = 'color-primary'>{this.props.posts.length} showing</span></h2>
-                {this.renderPosts(this.props.posts)}
+                <h2 className='color-white font-normal p-b-1 p-t-1'>Feed <span className = 'color-white font-light'>{this.props.posts.length} showing</span></h2>
+                <div className = 'home-grid'>
+                    {this.renderPosts(this.props.posts)}    
+                </div>
+                
             </div>
         )
     }

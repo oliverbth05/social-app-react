@@ -3,6 +3,7 @@ const profile = (state = null, action) => {
         
         case 'FETCH_PROFILE' :
             return action.payload
+            
         
         default :
             return state

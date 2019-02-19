@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-
+import { BrowserRouter } from 'react-router-dom';
 
 import Login from '../Auth/Login';
 import Register from '../Auth/Register';
@@ -15,6 +15,7 @@ class App extends React.Component {
 
     render() {
         return (
+            <BrowserRouter>
                 <div>
                     <Nav />
                     <Switch>
@@ -26,6 +27,7 @@ class App extends React.Component {
                         <Route exact path = '/profile/:id' component = {Profile} />
                     </Switch>
                 </div>
+            </BrowserRouter>
         )
     }
 }

@@ -1,0 +1,20 @@
+$primary : rgb(73, 61, 237);
+$primary-faded: rgba(73, 61, 237, 0.8);
+$secondary: rgb(255, 40, 97);
+$white : rgb(245, 245, 245);
+$white-faded: rgba(245, 245, 245, 0.8);
+$grey : rgb(188, 188, 188);
+$dark : rgb(29, 37, 37);
+$shadow-primary : 0px 0px 0px 3px $primary;
+
+.bg-primary {
+  background: $primary
+}
+
+.bg-gradient {
+  background: linear-gradient(to left, $primary, $secondary);
+}
+
+.color-white {
+  color: white;
+}

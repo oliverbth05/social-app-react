@@ -3,11 +3,21 @@ import { connect } from 'react-redux';
 import isAuthenticated from '../hoc/isAuthenticated';
 import Loader from '../cmp/Loader';
 import { fetchUserProfile } from './actions';
+import Pins from './cmp/Pins';
 
 class Profile extends React.Component {
     
     componentDidMount() {
         this.props.fetchUserProfile(this.props.match.params.id)
+    }
+    
+    isUser() {
+        if (this.props.profile._id === this.props.user._id) {
+            return true
+        }
+        else {
+            return false
+        }
     }
     
     render() {
@@ -29,6 +39,9 @@ class Profile extends React.Component {
                     <button className = 'button m-t-1'>Message</button>
                 </div>
                 : null }
+                
+                { this.isUser() ? <Pins /> : null }
+                
                 
             </div>
         )

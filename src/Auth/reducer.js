@@ -29,7 +29,7 @@ const user = (state = initialState, action) => {
 
 
         case 'PIN_POST' :
-            
+            console.log(action.payload)
             var userData = {...state.userData}
             userData.pins.push(action.payload)
 
@@ -40,6 +40,17 @@ const user = (state = initialState, action) => {
                 userData
             }
             
+        case 'REMOVE_PIN' :
+            var userData = {...state.userData}
+            userData.pins = state.userData.pins.filter(pin => {
+                return pin.post_id !== action.payload.post_id
+            })
+            window.localStorage.setItem('user', JSON.stringify(userData))
+            
+            return {
+                ...state,
+                userData
+            }
             
         default:
             return state

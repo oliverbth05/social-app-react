@@ -3,6 +3,7 @@
     margin: auto;
     max-width: 100%;
     padding: 1rem;
+    min-height: 100vh;
     
     @include respond(phone) {
         padding: .3rem;
@@ -50,15 +51,26 @@
  
 } 
 
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    justify-content: center;
+    grid-gap: 1rem;
+}
+
 .card {
     display: block;
+    min-height: 25rem;
     width: 100%;
-    margin-top: 10px;
     cursor: pointer;
+    background: $white-faded;
+    border-radius: 2px;
     transition: all .2s;
     color: $color3;
     box-shadow: $box-shadow;
     padding: .5rem;
+
     &__details {
         
         padding: .3rem 0 .3rem 0;
