@@ -1,5 +1,8 @@
-import React from 'react';
-import { tagTypes, replaceTags, replaceScriptTags } from '../../util';
+import React            from 'react';
+import { 
+    tagTypes,
+    replaceTags,
+    replaceScriptTags } from '../../util';
 
 const Preview = (props) => {
     
@@ -15,7 +18,7 @@ const Preview = (props) => {
     
     
     return (
-        <div className = 'flex-item m-a-1'>
+        <div className = 'flex-item m-a-1 box p-a-1'>
             <h3 className = 'text-center font-normal'>Preview</h3>
             { props.body || props.title || props.caption || props.image  ?
             <div className = 'preview-container'>

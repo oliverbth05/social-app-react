@@ -1,14 +1,15 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import isAuthenticated from '../hoc/isAuthenticated';
-import Loader from '../cmp/Loader';
-import RulesModal from './cmp/RulesModal';
-import { createPost } from './actions';
-import Tag from '../cmp/Tag';
-import Author from '../Show/cmp/Author';
-import Preview from './cmp/Preview';
+import React              from 'react'
+import { connect }        from 'react-redux';
+import { createPost }     from './actions';
 
-class New extends Component {
+import isAuthenticated    from '../hoc/isAuthenticated';
+import Loader             from '../cmp/Loader';
+import RulesModal         from './cmp/RulesModal';
+import Tag                from '../cmp/Tag';
+import Author             from '../Show/cmp/Author';
+import Preview            from './cmp/Preview';
+
+class New extends React.Component {
 
   constructor() {
     super(); 
@@ -17,7 +18,7 @@ class New extends Component {
     this.removeTag = this.removeTag.bind(this);
     this.submitPost = this.submitPost.bind(this);
   }
-
+ 
   state = {
     
     rulesModal: false,
@@ -87,15 +88,11 @@ class New extends Component {
       
       <div className = 'container'>
         { this.state.rulesModal ? <RulesModal toggle = {this.toggleRulesModal.bind(this)}/> : null }
-        <div className = 'border-bottom p-b-1'>
-          <h2 className='font-normal m-t-2 m-b-1 text-center'>New Post</h2>
-          <button onClick = {this.toggleRulesModal.bind(this)} className = 'button m-r-s'><i class="fas fa-info-circle"></i> Styling Rules</button>
-        </div>
-        
-        
+
         <div className='flex-2'>
-          <div className = 'flex-item m-a-1'>
+          <div className = 'flex-item m-a-1 box p-a-1'>
             <h3 className = 'font-normal text-center'>Editor</h3>
+            <button onClick = {this.toggleRulesModal.bind(this)} className = 'btn btn-secondary btn-round m-r-s'><i class="fas fa-info-circle"></i> Styling Rules</button>
             <form onSubmit={this.submitPost} className='post-form'>
 
               <div className='post-form__divider'>
@@ -121,7 +118,7 @@ class New extends Component {
               <div class='post-form__divider'>
                 <label className='post-form__label'>Tags</label>
                 <input onChange={this.inputHandler} className='input-block' type='text' value={this.state.tagField} name='tagField' />
-                <button onClick={this.addTag} className='button m-t-1' >Add tag</button>
+                <button onClick={this.addTag} className='btn btn-primary m-t-1' >Add tag</button>
   
                 <div class='tag__container'>
                   {this.state.tags.length > 0 ?
@@ -133,7 +130,7 @@ class New extends Component {
               </div>
   
               <div className='post-form__divider'>
-                <button className='button-block'>Submit</button>
+                <button className='btn-block btn btn-primary'>Submit</button>
               </div>
   
             </form>

@@ -37,7 +37,7 @@ const RulesModal = (props) => {
             <br />
             <span className = 'code-section'>console.log('Place Code inside =CODE= brackets')</span>
             
-            <button onClick = {() => {props.toggle()}} className = 'button-block m-t-1'>Understood</button>
+            <button onClick = {() => {props.toggle()}} className = 'btn btn-primary btn-block m-t-1'>Understood</button>
         </div>
           
     </div>

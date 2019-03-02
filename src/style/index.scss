@@ -16,6 +16,10 @@
 @import './components/_author.scss';
 @import './components/_modal.scss';
 @import './components/_pin.scss';
+@import './components/_post-card.scss';
+@import './components/_post-list.scss';
+@import './components/_alerts.scss';
+@import './components/stats.scss';
 
 * {  
     font-family: 'Open Sans', sans-serif;
@@ -25,12 +29,10 @@
 } 
 
 body {
-    margin-left: 8rem;
-    background: $white;
     
-    @include respond(tablet) {
-        margin-left: 0;
-    }
+    background: white;
+    
+   
 }
 
     

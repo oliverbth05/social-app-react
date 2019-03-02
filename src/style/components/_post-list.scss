@@ -1,0 +1,20 @@
+.post-list-item {
+    transition: all .1s;
+    padding: 1rem;
+    border: 1px solid $grey;
+    border-radius: 3px;
+    margin-bottom: .5rem;
+    &__details {
+        width: 100%;
+        padding: .5rem 0 .5rem 0;
+        margin-top: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    
+    &:hover {
+        border-color: $primary;
+    }
+}

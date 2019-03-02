@@ -1,8 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { register } from './actions';
+import React                from 'react';
+import { connect }          from 'react-redux';
+import { register }         from './actions';
 
-import Loader from '../cmp/Loader';
+import Loader               from '../cmp/Loader';
 
 class Register extends React.Component {
     
@@ -58,7 +58,7 @@ class Register extends React.Component {
                 <div className = 'container-700'>
                     <form onSubmit = {this.submitHandler.bind(this)} className = 'auth-form'>
                     
-                        <h2 className = 'font-normal m-b-1'>Register</h2>
+                        <h2 className = 'font-light text-center m-b-3'>Register</h2>
                         
                         {this.props.error ? <p className = 'auth-form__alert'><i className="fas fa-times"></i> {this.props.error}</p> : null }
 
@@ -88,7 +88,7 @@ class Register extends React.Component {
                         </div>
                         
                         <div className = 'auth-form__divider'>
-                            <button className = 'button-block'>Submit</button>
+                            <button className = 'btn btn-primary btn-block'>Submit</button>
                         </div>
                         
                     </form>

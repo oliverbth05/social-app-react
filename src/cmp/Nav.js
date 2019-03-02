@@ -1,21 +1,21 @@
-import React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { logout } from '../Auth/actions';
+import React                    from 'react';
+import { NavLink, withRouter }  from 'react-router-dom';
+import { connect }              from 'react-redux';
+import { logout }               from '../Auth/actions';
 
 class Nav extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            drawer: false
+            drawer: false,
         }
         this.showDrawer = this.showDrawer.bind(this)
         this.hideDrawer = this.hideDrawer.bind(this)
         this.toggleDrawer = this.toggleDrawer.bind(this)
     }
  
-
+ 
     showDrawer() {
         this.setState({
             drawer: true
@@ -35,23 +35,24 @@ class Nav extends React.Component {
     }
 
 
-    componentDidMount() {
-
-    }
-
     render() {
-
+        
+        if (this.props.location.pathname === '/') {
+            return null
+        }
+        
+       
         if (!this.props.authenticated) {
             return (
                 <div>
-                    <nav className='nav'>
-                        <div className='nav__container'>
-                            <h3 className='nav__title'>S | A</h3>
-                            <div className='nav__links'>
-                                <NavLink exact to='/login' className='nav__link'>Log In</NavLink>
-                                <NavLink exact to='/register' className='nav__link'>Register</NavLink>
-                            </div>
+                    <nav className='nav' id = 'nav'>
+                       
+                          
+                        <div className='nav__links'>
+                            <NavLink exact to='/login' className='nav__link'>Log In</NavLink>
+                            <NavLink exact to='/register' className='nav__link'>Register</NavLink>
                         </div>
+                      
                     </nav>
 
                     <i onClick={this.toggleDrawer} className="fas fa-bars nav__mobile-btn"></i>
@@ -71,12 +72,35 @@ class Nav extends React.Component {
                     <nav className='nav'>
                         
                             <div className='nav__links'>
-                                <NavLink exact to='/home' className='nav__link' ><i className="fas fa-home"></i></NavLink>
-                                <NavLink exact to= {`/profile/${this.props.user._id}`} className='nav__link' ><i className="fas fa-user"></i></NavLink>
-                                <NavLink exact to='/notifications' className='nav__link' ><i className="fas fa-bell"></i></NavLink>
-                                <NavLink exact to='/contacts' className='nav__link' ><i className="fas fa-address-book"></i></NavLink>
+                                <NavLink exact to='/home' className='nav__link' >
+                                    <i className="fas fa-home"></i>
+                                    <span className = 'nav__link__tooltip'>Home</span>
+                                </NavLink>
                                 
-                                <a onClick={() => { this.props.logout() }} className='nav__link'><i className="fas fa-sign-out-alt"></i></a>
+                                <NavLink exact to ='/new' className = 'nav__link'>
+                                    <i class="fas fa-edit"></i>
+                                    <span className = 'nav__link__tooltip'>Create</span>
+                                </NavLink>
+                                
+                                <NavLink exact to= {`/profile/${this.props.user._id}`} className='nav__link' >
+                                    <i className="fas fa-user"></i>
+                                    <span className = 'nav__link__tooltip'>Profile</span>
+                                </NavLink>
+                                
+                                <NavLink exact to='/notifications' className='nav__link' >
+                                    <i className="fas fa-bell"></i>
+                                    <span className = 'nav__link__tooltip'>Notifications</span>
+                                </NavLink>
+                                
+                                <NavLink exact to='/contacts' className='nav__link' >
+                                    <i className="fas fa-address-book"></i>
+                                    <span className = 'nav__link__tooltip'>Contacts</span>
+                                </NavLink>
+                                
+                                <a onClick={() => { this.props.logout() }} className='nav__link'>
+                                    <i className="fas fa-sign-out-alt"></i>
+                                    <span className = 'nav__link__tooltip'>Exit</span>
+                                </a>
                                
                             </div>
                  
@@ -92,6 +116,11 @@ class Nav extends React.Component {
                     <div onClick={this.hideDrawer} className={this.state.drawer ? 'nav__drawer__backdrop nav__drawer__backdrop-show' : 'nav__drawer__backdrop nav__drawer__backdrop-hide'}></div>
                 </div>
             )
+        }
+        
+        
+        else {
+            return null
         }
     }
 }

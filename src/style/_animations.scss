@@ -6,3 +6,31 @@
         transform: rotate(360deg);
     }
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-interval-1 {
+    animation: fadeIn;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+.fade-interval-2 {
+    animation: fadeIn;
+    animation-duration: 1.5s;
+    animation-iteration-count: 1;
+}
+
+.fade-interval-3 {
+    animation: fadeIn;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+}

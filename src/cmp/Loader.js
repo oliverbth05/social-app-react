@@ -18,6 +18,14 @@ const Loader = (props) => {
         )
     }
     
+    if (props.small) {
+        return (
+            <div className = 'small-flex-center'>
+                <i className="fas fa-spinner loader"></i>
+            </div>
+        )
+    }
+
     return <i className="fas fa-spinner loader"></i>
    
 }

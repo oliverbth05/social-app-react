@@ -3,7 +3,7 @@
     margin: auto;
     max-width: 100%;
     padding: 1rem;
-    min-height: 100vh;
+    margin-left: 8rem;
     
     @include respond(phone) {
         padding: .3rem;
@@ -11,6 +11,7 @@
     
     @include respond(tablet) {
         padding: .5rem;
+        margin-left: 0;
     }
 }
 
@@ -20,6 +21,27 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+}
+
+.quarter-section-flex-center {
+    height: 25vh;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    width: 100%;
+}
+
+.small-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.small-flex-start {
+    display: flex;
+    align-items: center;
+    justify-content: start;
 }
 
 .container-flex-center {
@@ -51,44 +73,7 @@
  
 } 
 
-.home-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    align-items: center;
-    justify-content: center;
-    grid-gap: 1rem;
-}
 
-.card {
-    display: block;
-    min-height: 25rem;
-    width: 100%;
-    cursor: pointer;
-    background: $white-faded;
-    border-radius: 2px;
-    transition: all .2s;
-    color: $color3;
-    box-shadow: $box-shadow;
-    padding: .5rem;
-
-    &__details {
-        
-        padding: .3rem 0 .3rem 0;
-        border-radius: 0px 15px 0 0;
-    }
-    
-    &:hover {
-        background: $grey-4;
-    }
-    
-    &__title {
-        display: block;
-        margin: 0;
-        padding: 0;
-        
-        
-    }
-}
 
 .tag__container {
     display: flex;
@@ -141,6 +126,12 @@
     border-radius: 50%;
 }
 
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
 .flex-grid {
     display: flex;

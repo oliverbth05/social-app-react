@@ -1,20 +1,48 @@
 $primary : rgb(73, 61, 237);
-$primary-faded: rgba(73, 61, 237, 0.8);
+$primary-darker: rgb(47, 39, 151);
+$primary-faded: rgba(73, 61, 237, 0.7);
+
 $secondary: rgb(255, 40, 97);
-$white : rgb(245, 245, 245);
+$secondary-darker: rgb(186, 30 , 71);
+$secondary-faded: rgba(255, 40, 97, 0.7);
+$white : rgb(250, 250, 250);
 $white-faded: rgba(245, 245, 245, 0.8);
+
 $grey : rgb(188, 188, 188);
-$dark : rgb(29, 37, 37);
+
+$dark : rgb(29, 37, 37); 
+$dark-faded: rgba(29, 37, 37, 0.7);
+
 $shadow-primary : 0px 0px 0px 3px $primary;
 
+$text-heading: #16343C;
+$text-body: #214E5A;
+$text-caption: #5D7E87;
+
+$input-shadow-after: 0px 0px 0px 2px $primary-faded;
+$input-shadow-before: 0px 0px 1px -1px $primary-faded;
+
 .bg-primary {
-  background: $primary
+  background: $primary 
 }
 
 .bg-gradient {
-  background: linear-gradient(to left, $primary, $secondary);
+  background: linear-gradient(to right, $primary-faded, $secondary-faded), url(https://images.pexels.com/photos/276223/pexels-photo-276223.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  background-attachment: fixed;
+}
+
+.bg-transparent {
+  background: transparent;
 }
 
 .color-white {
   color: white;
+}
+
+.color-primary {
+    color: $primary;
+}
+
+.color-secondary {
+  color: $secondary;
 }
