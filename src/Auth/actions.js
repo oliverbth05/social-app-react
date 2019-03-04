@@ -2,24 +2,24 @@ import server from '../api';
 
 export const login = (email, password) => {
     return dispatch => {
-        dispatch({type: 'LOGIN_LOADING'})
-        server.post('/login', {email, password})
-        .then(res => {
-            dispatch({
-                type: 'LOGIN',
-                payload: {
-                    token: res.data.token,
-                    user: res.data.user
-                } 
+        dispatch({ type: 'LOGIN_LOADING' })
+        server.post('/login', { email, password })
+            .then(res => {
+                dispatch({
+                    type: 'LOGIN',
+                    payload: {
+                        token: res.data.token,
+                        user: res.data.user
+                    }
+                })
+                dispatch({ type: '!LOGIN_LOADING' })
+                dispatch({ type: '!LOGIN_ERROR' })
             })
-            dispatch({type: '!LOGIN_LOADING'})
-            dispatch({type: '!LOGIN_ERROR'})
-        })
-        .catch(err => {
-            console.log(err.response.data)
-            dispatch({type: '!LOGIN_LOADING'})
-            dispatch({type: 'LOGIN_ERROR', payload: err.response.data.error})
-        })
+            .catch(err => {
+                console.log(err.response.data)
+                dispatch({ type: '!LOGIN_LOADING' })
+                dispatch({ type: 'LOGIN_ERROR', payload: err.response.data.error })
+            })
     }
 }
 
@@ -32,23 +32,23 @@ export const keepLoggedIn = (data) => {
 
 export const register = (data) => {
     return dispatch => {
-        dispatch({type: 'REGISTER_LOADING'})
+        dispatch({ type: 'REGISTER_LOADING' })
         server.post('/register', data)
-        .then(res => {
-            dispatch({
-                type: 'LOGIN',
-                payload: {
-                    token: res.data.token,
-                    user: res.data.user      
-                }
+            .then(res => {
+                dispatch({
+                    type: 'LOGIN',
+                    payload: {
+                        token: res.data.token,
+                        user: res.data.user
+                    }
+                })
+                dispatch({ type: '!REGISTER_ERROR' })
+                dispatch({ type: '!REGISTER_LOADING' })
             })
-            dispatch({type: '!REGISTER_ERROR'})
-            dispatch({type: '!REGISTER_LOADING'})
-        })
-        .catch(err => {
-            dispatch({type: 'REGISTER_ERROR', payload: err.response.data.error})
-            dispatch({type: '!REGISTER_LOADING'})
-        })
+            .catch(err => {
+                dispatch({ type: 'REGISTER_ERROR', payload: err.response.data.error })
+                dispatch({ type: '!REGISTER_LOADING' })
+            })
     }
 }
 

@@ -10,6 +10,7 @@ import profile from '../../Profile/reducer';
 import edit_comment from '../../EditComment/reducer';
 import edit_post from '../../EditPost/reducer';
 import search from '../../Search/reducer';
+import { reducer as formReducer } from 'redux-form';
 
 const appReducer = combineReducers({
     user,
@@ -21,7 +22,8 @@ const appReducer = combineReducers({
     profile,
     edit_comment,
     edit_post,
-    search
+    search,
+    form: formReducer
 });
 
 const rootReducer = (state, action) => { //Solution for resetting state on logout
