@@ -2,13 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import isAuthenticated from '../hoc/isAuthenticated';
 import Loader from '../cmp/Loader';
-import { fetchUserProfile } from './actions';
+import moment from 'moment';
+import { fetchUserProfile, addSubscription, fetchUserProfilePosts, removeSubscription } from './actions';
 import Pins from './cmp/Pins';
+import Subs from './cmp/Subs';
+import ProfilePosts from './cmp/ProfilePosts';
+import SubButton from './cmp/SubButton';
 
 class Profile extends React.Component {
     
     componentDidMount() {
         this.props.fetchUserProfile(this.props.match.params.id)
+    }
+    
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.id !== prevProps.match.params.id) {
+            this.props.fetchUserProfile(this.props.match.params.id)
+        }
     }
     
     isUser() {
@@ -20,29 +30,84 @@ class Profile extends React.Component {
         }
     }
     
+    isSubscribed() {
+        var user_id = this.props.user._id;
+        var creator_id = this.props.profile._id;
+        var subs = this.props.user.subscriptions.map(item => {
+            return item.creator_id
+        })
+        
+        if (subs.indexOf(creator_id) === -1) {
+            return false
+        }
+        
+        else {
+            return true
+        }
+    }
+    
+    removeSub() {
+        var data = {
+            subscriber_id: this.props.user._id ,
+            creator_id: this.props.profile._id
+        }
+        
+        this.props.removeSubscription(data)
+    }
+    
+    addSub() {
+        var data = {
+            creator_id: this.props.profile._id,
+            creator_name: `${this.props.profile.first_name} ${this.props.profile.last_name}`,
+            user_id: this.props.user._id,
+            subscriber_id: this.props.user._id,
+            subscriber_name: `${this.props.user.first_name} ${this.props.user.last_name}`
+        }
+        
+        this.props.addSubscription(data)
+    }
+    
     render() {
         
-        if (this.props.loading || this.props.profile === null) {
+        if (this.props.profile_loading || this.props.profile === null) {
             return <Loader fullscreen />
         }
         
         return (
-            <div className = 'container-700'>
-                <img alt = 'user avatar' className='avatar m-auto m-t-3' src={`https://api.adorable.io/avatars/130/${this.props.profile.first_name} ${this.props.profile.last_name}.png`} />
-                <h2 className = 'font-normal m-b-1 m-t-2 p-b-1 text-center border-bottom'>{`${this.props.profile.first_name} ${this.props.profile.last_name}`}</h2>
-                <h3 className = 'font-normal'>Summary</h3>
-                <p className = 'p-b-1 border-bottom' >{this.props.profile.summary}</p>
-                
-                {this.props.profile._id !== this.props.user._id ? 
-                <div>
-                    <button className = 'button m-r-s m-t-1'>Add to Contacts</button>
-                    <button className = 'button m-t-1'>Message</button>
+            <div className = 'container'>
+            
+                <div className = 'p-a-1 box bg-primary'>
+                    <img alt = 'user avatar' className='avatar m-auto m-b-1' src={`https://api.adorable.io/avatars/130/${this.props.profile.first_name} ${this.props.profile.last_name}.png`} />
+                    <h2 className = 'font-light text-center color-white m-b-1'>{`${this.props.profile.first_name} ${this.props.profile.last_name}`}</h2>
+                    <p className = 'text-center color-white'>Subscribers: {this.props.profile.subscribers.length}</p>
+                    <p className = 'text-center color-white'>Joined {new moment(this.props.profile.join_date).fromNow()}</p>
+                   
                 </div>
-                : null }
                 
-                { this.isUser() ? <Pins /> : null }
-                
-                
+             
+                <div className = 'container-700-res'>
+                    
+                    {!this.isUser() ?
+                    <div className = 'm-t-1'>
+                        <SubButton loading = {this.props.subscribe_loading} disabled = {this.isSubscribed()} addSub = {this.addSub.bind(this)} removeSub = {this.removeSub.bind(this)} />
+                    </div>
+                    : null }
+                    
+                    <div className = 'box m-t-2'>
+                        <h3 className = 'font-normal text-center'>Summary</h3>
+                        <p className = 'p-b-1 text-center'>{this.props.profile.summary}</p>
+                    </div>
+                    
+                    { this.isUser() ?
+                    <div className = 'm-t-2'>
+                        <Pins />
+                        <Subs />
+                    </div>
+                    : null }
+                    
+                    <ProfilePosts user_id = {this.props.profile._id}/>
+                </div>
+
             </div>
         )
         
@@ -51,10 +116,22 @@ class Profile extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        loading: state.loading.profile_loading,
+        profile_loading: state.loading.profile_loading,
         user: state.user.userData,
-        profile: state.profile
+        profile: state.profile.profileData,
+        subscribe_loading: state.loading.subscribe_loading
     }
 }
 
-export default connect(mapStateToProps, {fetchUserProfile})(isAuthenticated(Profile))
+export default connect(mapStateToProps, {fetchUserProfile, addSubscription, fetchUserProfilePosts, removeSubscription})(isAuthenticated(Profile))
+
+
+//   {!this.isUser() ? 
+//                     <div className = 'm-t-1'>
+//                         {this.isSubscribed() ?
+//                         <button className = 'btn btn-secondary btn-round btn-block'><i class="fas fa-check-circle"></i> Subscribed</button>
+//                         :
+//                         <button onClick = {this.addSub.bind(this)} className = 'btn btn-secondary btn-round btn-block'>Subscribe</button>
+//                         }
+//                     </div>
+//                     : null }

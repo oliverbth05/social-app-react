@@ -1,9 +1,10 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 const RulesModal = (props) => {
-    return(
-    <div className = 'modal'>
-        <div className = 'modal-container'>
+    return ReactDOM.createPortal(
+    <div onClick = {() => {props.toggle()}} className = 'modal modal-fade-1'>
+        <div onClick = {(e) => {e.stopPropagation()}} className = 'modal-container modal-fade-2'>
             <h3 className = 'font-normal text-center'>Styling Rules</h3>
             <h4 className = 'm-t-2'>Headings</h4>
             <p>
@@ -39,8 +40,7 @@ const RulesModal = (props) => {
             
             <button onClick = {() => {props.toggle()}} className = 'btn btn-primary btn-block m-t-1'>Understood</button>
         </div>
-          
-    </div>
+    </div>, document.querySelector('#modal')
     )
 }
 

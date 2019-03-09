@@ -4,16 +4,26 @@
     max-width: 100%;
     padding: 1rem;
     margin-left: 8rem;
-    
     @include respond(phone) {
         padding: .3rem;
     }
-    
     @include respond(tablet) {
         padding: .5rem;
         margin-left: 0;
+        margin-top: 50px;
     }
 }
+
+.nav-offset {
+    
+    margin-top: 50px;
+    
+    @include respond(tablet) {
+        margin-top: 150px;
+    }
+}
+
+
 
 .half-section-flex-center {
     height: 50vh;
@@ -46,22 +56,41 @@
 
 .container-flex-center {
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 1rem 1rem 8rem;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    
+    @include respond(tablet) {
+        margin: 0;
+        padding: 1rem;
+    }
 }
 
 .container-1000 {
     max-width: 1000px;
+    padding: 2rem 2rem 2rem 10rem;
     margin: auto;
-    padding: .8rem;
+    
+    @include respond(phone) {
+        padding: 1rem;
+    }
+    
+    @include respond(tablet) {
+        padding: 1rem;
+        margin-top: 80px;
+    }
 }
 
 .container-700 {
     width: 700px;
     margin: auto
+}
+
+.container-700-res {
+    max-width: 700px;
+    margin: auto;
 }
 
 .container-landing {
@@ -72,13 +101,18 @@
     justify-content: center;
 }
 
+.container-profile {
+    padding: 1rem;
+    margin-left: 8rem;
+    background: $primary;
+}
+
 .card-container {
     margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
- 
 } 
 
 
@@ -122,7 +156,6 @@
 
 .box {
     padding: 1rem;
-    border: 1px solid $grey-1;
     border-radius: 5px;
 }
 
@@ -154,8 +187,15 @@
     justify-content: center;
 }
 
+.flex-apart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .flex-item {
     width: 100%;
+    min-height: 95vh;
 }
 
 .preview-container {
@@ -169,5 +209,9 @@
     color: $color1;
     padding: 1rem;
     display: block;
+    width: 100%;
+}
+
+.width-100 {
     width: 100%;
 }

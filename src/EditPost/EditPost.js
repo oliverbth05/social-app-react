@@ -10,6 +10,7 @@ import isAuthenticated    from '../hoc/isAuthenticated';
 import Loader             from '../cmp/Loader';
 import Tag                from '../cmp/Tag';
 import RulesModal         from '../New/cmp/RulesModal';
+import ActionModal        from '../cmp/ActionModal';
 import Preview            from '../New/cmp/Preview';
 
 
@@ -56,6 +57,13 @@ class EditPost extends React.Component {
       rulesModal: !this.state.rulesModal
     })
   }
+  
+  togglePreview() {
+    this.setState({
+      showPreview: !this.state.showPreview
+    })
+  }
+
 
   addTag(e) {
     e.preventDefault();
@@ -92,10 +100,22 @@ class EditPost extends React.Component {
     }
     
   }
+  
+  deletePost() {
+    this.props.deletePost({token: this.props.token, _id: this.state._id}, this.props)
+  }
+  
+  toggleDeleteModal(e) {
+    this.setState({
+      deleteModal: !this.state.deleteModal
+    })
+  }
 
     state = {
         rulesModal: false,
+        deleteModal: false,
         firstLoaded: false,
+        showPreview: false,
         title: '',
         caption: '',
         image: '',
@@ -115,6 +135,14 @@ class EditPost extends React.Component {
       
       <div className = 'container'>
         { this.state.rulesModal ? <RulesModal toggle = {this.toggleRulesModal.bind(this)}/> : null }
+        { this.state.deleteModal ? 
+        <ActionModal 
+        toggle = {this.toggleDeleteModal.bind(this)} 
+        action = {() => {this.deletePost()}}
+        actionType = {'Delete'}
+        title = {'Delete Post'}
+        content = {'Are you sure you want to delete this post?'}/>
+        : null }
 
         <h4 className = 'text-center font-normal alert p-a-1 color-primary m-b-2'>Editing Post</h4>
 
@@ -122,6 +150,7 @@ class EditPost extends React.Component {
           <div className = 'flex-item m-a-1 box p-a-1'>
             <h3 className = 'font-normal text-center'>Editor</h3>
             <button onClick = {this.toggleRulesModal.bind(this)} className = 'btn btn-secondary btn-round m-r-s'><i class="fas fa-info-circle"></i> Styling Rules</button>
+            <button onClick = {this.togglePreview.bind(this)} className = 'btn btn-primary btn-round'>{!this.state.showPreview ? <i class="far fa-eye-slash"></i> : <i class="fas fa-eye"></i>} Preview</button>
             <form onSubmit={this.updatePost} className='post-form'>
 
               <div className='post-form__divider'>
@@ -161,14 +190,13 @@ class EditPost extends React.Component {
               <div className='post-form__divider'>
                 <button className='btn-block btn btn-primary'><i class="fas fa-save"></i> Save Changes</button>
               </div>
-              
-              <div className = 'post-form__divider'>
-                <button onClick = {() => {this.props.deletePost({token: this.props.token, _id: this.state._id}, this.props)}}  className = 'btn btn-secondary' type = 'submit'><i class="fas fa-trash"></i> Delete Post</button>
-              </div>
-  
-            </form>
-          </div>
           
+            </form>
+            <div className = 'post-form__divider'>
+                <button onClick = { this.toggleDeleteModal.bind(this)}  className = 'btn btn-secondary'><i class="fas fa-trash"></i> Delete Post</button>
+              </div>
+          </div>
+          {this.state.showPreview ?
           <Preview
             title = {this.state.title}
             caption = {this.state.caption}
@@ -176,6 +204,7 @@ class EditPost extends React.Component {
             image = {this.state.image}
             tags = {this.state.tags}
           />
+          :null }
       
       </div>
       </div>

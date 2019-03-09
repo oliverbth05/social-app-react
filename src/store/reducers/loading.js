@@ -8,9 +8,11 @@ const initialState = {
     comments_loading: false,
     new_loading: false,
     profile_loading: false,
+    profile_posts_loading: false,
     edit_comment_loading: false,
     edit_post_loading: false,
-    search_loading: false
+    search_loading: false,
+    subscribe_loading: false
 }
 
 const loading = (state = initialState, action) => {
@@ -134,6 +136,29 @@ const loading = (state = initialState, action) => {
             return {
                 ...state,
                 profile_loading: false
+            }
+        case 'PROFILE_POSTS_LOADING' :
+            return {
+                ...state,
+                profile_posts_loading: true
+            }
+            
+        case '!PROFILE_POSTS_LOADING' :
+            return {
+                ...state,
+                profile_posts_loading: false
+            }
+            
+        case 'SUBSCRIBE_LOADING' :
+            return {
+                ...state,
+                subscribe_loading: true
+            }
+            
+        case '!SUBSCRIBE_LOADING' :
+            return {
+                ...state,
+                subscribe_loading: false
             }
             
         case 'EDIT_COMMENT_LOADING' :

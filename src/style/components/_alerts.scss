@@ -2,4 +2,19 @@
     border: 2px solid $primary;
     padding: 1rem;
     border-radius: 5px;
+    
+    &-error {
+        color: $secondary;
+        border: 2px solid $secondary;
+        padding: 1rem;
+        border-radius: 5px;
+    }
+}
+
+
+
+.error-spinner {
+    color: $secondary;
+    margin: auto;
+    font-size: 4rem;
 }

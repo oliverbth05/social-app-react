@@ -4,7 +4,6 @@ export const isMember = (arr, member) => {
   return arr.indexOf(member) !== -1
 }
 
-
 //Parse and escape html tags
 
 export const tagTypes = [

@@ -14,6 +14,20 @@ export const fetchUserProfile = id => {
     }
 }
 
+export const fetchUserProfilePosts = id => {
+    return dispatch => {
+        dispatch({type: 'PROFILE_POSTS_LOADING'})
+        server.get(`/user/${id}/posts`)
+        .then(res => {
+            dispatch({type: 'FETCH_PROFILE_POSTS', payload: res.data})
+            dispatch({type: '!PROFILE_POSTS_LOADING'})
+        })
+        .catch(err => {
+            
+        })
+    }
+}
+
 export const removePin = data => {
     return dispatch => {
         dispatch({type: 'PROFILE_LOADING'})
@@ -24,6 +38,36 @@ export const removePin = data => {
         })
         .catch(err => {
             
+        })
+    }
+}
+
+export const addSubscription = data => {
+    console.log(data)
+    return dispatch => {
+        dispatch({type: 'SUBSCRIBE_LOADING'})
+        server.post(`/user/${data.user_id}/subscriptions`, data)
+        .then(res => {
+            dispatch({type: 'ADD_SUB', payload: data})
+            dispatch({type: '!SUBSCRIBE_LOADING'})
+        })
+        .catch(err => {
+            
+        })
+    }
+}
+
+export const removeSubscription = data => {
+    return dispatch => {
+        dispatch({type: 'SUBSCRIBE_LOADING'})
+        server.delete(`/user/${data.subscriber_id}/subscriptions/${data.creator_id}`)
+        .then(res => {
+            dispatch({type: 'REMOVE_SUB', payload: data})
+            dispatch({type: '!SUBSCRIBE_LOADING'})
+        })
+        .catch(err => {
+          console.log(err)  
+          dispatch({type: '!SUBSCRIBE_LOADING'})
         })
     }
 }

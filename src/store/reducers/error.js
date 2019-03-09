@@ -47,13 +47,13 @@ const error = (state = initialState, action) => {
     case 'POST_ERROR':
       return {
         ...state,
-        post_error: true
+        post_error: action.payload
       }
 
     case '!POST_ERROR':
       return {
         ...state,
-        post_error: false
+        post_error: null
       }
 
     default :

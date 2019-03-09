@@ -10,7 +10,7 @@ class Show extends React.Component {
     render() {
         return (
  
-            <div className='container-1000 m-t-3'>
+            <div className='container-1000'>
                 <ShowNav history = {this.props.history} />
                 <Post routerparam = {this.props.match.params.id}/>
                 <Comments routerparam = {this.props.match.params.id} />

@@ -16,6 +16,7 @@ const search = (state = initialState, action) => {
                 searchTerm: action.payload.searchTerm,
                 page: 2,
                 posts: action.payload.posts,
+                fetchOnLoad: false
                 
             }
             

@@ -7,6 +7,7 @@ export const fetchPosts = (sort, searchTerm) => { //Always fetches the first pag
       server.get(`/posts?sort=${sort}&page=1&searchTerm=${searchTerm}`)
       .then(res => {
         dispatch({type: '!POSTS_LOADING'})
+        dispatch({type: '!POSTS_ERROR'})
         dispatch({
           type: 'FETCH_POSTS',
           payload: res.data
@@ -17,7 +18,8 @@ export const fetchPosts = (sort, searchTerm) => { //Always fetches the first pag
         }
       })
       .catch(err => {
-          console.log(err)
+          dispatch({type: 'POSTS_ERROR'})
+          dispatch({type: '!POSTS_LOADING'})
       })
   }
 }
@@ -36,6 +38,10 @@ export const fetchMorePosts = (sort, page, searchTerm) => {
         type: 'FETCH_MORE_POSTS',
         payload: res.data
       })
+      dispatch({type: '!MORE_POSTS_LOADING'})
+    })
+    .catch(err => {
+      dispatch({type: 'POSTS_ERROR'})
       dispatch({type: '!MORE_POSTS_LOADING'})
     })
   }

@@ -1,52 +1,46 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { postComment } from '../actions';
+import { reduxForm, Field } from 'redux-form';
 
 class CommentForm extends React.Component {
     
-    state = {
-        commentField: '',
-        error: false
+    renderInput({input, meta, label, type}) {
+        console.log(meta)
+        return (
+            <div  className = 'm-b-s'>
+                {meta.submitFailed  ?
+                <span className='font-light font-small color-secondary'>{meta.error}</span>
+                : null}
+                <textarea className = 'textarea-small' {...input} type = {type} placeholder = 'Leave a comment'/> 
+            </div>
+            
+        )
     }
     
-    inputHandler(e) {
-        this.setState({
-            commentField: e.target.value
-        })
-    }
-    
-    submitHandler(e) {
-        e.preventDefault();
-        if (!this.state.commentField) {
-            return this.setState({
-                error: true
-            })
+    submitHandler(formValues) {
+        
+        if (!formValues.comment) {
+            return false
         }
-        if (this.state.error) {
-            this.setState({
-                error:false
-            })
-        }
+        
         var data = {
-            body: this.state.commentField,
+            body: formValues.comment,
             user_id: this.props.user._id,
             user_name: `${this.props.user.first_name} ${this.props.user.last_name}`,
             post_id: this.props.routerparam,
             token: this.props.token
         }
         this.props.postComment(data);
-        this.setState({
-            commentField: ''
-        })
     }
     
     render() {
+        console.log(this.props)
         return (
             <div>
-                <form onSubmit = {this.submitHandler.bind(this)} className = 'm-b-2'>
-                    {this.state.error ? <p className = 'color-primary font-light m-b-1'>Cannot submit empty comment.</p> : null }
-                    <input disabled = {this.props.loading ? true : false} onChange = {this.inputHandler.bind(this)} value = {this.state.commentField} className = 'input-small m-r-s' placeholder = 'Leave a comment.'></input>
-                    <button  disabled = {this.props.loading ? true : false} className = 'btn btn-primary'>Post</button>
+                <form onSubmit = {this.props.handleSubmit(this.submitHandler.bind(this))} className = 'm-b-2'>
+                    <Field component = {this.renderInput} name = 'comment' type = 'text' label = 'Comment' />
+                    <button  disabled = {this.props.loading ? true : false} className = 'btn btn-block btn-primary'>Post</button>
                 </form>
             </div>
         )
@@ -61,4 +55,21 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {postComment})(CommentForm);
+const validate = (formValues) => {
+    const errors = {
+        
+    }
+    
+    if (!formValues.comment) {
+        errors.comment = 'Cannot submit empty comment.'
+    }
+    
+    return errors
+}
+
+const Connected = connect(mapStateToProps, {postComment})(CommentForm);
+
+export default reduxForm({
+    form: 'comment',
+    validate
+})(Connected)

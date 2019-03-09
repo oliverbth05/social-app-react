@@ -12,16 +12,14 @@ class SearchResults extends React.Component {
     }
     
     render() {
-        if (this.props.loading) {
+        if (this.props.loading || this.props.posts === null) {
             return <Loader halfscreen/>
         }
-        
-        if (this.props.posts === null) {
-            return <div></div>
-        }
+
         
         return (
-            <div className = 'container-600'>
+            <div>
+                <h3 className = 'font-light text-center p-b-2'>'{this.props.searchTerm}' <span className = 'color-primary font-light'>{this.props.posts.length} showing</span></h3>
                 {this.renderPosts(this.props.posts)}
             </div>
         )
@@ -31,7 +29,8 @@ class SearchResults extends React.Component {
 const mapStateToProps = state => {
     return {
         posts: state.search.posts,
-        loading: state.loading.search_loading
+        loading: state.loading.search_loading,
+        searchTerm: state.search.searchTerm
     }
 }
 

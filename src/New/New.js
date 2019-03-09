@@ -1,6 +1,8 @@
 import React              from 'react'
 import { connect }        from 'react-redux';
 import { createPost }     from './actions';
+import { reduxForm, Field } from 'redux-form';
+import { formValueSelector } from 'redux-form';
 
 import isAuthenticated    from '../hoc/isAuthenticated';
 import Loader             from '../cmp/Loader';
@@ -16,19 +18,19 @@ class New extends React.Component {
     this.inputHandler = this.inputHandler.bind(this);
     this.addTag = this.addTag.bind(this);
     this.removeTag = this.removeTag.bind(this);
-    this.submitPost = this.submitPost.bind(this);
   }
  
   state = {
-    
     rulesModal: false,
-    
-    title: '',
-    caption: '',
-    image: '',
-    body: '',
+    showPreview: false, 
     tags: [],
     tagField: ''
+  }
+  
+  togglePreview() {
+    this.setState({
+      showPreview: !this.state.showPreview
+    })
   }
 
   inputHandler(e) {
@@ -60,26 +62,48 @@ class New extends React.Component {
       tags: tags
     })
   }
-
-  submitPost(e) {
-    e.preventDefault();
-
-    if (this.state.title && this.state.body) {
-      this.props.createPost({
-        title: this.state.title,
-        caption: this.state.caption,
-        body: this.state.body,
-        image: this.state.image,
-        tags: this.state.tags,
-        user_id: this.props.user._id,
-        user_name: `${this.props.user.first_name} ${this.props.user.last_name}`,
-        token: this.props.token
-      }, this.props)
-    }
-
+  
+  renderInput({input, meta, label, type}) {
+    
+    
+    return (
+      <div className= 'post-form__divider'>
+        <label className = 'post-form__label'>{label}
+        {meta.error && meta.submitFailed ? 
+        <span className = 'color-secondary font-light font-small m-l-1'>{meta.error}</span> : null }
+        </label>
+        {input.name === 'body' ?
+        <textarea {...input} className = 'textarea-large' type = {type}></textarea>
+        :
+        <input {...input} className = 'input-block' type = {type}/>
+        }
+      </div>
+    )
   }
 
+  submitPost(formValues) {
+
+    if (!formValues.title || !formValues.body) {
+      return false
+    }
+    
+    this.props.createPost({
+      title: formValues.title,
+      caption: formValues.caption,
+      body: formValues.body,
+      image: formValues.image,
+      tags: this.state.tags,
+      user_id: this.props.user._id,
+      user_name: `${this.props.user.first_name} ${this.props.user.last_name}`,
+      token: this.props.token
+    }, this.props)
+  }
+
+  
+
   render() {
+    
+    console.log(this.props)
     
     if (this.props.loading) {
       return <Loader fullscreen />
@@ -91,29 +115,18 @@ class New extends React.Component {
 
         <div className='flex-2'>
           <div className = 'flex-item m-a-1 box p-a-1'>
-            <h3 className = 'font-normal text-center'>Editor</h3>
+            <h3 className = 'font-normal text-center p-b-2'>Editor</h3>
             <button onClick = {this.toggleRulesModal.bind(this)} className = 'btn btn-secondary btn-round m-r-s'><i class="fas fa-info-circle"></i> Styling Rules</button>
-            <form onSubmit={this.submitPost} className='post-form'>
+            <button onClick = {this.togglePreview.bind(this)} className = 'btn btn-primary btn-round'>{!this.state.showPreview ? <i class="far fa-eye-slash"></i> : <i class="fas fa-eye"></i>} Preview</button>
+            <form onSubmit={this.props.handleSubmit(this.submitPost.bind(this))} className='post-form'>
 
-              <div className='post-form__divider'>
-                <label className='post-form__label'>Title</label>
-                <input onChange={this.inputHandler} className='input-block' name='title' type='text' value={this.state.title} />
-              </div>
+              <Field name = 'title' component = {this.renderInput} type = 'text' label = 'Title' />
               
-              <div className='post-form__divider'>
-                <label className='post-form__label'>Caption</label>
-                <input onChange={this.inputHandler} className='input-block' name='caption' type='text' value={this.state.caption} />
-              </div>
-  
-              <div className='post-form__divider'>
-                <label className='post-form__label'>Body</label>
-                <textarea onChange={this.inputHandler} className='textarea-large' name='body' type='text' value={this.state.body}></textarea>
-              </div>
+              <Field name = 'caption' component = {this.renderInput} type = 'text' label = 'Caption' />
               
-              <div className='post-form__divider'>
-                <label className='post-form__label'>Image (URL)</label>
-                <input onChange={this.inputHandler} className='input-block' name='image' type='text' value={this.state.image}></input>
-              </div>
+              <Field name = 'body' component = {this.renderInput} type = 'text' label = 'Body' />
+              
+              <Field name = 'image' component = {this.renderInput} type = 'text' label = 'Image URL' />
   
               <div class='post-form__divider'>
                 <label className='post-form__label'>Tags</label>
@@ -135,27 +148,56 @@ class New extends React.Component {
   
             </form>
           </div>
-          
+          {this.state.showPreview ?
           <Preview
-            title = {this.state.title}
-            caption = {this.state.caption}
-            body= {this.state.body}
-            image = {this.state.image}
+            title = {this.props.title}
+            caption = {this.props.caption}
+            body= {this.props.body}
+            image = {this.props.image}
             tags = {this.state.tags}
           />
-      
+          : null }
+                
       </div>
       </div>
     )
   }
 }
 
+const selector = formValueSelector('post');
+
+
 const mapStateToProps = state => {
   return {
     user: state.user.userData,
     token: state.user.token,
-    loading: state.loading.new_loading
+    loading: state.loading.new_loading,
+    title: selector(state, 'title'),
+    caption: selector(state, 'caption'),
+    body: selector(state, 'body'),
+    image: selector(state, 'image'),
   }
 }
 
-export default connect(mapStateToProps, { createPost })(isAuthenticated(New))
+const Connected = connect(mapStateToProps, { createPost })(isAuthenticated(New))
+
+const validate = formValues => {
+  const errors = {
+    
+  }
+  
+  if (!formValues.title) {
+    errors.title = 'Post require a title.' 
+  }
+  
+  if (!formValues.body) {
+    errors.body = 'Post requires body text.'
+  }
+  
+  return errors;
+}
+
+export default reduxForm({
+  form: 'post',
+  validate
+})(Connected)

@@ -16,9 +16,8 @@ import HomeNav                      from './cmp/HomeNav';
 class Home extends React.Component {
      
     render() {
-    
         return (
-            <div className='container m-t-3'>
+            <div className='container nav-offset'>
                 <HomeNav />
                 <Posts />
             </div>

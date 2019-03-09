@@ -45,7 +45,7 @@ class Posts extends React.Component {
         
         else {
             return (
-                <div>
+                <div className = 'post-list'>
                 {posts.map(post => {
                     var pinned = this.props.user.pins.map(pin => {
                         return pin.post_id
@@ -61,11 +61,18 @@ class Posts extends React.Component {
     }
     
     render() {
+        
+        if (this.props.error) {
+            return <h3 className = 'alert-error font-normal text-center '><i class="fas fa-exclamation-circle"></i> Error Fetching Posts</h3>
+        }
+        
         if (this.props.loading || this.props.posts === null) {
             return (
                 <Loader fullscreen/>
             )
         }
+        
+        
         return (
             <div>
                {this.renderPosts(this.props.posts, this.props.layout)}
@@ -88,7 +95,8 @@ const mapStateToProps = state => {
         loading: state.loading.posts_loading,
         more_loading: state.loading.more_posts_loading,
         user: state.user.userData,
-        reachedEnd: state.home.reachedEnd
+        reachedEnd: state.home.reachedEnd,
+        error: state.error.posts_error
     }
 }
 

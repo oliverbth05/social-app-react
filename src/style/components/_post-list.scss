@@ -1,9 +1,18 @@
 .post-list-item {
     transition: all .1s;
-    padding: 1rem;
     border: 1px solid $grey;
     border-radius: 3px;
     margin-bottom: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    &__img {
+        position: relative;
+        height: 4rem;
+        padding-right: 1rem;
+    }
+    
     &__details {
         width: 100%;
         padding: .5rem 0 .5rem 0;
@@ -17,4 +26,18 @@
     &:hover {
         border-color: $primary;
     }
-}
+} 
+
+.other-post {
+    margin-bottom: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: $box-shadow;
+    border-radius: 4px;
+    min-height: 5rem;
+    img {
+        margin-right: .5rem;
+        max-width: 9rem;
+    }
+} 

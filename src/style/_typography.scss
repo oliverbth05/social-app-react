@@ -49,6 +49,10 @@ ul {
     text-align: center;
 }
 
+.text-left {
+    text-align: left;
+}
+
 .font-light {
     font-weight: lighter;
 }
@@ -61,7 +65,17 @@ ul {
     font-weight: bold;
 }
 
+.logo {
+    font-family: 'Comfortaa', sans-serif;
+}
 
+.text-gradient {
+    font-weight: bold;
+
+    background: -webkit-linear-gradient(right, $primary, $secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
 .border-bottom {
     border-bottom: 1px solid $color5
@@ -118,4 +132,18 @@ ul {
 .formatted-h3 {
     font-size: 1.3rem;
     display: inline-block;
+}
+
+.border-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__border {
+        margin-bottom: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+        flex-grow: 2;
+        border-bottom: 1px solid $primary;
+    }
 }

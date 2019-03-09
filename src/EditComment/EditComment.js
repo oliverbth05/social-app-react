@@ -9,7 +9,7 @@ import {
     deleteComment }             from './actions';
     
 import Loader                   from '../cmp/Loader';
-
+import ActionModal              from '../cmp/ActionModal';
 
 class EditComment extends React.Component {
     
@@ -43,9 +43,20 @@ class EditComment extends React.Component {
         }
     }
     
+    deleteComment() {
+        this.props.deleteComment({...this.props.comment, token: this.props.token}, this.props)
+    }
+    
+    toggleModal() {
+        this.setState({
+            showModal: !this.state.showModal
+        })
+    }
+    
     state = {
         body: '',
         firstLoaded: false,
+        showModal: false
     }
     
     render() {
@@ -62,10 +73,21 @@ class EditComment extends React.Component {
                     <form onSubmit = {this.submitHandler.bind(this)} className = 'm-t-2'>
                         <label className = 'post-form__label'>Comment Body</label>
                         <textarea onChange = {this.inputHandler.bind(this)} value = {this.state.body} className = 'textarea-small m-b-s'></textarea>
-                        <button className = 'button-block'>Submit</button>
+                        <button className = 'btn-block btn btn-primary'><i class="fas fa-save"></i> Save Changes</button>
                     </form>
-                    <button onClick = {() => {this.props.deleteComment({...this.props.comment, token: this.props.token}, this.props)}} className = 'button m-t-2'>Delete</button>
+                    <button onClick = {this.toggleModal.bind(this)} className = 'btn btn-secondary m-t-2'><i class="fas fa-trash"></i> Delete</button>
                 </div>
+                
+                {this.state.showModal ?
+                <ActionModal
+                title = 'Delete Comment'
+                content = 'Are you sure you want to delete this comment?'
+                actionType = 'Delete'
+                action = {() => {this.deleteComment()}}
+                toggle = {this.toggleModal.bind(this)}
+                />
+                : null }
+                
             </div>
         )
     }

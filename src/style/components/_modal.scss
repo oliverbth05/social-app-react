@@ -4,15 +4,31 @@
     left: 0;
     height: 100%;
     width: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
+    
     
     &-container {
+        margin: 1rem;
         background: white;
         padding: 1.5rem;
         max-width: 700px;
         border-radius: 3px;
+        z-index: 2;
     }
+}
+
+.modal-fade-1 {
+    animation: fadeIn;
+    animation-duration: .3s;
+    animation-iteration-count: 1;
+}
+
+.modal-fade-2 {
+    animation: fadeIn;
+    animation-duration: .8s;
+    animation-iteration-count: 1;
 }

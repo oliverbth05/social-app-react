@@ -76,7 +76,7 @@ const validate = (formValues) => {
 
     }
 
-    if (!formValues.email) {
+    if (!formValues.email || !formValues.email.includes('@')) {
         errors.email = 'Please provide a valid email address'
     }
 
@@ -88,8 +88,8 @@ const validate = (formValues) => {
         errors.last_name = 'Please provide your last name'
     }
 
-    if (!formValues.password) {
-        errors.password = 'Please create a password'
+    if (!formValues.password || formValues.password.length < 7) {
+        errors.password = 'Please create a password with at least 7 characters'
     }
 
     if (formValues.confirm_password !== formValues.password) {

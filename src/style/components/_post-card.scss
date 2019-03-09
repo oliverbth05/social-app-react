@@ -2,6 +2,14 @@
     column-count: 4;
     column-gap: 15px;
     column-fill: auto;
+    
+    @include respond(tablet) {
+        column-count: 2;
+    }
+    
+    @include respond(phone) {
+        column-count: 1;
+    }
 }
 
 

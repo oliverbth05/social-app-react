@@ -1,6 +1,6 @@
 import React                from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import { changeLayout, changeSort, fetchPosts, searchTermHandler } from '../actions';
 
@@ -15,6 +15,11 @@ class HomeNav extends React.Component  {
         this.setState({
             searchTerm: e.target.value
         })
+    }
+    
+    submitHandler(e) {
+        e.preventDefault();
+        this.props.history.push(`/search/${this.state.searchTerm}`)
     }
 
     
@@ -56,18 +61,18 @@ class HomeNav extends React.Component  {
                     </button>
                 </div>
                 
-            </div>    
+            </div>     
                 
-            <h4 className='font-normal color-secondary text-center'>{this.props.sort}</h4>
+            
 
-            <div className = 'home-nav__search'>
+            <form onSubmit = {this.submitHandler.bind(this)} className = 'home-nav__search'>
                 <input onChange = {this.inputHandler.bind(this)} className = 'input-block m-r-s' placeholder = 'Search posts' />
                 {this.state.searchTerm ?
-                <Link className = 'btn btn-primary' to = {`/search/${this.state.searchTerm}`} className = 'btn btn-primary'>Search</Link>
+                <button type = 'submit' className = 'btn btn-primary' className = 'btn btn-primary'>Search</button>
                 :
                 <button disabled className = 'btn btn-primary btn-primary-disabled'>Search</button>
                 }
-            </div>
+            </form>
          
         </nav>
     )
@@ -84,4 +89,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {changeLayout, changeSort, fetchPosts})(HomeNav);
+export default connect(mapStateToProps, {changeLayout, changeSort, fetchPosts})(withRouter(HomeNav));

@@ -51,6 +51,29 @@ const user = (state = initialState, action) => {
                 ...state,
                 userData
             }
+            
+        case 'ADD_SUB' :
+            var userData = {...state.userData}
+            userData.subscriptions.push(action.payload);
+            
+            window.localStorage.setItem('user', JSON.stringify(userData))
+
+            return {
+                ...state,
+                userData
+            }
+            
+        case 'REMOVE_SUB' :
+            var userData = {...state.userData}
+            userData.subscriptions = userData.subscriptions.filter(sub => {
+                return sub.creator_id !== action.payload.creator_id
+            })
+            window.localStorage.setItem('user', JSON.stringify(userData))
+
+            return {
+                ...state,
+                userData
+            }
 
         default:
             return state

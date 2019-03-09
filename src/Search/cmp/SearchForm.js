@@ -1,13 +1,14 @@
 import React from 'react';
 import {searchPosts} from '../actions';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class SearchForm extends React.Component {
     
 
     state = {
         searchTerm: '',
-        sort: 'date'
+        sort: 'views'
     }
     
     inputHandler(e) {
@@ -16,17 +17,25 @@ class SearchForm extends React.Component {
         })
     }
     
-
-    
     submitHandler(e){
         e.preventDefault();
+        this.props.history.push(`/search/${this.state.searchTerm}`)
         this.props.searchPosts({sort: this.state.sort, searchTerm: this.state.searchTerm, page: 1});
     }
     
     render() {
         return (
-            <div className = 'container'>
-                <nav></nav>
+            <div className = 'container m-t-3'>
+                <nav className = 'search-nav'>
+                <form onSubmit = {this.submitHandler.bind(this)}>
+                    <input placeholder = 'Search for posts' className = 'input-block m-r-s' onChange = {this.inputHandler.bind(this)} value = {this.state.searchTerm} name = 'searchTerm'/>
+                    {this.state.searchTerm ?
+                    <button type = 'submit' className = 'btn btn-primary' className = 'btn btn-primary'>Search</button>
+                    :
+                    <button disabled className = 'btn btn-primary btn-primary-disabled'>Search</button>
+                    }
+                </form>
+                </nav>
             </div>
         )
     }
@@ -34,11 +43,12 @@ class SearchForm extends React.Component {
 const mapStateToProps = state => {
     return {
         sort: state.sort,
-        page: state.page
+        page: state.page,
+        loading: state.loading.search_loading
     }    
 }
 
-export default connect(mapStateToProps, {searchPosts})(SearchForm);
+export default connect(mapStateToProps, {searchPosts})(withRouter(SearchForm));
 
 
 

@@ -2,7 +2,6 @@ const post = (state = null, action) => {
     switch (action.type) {
  
         case 'FETCH_POST':
-            
             return action.payload
         
         case 'LIKE_POST':

@@ -7,14 +7,12 @@ import { connect } from 'react-redux';
 
 class Search extends React.Component {
     
-    
     componentDidMount() {
         if (!this.props.posts || this.props.fetchOnLoad) {
             this.props.searchPosts({sort: this.props.sort, page: this.props.page, searchTerm: this.props.match.params.searchTerm})
             this.props.searchUpdated();
         } 
     }  
-    
     
     render() {
         return (

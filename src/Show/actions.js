@@ -2,19 +2,33 @@ import server from '../api';
 
 export const fetchPost = (id) => {
     return dispatch => {
+        var data;
         dispatch({ type: 'POST_LOADING' })
         server.get(`/post/${id}`)
-            .then(res => {
-                dispatch({
-                    type: 'FETCH_POST',
-                    payload: res.data
-                })
-                dispatch({ type: '!POST_LOADING' })
+        .then(res => {
+        data = {...res.data}
+        
+        return server.get(`/user/${data.user_id}/posts`)
+        .then(res => {
+            data.otherPosts = [...res.data]
+            dispatch({
+            type: 'FETCH_POST',
+                payload: data
+            })
+            dispatch({ type: '!POST_LOADING' })
+        })
+            
+        })
+        .catch(err => {
+            dispatch({type: 'POST_ERROR', payload: err})
+            dispatch({ type: '!POST_LOADING' })
+        })
+    }
+}
 
-            })
-            .catch(err => {
-                console.log(err)
-            })
+export const notPostError = () => {
+    return {
+        type: '!POST_ERROR'
     }
 }
 

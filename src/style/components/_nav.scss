@@ -22,41 +22,26 @@
         flex-grow: 1;
     }
 
-    &__mobile-btn {
-        display: none;
-        position: fixed;
-        font-size: 1.2rem; 
-        padding: 1rem;
-        top: 10px;
-        right: 10px;
-        background: $color5;
-        color: white;
-        border-radius: 50%;
-        cursor: pointer;
-        z-index: 5; 
-        @include respond(tablet) {
-            display: block;
-        }
-    }
+    
 
     &__drawer {
         left: 0;
-        top: 0;
+        top: 50px;
         height: 100vh;
-        background: $color5;
-        width: 100px;
+        background: $white;
+        width: 200px;
         position: fixed;
         transition: all .2s;
+        z-index: 5;
 
 
 
         &-show {
             transform: translateX(0);
-            z-index: 3;
+            z-index: 4;
         }
 
         &-hide {
-            z-index: -1;
             transform: translateX(-100%);
         }
 
@@ -65,20 +50,14 @@
             cursor: pointer;
             height: 100vh;
             width: 100vh;
-            top: 0;
+            top: 50px;
             left: 0;
             position: fixed;
             background: rgba(0, 0, 0, 0.3);
-
-            &-show {
-                z-index: 2;
-                opacity: 1;
-            }
-
-            &-hide {
-                z-index: -1;
-                opacity: 0;
-            }
+            animation: fadeIn;
+            animation-duration: .4s;
+            z-index: 3;
+           
         }
     }
 
@@ -170,6 +149,7 @@
 .home-nav { 
     background: $white;
     top: 0;
+    z-index: 2;
     left: 0;
     padding-left: 9rem;
     padding-right: 1.5rem;
@@ -177,21 +157,86 @@
     position: fixed;
     height: 3.4rem;
     display: grid;
-    grid-template-columns: 5fr 1fr 5fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     align-content: center;
     align-items: center;
     box-shadow: $box-shadow;
+    
     @include respond(tablet) {
         padding-left: 1rem;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: 6.8rem;
+        top: 50px;
     }
     
     &__search {
         margin-left: auto;
-        width: 70%;
+        width: 100%;
         display: flex;
+        @include respond(tablet) {
+            order: -1;
+        }
     }
 }
+
+.mobile-nav {
+    display: none;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    height: 50px;
+    background: $dark;
+    
+    @include respond(tablet) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    &__link {
+       padding: 1rem; 
+       text-align: center;
+       color: $dark;
+       
+       &:hover {
+           background: $primary;
+           color: $white;
+       }
+       
+       &-active {
+           background: $primary;
+           color: $white;
+       }
+    }
+    
+    &__btn {
+        z-index: 2;
+        position: fixed;
+        font-size: 1.2rem; 
+        padding: .6rem;
+        top: 8px;
+        right: 10px;
+        background: $dark;
+        border: 1px solid $primary;
+        color: white;
+        border-radius: 20%;
+        cursor: pointer;
+        z-index: 5;
+        
+        &:hover {
+            background: $primary;
+        }
+        
+        &:focus {
+            background: $primary;
+        }
+    }
+}
+   
 
 
 
@@ -216,4 +261,36 @@
     background: $white;
     box-shadow: $box-shadow;
     width: 100%;
+    
+    @include respond(tablet) {
+        left: 0;
+        top: 50px;
+    }
+}
+
+.search-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 9rem;
+    padding-right: 1rem;
+    height: 3.4rem;
+    background: $white;
+    box-shadow: $box-shadow;
+    
+    @include respond(tablet) {
+        top: 50px;
+        padding-left: 1rem;
+    }
+    
+    form {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    
+   
 }
