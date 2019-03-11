@@ -19,7 +19,7 @@ const Comment = (props) => {
                 <p className = 'comment__body'>{props.body}</p>
 
                 <div className = 'comment__options'>
-                    {props.isUserOwned ? <Link className='inline' to={`/edit/comment/${props._id}`}>Edit</Link>: null}
+                    {props.isUserOwned ? <Link className='inline' to={`/edit/comment/${props.post_id}/${props._id}`}>Edit</Link>: null}
                 </div>
 
             </div>

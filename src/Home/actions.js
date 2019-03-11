@@ -4,7 +4,7 @@ export const fetchPosts = (sort, searchTerm) => { //Always fetches the first pag
   return dispatch => {
     dispatch({ type: 'POSTS_LOADING' })
     dispatch({ type: '!REACHED_END' }) //If the reachedEnd variable was acheived on another sort type, this ensures a fresh reset
-    server.get(`/posts?sort=${sort}&page=1&searchTerm=${searchTerm}`)
+    server.get(`/posts?sort=${sort}&page=1&searchTerm=`)
       .then(res => {
         dispatch({ type: '!POSTS_LOADING' })
         dispatch({ type: '!POSTS_ERROR' })

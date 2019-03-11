@@ -29,7 +29,7 @@ class App extends React.Component {
                         <Route exact path='/register' component={Register} />
                         <Route exact path='/home' component={Home} />
                         <Route exact path='/show/:id' component={Show} />
-                        <Route exact path='/edit/comment/:id' component={EditComment} />
+                        <Route exact path='/edit/comment/:post_id/:comment_id' component={EditComment} />
                         <Route exact path='/edit/post/:id' component={EditPost} />
                         <Route exact path='/new' component={New} />
                         <Route exact path='/profile/:id' component={Profile} />

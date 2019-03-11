@@ -3,7 +3,7 @@ import server from '../api';
 export const fetchEditPost = id => {
     return dispatch => {
         dispatch({type: 'EDIT_POST_LOADING'})
-        server.get(`/post/${id}`)
+        server.get(`/posts/${id}`)
         .then(res => {
             dispatch({type: 'FETCH_EDIT_POST', payload: res.data})
             dispatch({type: '!EDIT_POST_LOADING'})
@@ -41,7 +41,7 @@ export const updatePost = (data, ownProps) => { //ownProps contains the react-ro
 export const deletePost = (data, ownProps) => {
     return dispatch => {
         dispatch({type: 'EDIT_POST_LOADING'})
-        server.delete(`/post/${data._id}`)
+        server.delete(`/posts/${data._id}`)
         .then(res => {
             dispatch({type: 'HOME_NEEDS_UPDATE'})
             dispatch({type: '!EDIT_POST_LOADING'})

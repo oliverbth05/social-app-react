@@ -14,7 +14,7 @@ import ActionModal              from '../cmp/ActionModal';
 class EditComment extends React.Component {
     
     componentDidMount() {
-        this.props.fetchComment(this.props.match.params.id);
+        this.props.fetchComment({post_id: this.props.match.params.post_id, comment_id: this.props.match.params.comment_id});
     }
     
     componentDidUpdate() {
