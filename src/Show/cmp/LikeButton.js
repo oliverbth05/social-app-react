@@ -8,7 +8,7 @@ export default function LikeButton(props) {
     return <span className='color-primary m-r-1'><i className="fas fa-check-circle"></i> Liked</span>
   }
   else {
-    return <button onClick={() => { props.likePost({post_id : props.post_id, user_id: props.user_id, token: props.token}) }} className='btn btn-primary m-r-1'><i className="far fa-thumbs-up"></i> Like</button>
+    return <button onClick={() => { props.likePost({post_id : props.post_id, user_id: props.user_id}) }} className='btn btn-primary m-r-1'><i className="far fa-thumbs-up"></i> Like</button>
   }
 }
  

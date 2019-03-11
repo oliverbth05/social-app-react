@@ -1,3 +1,5 @@
+import server from '../api';
+
 const initialState = {
     authenticated: false,
     token: null,
@@ -6,6 +8,17 @@ const initialState = {
 
 const user = (state = initialState, action) => {
     switch (action.type) {
+
+
+        case 'RESET_TOKEN' :
+
+            window.localStorage.setItem('token', JSON.stringify('Bullshit'))
+
+            return {
+                ...state,
+                token: 'BULLSHIT'
+            }
+
 
         case 'LOGIN':
 

@@ -46,7 +46,6 @@ class Login extends React.Component {
         return (
             <div className='container-flex-center'>
                 <div className='container-700'>
-
                     <form autoComplete='off' onSubmit={this.props.handleSubmit(this.submitHandler.bind(this))} className='auth-form'>
                         <h2 className='font-light text-center m-b-3'>Log In</h2>
                         {this.props.error ? <p className='auth-form__alert'><i className="fas fa-times"></i> {this.props.error}</p> : null}
@@ -84,7 +83,8 @@ const mapStateToProps = state => {
     return {
         authenticated: state.user.authenticated,
         loading: state.loading.login_loading,
-        error: state.error.login_error
+        error: state.error.login_error,
+        tokenError: state.error.token_error
     }
 }
 

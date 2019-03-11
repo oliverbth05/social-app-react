@@ -3,11 +3,25 @@ const initialState = {
   register_error: null,
   posts_error: false,
   post_error: false,
-  comment_error: false
+  comment_error: false,
+  token_error: false
 }
 
 const error = (state = initialState, action) => {
   switch (action.type) {
+
+    case 'TOKEN_ERROR' :
+      return {
+        ...state,
+        token_errror: true
+      }
+
+    case '!TOKEN_ERROR' :
+      return {
+        ...state,
+        token_error: false
+      }
+
     case 'LOGIN_ERROR':
       return {
         ...state,

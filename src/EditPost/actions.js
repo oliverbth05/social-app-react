@@ -9,6 +9,10 @@ export const fetchEditPost = id => {
             dispatch({type: '!EDIT_POST_LOADING'})
         })
         .catch(err => {
+            if (err.response.status === 401) {
+                dispatch({type: 'TOKEN_ERROR'});
+                dispatch({type: 'LOGOUT'})
+            }
             dispatch({type: '!EDIT_POST_LOADING'})
         })
     }
@@ -24,6 +28,10 @@ export const updatePost = (data, ownProps) => { //ownProps contains the react-ro
             ownProps.history.push(`/show/${data._id}`);
         })
         .catch(err => {
+            if (err.response.status === 401) {
+                dispatch({type: 'TOKEN_ERROR'});
+                dispatch({type: 'LOGOUT'})
+            }
             dispatch({type: '!EDIT_POST_LOADING'})
             console.log(err)
         })
@@ -33,13 +41,17 @@ export const updatePost = (data, ownProps) => { //ownProps contains the react-ro
 export const deletePost = (data, ownProps) => {
     return dispatch => {
         dispatch({type: 'EDIT_POST_LOADING'})
-        server.delete(`/post/${data._id}?token=${data.token}`)
+        server.delete(`/post/${data._id}`)
         .then(res => {
             dispatch({type: 'HOME_NEEDS_UPDATE'})
             dispatch({type: '!EDIT_POST_LOADING'})
             ownProps.history.push('/home');
         })
         .catch(err => {
+            if (err.response.status === 401) {
+                dispatch({type: 'TOKEN_ERROR'});
+                dispatch({type: 'LOGOUT'})
+            }
             dispatch({type: '!EDIT_POST_LOADING'})
             console.log(err)
         })

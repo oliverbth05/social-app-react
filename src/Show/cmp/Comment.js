@@ -16,7 +16,7 @@ const Comment = (props) => {
                     <span className='comment__date'>{moment(props.date).fromNow()}</span>
                 </div>
 
-                <p className='comment__body'>{props.body}</p>
+                <p className = 'comment__body'>{props.body}</p>
 
                 <div className = 'comment__options'>
                     {props.isUserOwned ? <Link className='inline' to={`/edit/comment/${props._id}`}>Edit</Link>: null}

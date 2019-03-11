@@ -29,7 +29,6 @@ class CommentForm extends React.Component {
             user_id: this.props.user._id,
             user_name: `${this.props.user.first_name} ${this.props.user.last_name}`,
             post_id: this.props.routerparam,
-            token: this.props.token
         }
         this.props.postComment(data);
     }
@@ -50,7 +49,6 @@ class CommentForm extends React.Component {
 const mapStateToProps = state => {
     return {
         user: state.user.userData,
-        token: state.user.token,
         loading: state.loading.comments_loading
     }
 }

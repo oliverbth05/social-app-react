@@ -4,25 +4,28 @@ export const fetchPost = (id) => {
     return dispatch => {
         var data;
         dispatch({ type: 'POST_LOADING' })
-        server.get(`/post/${id}`)
-        .then(res => {
-        data = {...res.data}
-        
-        return server.get(`/user/${data.user_id}/posts`)
-        .then(res => {
-            data.otherPosts = [...res.data]
-            dispatch({
-            type: 'FETCH_POST',
-                payload: data
+        server.get(`/posts/${id}`)
+            .then(res => {
+                data = { ...res.data }
+                return server.get(`/user/${data.user_id}/posts`)
+                    .then(res => {
+                        data.otherPosts = [...res.data]
+                        dispatch({
+                            type: 'FETCH_POST',
+                            payload: data
+                        })
+                        dispatch({ type: '!POST_LOADING' })
+                    })
+
             })
-            dispatch({ type: '!POST_LOADING' })
-        })
-            
-        })
-        .catch(err => {
-            dispatch({type: 'POST_ERROR', payload: err})
-            dispatch({ type: '!POST_LOADING' })
-        })
+            .catch(err => {
+                if (err.response.status === 401) {
+                    dispatch({ type: 'TOKEN_ERROR' });
+                    dispatch({ type: 'LOGOUT' })
+                }
+                dispatch({ type: 'POST_ERROR', payload: err })
+                dispatch({ type: '!POST_LOADING' })
+            })
     }
 }
 
@@ -34,37 +37,43 @@ export const notPostError = () => {
 
 export const fetchComments = (post_id) => {
     return dispatch => {
-        dispatch({type: '!END_COMMENTS'})
-        dispatch({type: 'COMMENTS_LOADING'})
-        server.get(`/post/${post_id}/comments?page=1`)
-        .then(res => {
-            dispatch({type: 'FETCH_COMMENTS', payload: res.data})
-            if (res.data.comments.length < 10) {
-                dispatch({type: 'END_COMMENTS'})
-            }
-            dispatch({type: '!COMMENTS_LOADING'})
-        })
-        .catch(err => {
-            console.log(err)
-        })
+        dispatch({ type: '!END_COMMENTS' })
+        dispatch({ type: 'COMMENTS_LOADING' })
+        server.get(`/posts/${post_id}/comments?page=1`)
+            .then(res => {
+                dispatch({ type: 'FETCH_COMMENTS', payload: res.data })
+                if (res.data.comments.length < 10) {
+                    dispatch({ type: 'END_COMMENTS' })
+                }
+                dispatch({ type: '!COMMENTS_LOADING' })
+            })
+            .catch(err => {
+                if (err.response.status === 401) {
+                    dispatch({ type: 'TOKEN_ERROR' });
+                    dispatch({ type: 'LOGOUT' })
+                }
+            })
     }
 }
 
 export const fetchMoreComments = (post_id, page) => {
     return dispatch => {
-        dispatch({type: 'COMMENTS_LOADING'})
-        
-        server.get(`/post/${post_id}/comments?page=${page}`)
-        .then(res => {
-            if (res.data.comments.length < 10) {
-                dispatch({type: 'END_COMMENTS'})
-            }
-            dispatch({type: 'FETCH_MORE_COMMENTS', payload: res.data})
-            dispatch({type: '!COMMENTS_LOADING'})
-        })
-        .catch(err => {
-            console.log(err)
-        })
+        dispatch({ type: 'COMMENTS_LOADING' })
+
+        server.get(`/posts/${post_id}/comments?page=${page}`)
+            .then(res => {
+                if (res.data.comments.length < 10) {
+                    dispatch({ type: 'END_COMMENTS' })
+                }
+                dispatch({ type: 'FETCH_MORE_COMMENTS', payload: res.data })
+                dispatch({ type: '!COMMENTS_LOADING' })
+            })
+            .catch(err => {
+                if (err.response.status === 401) {
+                    dispatch({ type: 'TOKEN_ERROR' });
+                    dispatch({ type: 'LOGOUT' })
+                }
+            })
     }
 }
 
@@ -72,7 +81,7 @@ export const fetchMoreComments = (post_id, page) => {
 export const postComment = (data) => {
     return dispatch => {
         dispatch({ type: 'COMMENTS_LOADING' })
-        server.post(`/post/${data.post_id}/comments`, data)
+        server.post(`/posts/${data.post_id}/comments`, data)
             .then(res => {
                 dispatch({
                     type: 'POST_COMMENT',
@@ -81,7 +90,10 @@ export const postComment = (data) => {
                 dispatch({ type: '!COMMENTS_LOADING' })
             })
             .catch(err => {
-
+                if (err.response.status === 401) {
+                    dispatch({ type: 'TOKEN_ERROR' });
+                    dispatch({ type: 'LOGOUT' })
+                }
             })
     }
 }
@@ -91,7 +103,7 @@ export const likePost = (data) => {
         dispatch({
             type: 'LIKE_LOADING'
         })
-        server.post(`/post/${data.post_id}/like`, data)
+        server.post(`/posts/${data.post_id}/likes`, data)
             .then(res => {
                 dispatch({ type: '!LIKE_LOADING' })
                 dispatch({
@@ -100,13 +112,15 @@ export const likePost = (data) => {
                 })
             })
             .catch(err => {
-
+                if (err.response.status === 401) {
+                    dispatch({ type: 'TOKEN_ERROR' });
+                    dispatch({ type: 'LOGOUT' })
+                }
             })
     }
 }
 
 export const pinPost = (data) => {
-    console.log('data from action', data)
     return dispatch => {
         dispatch({ type: 'PIN_LOADING' })
         server.post(`/user/${data.user_id}/pins`, data)
@@ -122,7 +136,10 @@ export const pinPost = (data) => {
                 dispatch({ type: '!PIN_LOADING' })
             })
             .catch(err => {
-
+                if (err.response.status === 401) {
+                    dispatch({ type: 'TOKEN_ERROR' });
+                    dispatch({ type: 'LOGOUT' })
+                }
             })
     }
 } 

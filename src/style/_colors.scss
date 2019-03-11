@@ -27,7 +27,7 @@ $input-shadow-before: 0px 0px 1px -1px $primary-faded;
 }
 
 .bg-gradient {
-  background: linear-gradient(to right, $primary-faded, $secondary-faded), url(https://images.pexels.com/photos/276223/pexels-photo-276223.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  background: linear-gradient(to right, $primary, $secondary);
   background-attachment: fixed;
 }
 

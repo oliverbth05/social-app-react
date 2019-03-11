@@ -1,27 +1,3 @@
-// .comment {
-//    
-//     margin-bottom: .75rem;
-//     border-radius: 3px;
-//     &__top {
-//         display: flex;
-//         align-items: center;
-//     }
-    
-//     &__body {
-//         padding: .7rem .5rem .7rem .5rem;
-
-//     }
-    
-//     &__avatar {
-//         height: 100%;
-//     }
-    
-//     &__info {
-//         padding: .2rem .5rem .2rem .5rem;
-//     }
-    
-// } 
-
 .comment {
     box-shadow: $box-shadow;
     padding: 0;
@@ -32,6 +8,8 @@
     border-radius: 3px;
     margin-bottom: .5rem;
     background: white;
+    width: 100%;
+
     img {
         max-height: 4rem;
         border-radius: 50%;
@@ -40,7 +18,7 @@
     &__main {
         margin-left: 1rem;
     }
-
+    
     &__details {
         padding-bottom: .5rem;
     }
@@ -53,6 +31,7 @@
         display: inline-block;
         margin-right: .5rem;
         font-size: .8rem;
+
         &:hover {
             color: $color5;
             text-decoration: underline;

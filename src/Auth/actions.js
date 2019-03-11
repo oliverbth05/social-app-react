@@ -13,10 +13,11 @@ export const login = (email, password) => {
                     }
                 })
                 dispatch({ type: '!LOGIN_LOADING' })
+                dispatch({type: '!TOKEN_ERROR'})
                 dispatch({ type: '!LOGIN_ERROR' })
             })
             .catch(err => {
-                console.log(err.response.data)
+                
                 dispatch({ type: '!LOGIN_LOADING' })
                 dispatch({ type: 'LOGIN_ERROR', payload: err.response.data.error })
             })
@@ -27,6 +28,12 @@ export const keepLoggedIn = (data) => {
     return {
         type: 'KEEP_LOGGED_IN',
         payload: data
+    }
+}
+
+export const resetToken = () => {
+    return {
+        type: 'RESET_TOKEN'
     }
 }
 

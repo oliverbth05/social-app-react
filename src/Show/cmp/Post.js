@@ -111,6 +111,7 @@ class Post extends React.Component {
             likePost={this.props.likePost}
           />
           
+          <h4 className = 'font-normal m-t-2 m-b-1'>Other posts from {this.props.post.user_name}</h4>
           <OtherPosts posts = {this.props.post.otherPosts} user_name = {this.props.post.user_name} exclude_id = {this.props.post._id} />
         </div>
       </div>
@@ -126,7 +127,6 @@ const mapStateToProps = state => {
   return {
     post: state.post,
     user: state.user.userData,
-    token: state.user.token,
     post_loading: state.loading.post_loading,
     like_loading: state.loading.like_loading,
     pin_loading: state.loading.pin_loading,
