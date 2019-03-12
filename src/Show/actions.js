@@ -19,11 +19,18 @@ export const fetchPost = (id) => {
 
             })
             .catch(err => {
-                if (err.response.status === 401) {
-                    dispatch({ type: 'TOKEN_ERROR' });
-                    dispatch({ type: 'LOGOUT' })
+                if (err.response) {
+                    if (err.response.status === 401) {
+                        dispatch({type: 'TOKEN_ERROR'});
+                        dispatch({type: 'LOGOUT'})
+                    }
+                    else if (err.response.status === 404) {
+                        dispatch({ type: 'POST_ERROR', payload: 'Post not found' })
+                    }
                 }
-                dispatch({ type: 'POST_ERROR', payload: err })
+                else {
+                    dispatch({ type: 'POST_ERROR', payload: 'Something went wrong.' })
+                }
                 dispatch({ type: '!POST_LOADING' })
             })
     }
@@ -48,9 +55,15 @@ export const fetchComments = (post_id) => {
                 dispatch({ type: '!COMMENTS_LOADING' })
             })
             .catch(err => {
-                if (err.response.status === 401) {
-                    dispatch({ type: 'TOKEN_ERROR' });
-                    dispatch({ type: 'LOGOUT' })
+                if (err.response) {
+                    if (err.response.status === 401) {
+                        dispatch({type: 'TOKEN_ERROR'});
+                        dispatch({type: 'LOGOUT'})
+                    }
+                }
+                else {
+                    dispatch({type: 'COMMENT_ERROR'})
+                    dispatch({type: '!COMMENTS_LOADING'})
                 }
             })
     }
@@ -69,9 +82,16 @@ export const fetchMoreComments = (post_id, page) => {
                 dispatch({ type: '!COMMENTS_LOADING' })
             })
             .catch(err => {
-                if (err.response.status === 401) {
-                    dispatch({ type: 'TOKEN_ERROR' });
-                    dispatch({ type: 'LOGOUT' })
+                if (err.response) {
+                    if (err.response.status === 401) {
+                        dispatch({type: 'TOKEN_ERROR'});
+                        dispatch({type: 'LOGOUT'})
+                    }
+               
+            }
+             else {
+                    dispatch({type: 'COMMENT_ERROR'})
+                    dispatch({type: '!COMMENTS_LOADING'})
                 }
             })
     }
@@ -90,9 +110,15 @@ export const postComment = (data) => {
                 dispatch({ type: '!COMMENTS_LOADING' })
             })
             .catch(err => {
+                if (err.response) {
                 if (err.response.status === 401) {
-                    dispatch({ type: 'TOKEN_ERROR' });
-                    dispatch({ type: 'LOGOUT' })
+                    dispatch({type: 'TOKEN_ERROR'});
+                    dispatch({type: 'LOGOUT'})
+                }
+            }
+            else {
+                    dispatch({type: 'COMMENT_ERROR'})
+                    dispatch({type: '!COMMENTS_LOADING'})
                 }
             })
     }
@@ -112,10 +138,12 @@ export const likePost = (data) => {
                 })
             })
             .catch(err => {
+                if (err.response) {
                 if (err.response.status === 401) {
-                    dispatch({ type: 'TOKEN_ERROR' });
-                    dispatch({ type: 'LOGOUT' })
+                    dispatch({type: 'TOKEN_ERROR'});
+                    dispatch({type: 'LOGOUT'})
                 }
+            }
             })
     }
 }
@@ -136,10 +164,18 @@ export const pinPost = (data) => {
                 dispatch({ type: '!PIN_LOADING' })
             })
             .catch(err => {
+                if (err.response) {
                 if (err.response.status === 401) {
-                    dispatch({ type: 'TOKEN_ERROR' });
-                    dispatch({ type: 'LOGOUT' })
+                    dispatch({type: 'TOKEN_ERROR'});
+                    dispatch({type: 'LOGOUT'})
                 }
+            }
             })
     }
 } 
+
+export const resetCommentError = () => {
+    return {
+        type: '!COMMENT_ERROR'
+    }
+}

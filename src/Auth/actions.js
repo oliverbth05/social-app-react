@@ -17,9 +17,14 @@ export const login = (email, password) => {
                 dispatch({ type: '!LOGIN_ERROR' })
             })
             .catch(err => {
-                
+                if (err.response) {
+                    dispatch({ type: 'LOGIN_ERROR', payload: err.response.data.error })
+                }
+                else {
+                    dispatch({ type: 'LOGIN_ERROR', payload: 'Something went wrong' })
+                }
                 dispatch({ type: '!LOGIN_LOADING' })
-                dispatch({ type: 'LOGIN_ERROR', payload: err.response.data.error })
+                
             })
     }
 }
@@ -53,7 +58,12 @@ export const register = (data) => {
                 dispatch({ type: '!REGISTER_LOADING' })
             })
             .catch(err => {
-                dispatch({ type: 'REGISTER_ERROR', payload: err.response.data.error })
+                if (err.response) {
+                    dispatch({ type: 'REGISTER_ERROR', payload: err.response.data.error })
+                }
+                else {
+                    dispatch({ type: 'REGISTER_ERROR', payload: 'Something went wrong' })
+                }
                 dispatch({ type: '!REGISTER_LOADING' })
             })
     }

@@ -81,7 +81,7 @@ class Nav extends React.Component {
 
                         <div className='nav__links'>
 
-                            <h2 className='logo text-gradient m-b-3'>R</h2>
+                            <h2 className='logo text-gradient m-b-3'>Rag</h2>
 
                             {/* <button onClick = { () => {this.props.resetToken()}} className = 'btn btn-secondary'>Reset Token</button> */}
 

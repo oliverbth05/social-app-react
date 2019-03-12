@@ -11,6 +11,7 @@ import { fetchPost, likePost, pinPost, notPostError } from '../actions';
 import Loader from '../../cmp/Loader';
 import PostError from './PostError';
 import OtherPosts from './OtherPosts';
+import withLoader from '../../hoc/withLoader';
 
 class Post extends React.Component {
 
@@ -37,7 +38,7 @@ class Post extends React.Component {
     
 
     if (this.props.error) {
-      return <PostError error = {this.props.error.response.status} />
+      return <PostError error = {this.props.error} />
     }
     
     else if (this.props.post_loading || this.props.post === null) {
@@ -70,7 +71,6 @@ class Post extends React.Component {
     return (
      
       <div className = 'm-t-3'>
-        
         <div className='m-t-3 m-b-1'>
           <div>
             { isUserOwned ? 

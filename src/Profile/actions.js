@@ -9,10 +9,12 @@ export const fetchUserProfile = id => {
                 dispatch({ type: '!PROFILE_LOADING' })
             })
             .catch(err => {
+                if (err.response) {
                 if (err.response.status === 401) {
-                    dispatch({ type: 'TOKEN_ERROR' });
-                    dispatch({ type: 'LOGOUT' })
+                    dispatch({type: 'TOKEN_ERROR'});
+                    dispatch({type: 'LOGOUT'})
                 }
+            }
             })
     }
 }
@@ -26,10 +28,12 @@ export const fetchUserProfilePosts = id => {
                 dispatch({ type: '!PROFILE_POSTS_LOADING' })
             })
             .catch(err => {
+                if (err.response) {
                 if (err.response.status === 401) {
-                    dispatch({ type: 'TOKEN_ERROR' });
-                    dispatch({ type: 'LOGOUT' })
+                    dispatch({type: 'TOKEN_ERROR'});
+                    dispatch({type: 'LOGOUT'})
                 }
+            }
             })
     }
 }
@@ -43,10 +47,12 @@ export const removePin = data => {
                 dispatch({ type: '!PROFILE_LOADING' })
             })
             .catch(err => {
+                if (err.response) {
                 if (err.response.status === 401) {
-                    dispatch({ type: 'TOKEN_ERROR' });
-                    dispatch({ type: 'LOGOUT' })
+                    dispatch({type: 'TOKEN_ERROR'});
+                    dispatch({type: 'LOGOUT'})
                 }
+            }
             })
     }
 }
@@ -61,10 +67,12 @@ export const addSubscription = data => {
                 dispatch({ type: '!SUBSCRIBE_LOADING' })
             })
             .catch(err => {
+               if (err.response) {
                 if (err.response.status === 401) {
-                    dispatch({ type: 'TOKEN_ERROR' });
-                    dispatch({ type: 'LOGOUT' })
+                    dispatch({type: 'TOKEN_ERROR'});
+                    dispatch({type: 'LOGOUT'})
                 }
+            }
             })
     }
 }
@@ -78,10 +86,12 @@ export const removeSubscription = data => {
                 dispatch({ type: '!SUBSCRIBE_LOADING' })
             })
             .catch(err => {
+                if (err.response) {
                 if (err.response.status === 401) {
-                    dispatch({ type: 'TOKEN_ERROR' });
-                    dispatch({ type: 'LOGOUT' })
+                    dispatch({type: 'TOKEN_ERROR'});
+                    dispatch({type: 'LOGOUT'})
                 }
+            }
                 dispatch({ type: '!SUBSCRIBE_LOADING' })
             })
     }

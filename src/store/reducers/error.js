@@ -4,7 +4,7 @@ const initialState = {
   posts_error: false,
   post_error: false,
   comment_error: false,
-  token_error: false
+  token_error: false,
 }
 
 const error = (state = initialState, action) => {
@@ -68,6 +68,18 @@ const error = (state = initialState, action) => {
       return {
         ...state,
         post_error: null
+      }
+      
+    case 'COMMENT_ERROR' :
+      return {
+        ...state,
+        comment_error: true
+      }
+      
+    case '!COMMENT_ERROR' :
+      return {
+        ...state,
+        comment_error: false
       }
 
     default :

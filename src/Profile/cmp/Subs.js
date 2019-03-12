@@ -18,16 +18,15 @@ class Subs extends React.Component {
     
     render() {
         return (
-            <div>
-                <div className = 'border-header m-t-3 m-b-1'>
-                    <span className = 'border-header__border'></span>
-                    <h3 className = 'font-normal'>My Subscriptions <span className = 'font-light color-primary'>{this.props.subs.length}</span></h3>
-                    <span className = 'border-header__border'></span>
+            <div className = 'profile-section' >
+                <h4 className = 'profile-section__header'>Subscriptions</h4>
+                
+                <div className = 'profile-section__content'>
+                    {this.renderSubs(this.props.subs)}
                 </div>
-                {this.renderSubs(this.props.subs)}
             </div>
         )
-    }
+    } 
 }
 
 const mapStateToProps = state => {

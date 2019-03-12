@@ -9,9 +9,11 @@ export const fetchComment = data => {
             dispatch({type: '!EDIT_COMMENT_LOADING'})
         })
         .catch(err => {
-            if (err.response.status === 401) {
-                dispatch({type: 'TOKEN_ERROR'});
-                dispatch({type: 'LOGOUT'})
+            if (err.response) {
+                if (err.response.status === 401) {
+                    dispatch({type: 'TOKEN_ERROR'});
+                    dispatch({type: 'LOGOUT'})
+                }
             }
             dispatch({type: '!EDIT_COMMENT_LOADING'})
         })
@@ -27,9 +29,11 @@ export const updateComment = (data, ownProps) => {
             dispatch({type: '!EDIT_COMMENT_LOADING'});
         })
         .catch(err => {
-            if (err.response.status === 401) {
-                dispatch({type: 'TOKEN_ERROR'});
-                dispatch({type: 'LOGOUT'})
+            if (err.response) {
+                if (err.response.status === 401) {
+                    dispatch({type: 'TOKEN_ERROR'});
+                    dispatch({type: 'LOGOUT'})
+                }
             }
             dispatch({type: '!EDIT_COMMENT_LOADING'});
         })
@@ -43,7 +47,6 @@ export const resetComment = () => {
 }
 
 export const deleteComment = (data, ownProps) => {
-    console.log(data)
     return dispatch => {
         dispatch({type: 'EDIT_COMMENT_LOADING'})
         server.delete(`posts/${data.post_id}/comments/${data._id}`)
@@ -52,12 +55,11 @@ export const deleteComment = (data, ownProps) => {
             dispatch('!EDIT_COMMENT_LOADING');
         })
         .catch(err => {
-            
-            console.log(err)
-            
-            if (err.response.status === 401) {
-                dispatch({type: 'TOKEN_ERROR'});
-                dispatch({type: 'LOGOUT'})
+            if (err.response) {
+                if (err.response.status === 401) {
+                    dispatch({type: 'TOKEN_ERROR'});
+                    dispatch({type: 'LOGOUT'})
+                }
             }
             dispatch({type: '!EDIT_COMMENT_LOADING'});
             

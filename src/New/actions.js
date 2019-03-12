@@ -10,10 +10,12 @@ export const createPost = (post, ownProps) => {
         dispatch({ type: '!NEW_LOADING' })
       })
       .catch(err => {
-        if (err.response.status === 401) {
-          dispatch({ type: 'TOKEN_ERROR' });
-          dispatch({ type: 'LOGOUT' })
-        }
+        if (err.response) {
+                if (err.response.status === 401) {
+                    dispatch({type: 'TOKEN_ERROR'});
+                    dispatch({type: 'LOGOUT'})
+                }
+            }
       })
   }
 }

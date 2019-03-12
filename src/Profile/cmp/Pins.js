@@ -22,19 +22,20 @@ class Pins extends React.Component {
             return <Loader />
         }
         return (
-            <div>
-                <div className = 'border-header m-t-3 m-b-1'>
-                    <span className = 'border-header__border'></span>
-                    <h3 className = 'font-normal'>My Pins <span className = 'font-light color-primary'>{this.props.pins.length}</span></h3>
-                    <span className = 'border-header__border'></span>
+            <div className = 'profile-section'>
+            
+                <h4 className = 'profile-section__header'>Pins</h4>
+            
+                <div className = 'profile-section__content'>
+                    {this.renderPins(this.props.pins)}
                 </div>
-                {this.renderPins(this.props.pins)}
+                
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = state => { 
     return {
         pins: state.user.userData.pins,
         user: state.user.userData,

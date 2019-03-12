@@ -26,13 +26,14 @@ class ProfilePosts extends React.Component {
             return <Loader halfscreen />
         }
         return (
-            <div>
-                <div className = 'border-header m-t-3 m-b-1'>
-                    <span className = 'border-header__border'></span>
-                    <h3 className = 'font-normal'>Posts <span className = 'font-light color-primary'>{this.props.posts.length}</span></h3>
-                    <span className = 'border-header__border'></span>
+            <div className = 'profile-section'>
+               
+                <h4 className = 'profile-section__header'>Posts <span className = 'font-light color-white'>{this.props.posts.length}</span></h4>
+                  
+                <div className = 'profile-section__content'>
+                    <OtherPosts posts = {this.props.posts} />
                 </div>
-                <OtherPosts posts = {this.props.posts} />
+                
             </div>
            
         )

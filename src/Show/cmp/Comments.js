@@ -1,7 +1,7 @@
 import React from 'react';
 import Comment from './Comment';
 import { connect } from 'react-redux';
-import { fetchComments, fetchMoreComments } from '../actions';
+import { fetchComments, fetchMoreComments, resetCommentError } from '../actions';
 
 import Loader from '../../cmp/Loader';
 import CommentForm from './CommentForm';
@@ -10,6 +10,13 @@ class Comments extends React.Component {
 
     componentDidMount() {
         this.props.fetchComments(this.props.routerparam, this.props.commentsPage)
+    }
+    
+    componentWillUnmount() {
+        if (this.props.error) {
+            this.props.resetCommentError()
+        }
+        
     }
     
     componentDidUpdate(prevProps) {
@@ -30,10 +37,10 @@ class Comments extends React.Component {
     render() {
         
         if (this.props.error) {
-            return null
+            return <h3 className = 'color-secondary text-center font-normal p-a-1'>Error fetching comments</h3>
         }
         
-        else if (this.props.loading || this.props.comments === undefined) {
+        else if (this.props.loading || this.props.comments === null) {
             return <Loader halfscreen />
         }
 
@@ -57,8 +64,8 @@ const mapStateToProps = state => {
         post: state.post,
         loading: state.loading.comments_loading,
         user: state.user.userData,
-        error: state.error.post_error
+        error: state.error.comment_error
     }
 }
 
-export default connect(mapStateToProps, { fetchComments, fetchMoreComments })(Comments);
+export default connect(mapStateToProps, { fetchComments, fetchMoreComments, resetCommentError })(Comments);

@@ -8,8 +8,20 @@ import Pins from './cmp/Pins';
 import Subs from './cmp/Subs';
 import ProfilePosts from './cmp/ProfilePosts';
 import SubButton from './cmp/SubButton';
+import SummaryModal from './cmp/SummaryModal';
 
 class Profile extends React.Component {
+    
+    
+    state = {
+        modal: false,
+    }
+    
+    toggleModal() {
+        this.setState({
+            modal: true
+        })
+    }
     
     componentDidMount() {
         this.props.fetchUserProfile(this.props.match.params.id)
@@ -76,15 +88,18 @@ class Profile extends React.Component {
         return (
             <div className = 'container'>
             
-                <div className = 'p-a-1 box bg-primary'>
+                { this.state.modal ? 
+                <SummaryModal
+                toggle = {this.toggleModal.bind(this)}/>
+                : null }
+            
+                <div className = 'p-a-1'>
                     <img alt = 'user avatar' className='avatar m-auto m-b-1' src={`https://api.adorable.io/avatars/130/${this.props.profile.first_name} ${this.props.profile.last_name}.png`} />
-                    <h2 className = 'font-light text-center color-white m-b-1'>{`${this.props.profile.first_name} ${this.props.profile.last_name}`}</h2>
-                    <p className = 'text-center color-white'>Subscribers: {this.props.profile.subscribers.length}</p>
-                    <p className = 'text-center color-white'>Joined {new moment(this.props.profile.join_date).fromNow()}</p>
-                   
+                    <h2 className = 'font-light text-center m-b-1'>{`${this.props.profile.first_name} ${this.props.profile.last_name}`}</h2>
+                    <p className = 'text-center'>Subscribers: {this.props.profile.subscribers.length}</p>
+                    <p className = 'text-center'>Joined {new moment(this.props.profile.join_date).fromNow()}</p>
                 </div>
                 
-             
                 <div className = 'container-700-res'>
                     
                     {!this.isUser() ?
@@ -93,13 +108,18 @@ class Profile extends React.Component {
                     </div>
                     : null }
                     
-                    <div className = 'box m-t-2'>
-                        <h3 className = 'font-normal text-center'>Summary</h3>
-                        <p className = 'p-b-1 text-center'>{this.props.profile.summary}</p>
+                    <div className = 'profile-section'>
+                        <h4 className = 'profile-section__header'>Summary</h4>
+                        <div className = 'profile-section__content'>
+                            <p className = 'p-b-1 text-center'>{this.props.profile.summary}</p>
+                        </div>
+                       { this.isUser() ? 
+                        <button onClick =  {this.toggleModal.bind(this)} className = 'btn btn-round btn-secondary m-a-1'><i class="fas fa-edit"></i> Edit</button>
+                        : null }
                     </div>
                     
                     { this.isUser() ?
-                    <div className = 'm-t-2'>
+                    <div>
                         <Pins />
                         <Subs />
                     </div>
@@ -107,6 +127,8 @@ class Profile extends React.Component {
                     
                     <ProfilePosts user_id = {this.props.profile._id}/>
                 </div>
+                
+                
 
             </div>
         )

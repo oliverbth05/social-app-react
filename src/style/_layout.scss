@@ -215,3 +215,36 @@
 .width-100 {
     width: 100%;
 }
+
+.profile-section {
+    
+    width: 100%;
+    box-shadow: $box-shadow;
+    margin: 1rem 0 1rem 0;
+    border-radius: 5px;
+    
+    &__header {
+        padding: .1rem;
+        background: $primary;
+        border-radius: 4px 4px 0 0;
+        font-weight: lighter;
+        font-family: 'Comfortaa', sans-serif;
+        color: $white;
+        text-align: center;
+    }
+    
+    &__content {
+        max-height: 500px;
+        overflow: auto;
+        padding: 1rem;
+        
+        &::-webkit-scrollbar {
+            width: 10px;
+            background: $grey;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            background: $secondary;
+        }
+    }
+}

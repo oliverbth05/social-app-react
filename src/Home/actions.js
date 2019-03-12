@@ -18,9 +18,11 @@ export const fetchPosts = (sort, searchTerm) => { //Always fetches the first pag
         }
       })
       .catch(err => {
-        if (err.response.status === 401) {
-          dispatch({ type: 'TOKEN_ERROR' });
-          dispatch({ type: 'LOGOUT' })
+        if (err.response) {
+          if (err.response.status = 401) {
+            dispatch({ type: 'TOKEN_ERROR' });
+            dispatch({ type: 'LOGOUT' })
+          }  
         }
         dispatch({ type: 'POSTS_ERROR' })
         dispatch({ type: '!POSTS_LOADING' })
@@ -45,9 +47,11 @@ export const fetchMorePosts = (sort, page, searchTerm) => {
         dispatch({ type: '!MORE_POSTS_LOADING' })
       })
       .catch(err => {
-        if (err.response.status === 401) {
-          dispatch({ type: 'TOKEN_ERROR' });
-          dispatch({ type: 'LOGOUT' })
+       if (err.response) {
+          if (err.response.status = 401) {
+            dispatch({ type: 'TOKEN_ERROR' });
+            dispatch({ type: 'LOGOUT' })
+          }  
         }
         dispatch({ type: 'POSTS_ERROR' })
         dispatch({ type: '!MORE_POSTS_LOADING' })
