@@ -1,88 +1,72 @@
 const initialState = {
-  login_error: null,
-  register_error: null,
-  posts_error: false,
-  post_error: false,
-  comment_error: false,
   token_error: false,
+  edit_comment_error: false,
+  profile_error: false,
+  profile_posts_error: false
 }
 
 const error = (state = initialState, action) => {
   switch (action.type) {
 
-    case 'TOKEN_ERROR' :
+    case 'TOKEN_ERROR':
       return {
         ...state,
         token_errror: true
       }
 
-    case '!TOKEN_ERROR' :
+    case '!TOKEN_ERROR':
       return {
         ...state,
         token_error: false
       }
 
-    case 'LOGIN_ERROR':
+   
+
+    
+
+    
+
+    
+
+    
+
+    case 'EDIT_COMMENT_ERROR':
       return {
         ...state,
-        login_error: action.payload
+        edit_comment_error: true
       }
 
-    case '!LOGIN_ERROR':
+    case '!EDIT_COMMENT_ERROR':
       return {
         ...state,
-        login_error: null
+        edit_comment_error: false
       }
 
-    case 'REGISTER_ERROR':
+    case 'PROFILE_ERROR':
       return {
         ...state,
-        register_error: action.payload
+        profile_error: true
       }
 
-    case '!REGISTER_ERROR':
+    case '!PROFILE_ERROR':
       return {
         ...state,
-        register_error: null
+        profile_error: false
       }
 
-    case 'POSTS_ERROR':
+    case 'PROFILE_POSTS_ERROR':
       return {
         ...state,
-        posts_error: true
+        profile_posts_error: true
       }
 
-    case '!POSTS_ERROR':
+    case '!PROFILE_POSTS_ERROR':
       return {
         ...state,
-        posts_error: false
+        profile_posts_error: false
       }
 
-    case 'POST_ERROR':
-      return {
-        ...state,
-        post_error: action.payload
-      }
-
-    case '!POST_ERROR':
-      return {
-        ...state,
-        post_error: null
-      }
-      
-    case 'COMMENT_ERROR' :
-      return {
-        ...state,
-        comment_error: true
-      }
-      
-    case '!COMMENT_ERROR' :
-      return {
-        ...state,
-        comment_error: false
-      }
-
-    default :
+    default:
       return state
 
 

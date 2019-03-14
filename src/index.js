@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import store from './store';
-import App from './cmp/App';
+import App from './App';
 
 var user = JSON.parse(window.localStorage.getItem('user'));
 var token = JSON.parse(window.localStorage.getItem('token'));

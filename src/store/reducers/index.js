@@ -1,18 +1,23 @@
 import { combineReducers } from 'redux';
-import user from '../../Auth/reducer';
+import user from '../../User/reducer';
 import loading from './loading';
-import home from '../../Home/reducer';
+import home from '../../Views/Home/reducer';
 import error from './error';
 
-import comments from '../../Show/comments_reducer';
-import post from '../../Show/post_reducer';
-import profile from '../../Profile/reducer';
-import edit_comment from '../../EditComment/reducer';
-import edit_post from '../../EditPost/reducer';
-import search from '../../Search/reducer';
+import login from '../../Views/Login/reducer';
+import register from '../../Views/Register/reducer';
+
+import comments from '../../Views/Show/comments_reducer';
+import post from '../../Views/Show/post_reducer';
+import profile from '../../Views/Profile/reducer';
+import edit_comment from '../../Views/EditComment/reducer';
+import edit_post from '../../Views/EditPost/reducer';
+import search from '../../Views/Search/reducer';
 import { reducer as formReducer } from 'redux-form';
 
 const appReducer = combineReducers({
+    login,
+    register,
     user,
     loading,
     error,

@@ -1,0 +1,4 @@
+3/12/19
+
+RESTRUCTURING OF DIRECTORY
+  *Fix imports all across app
