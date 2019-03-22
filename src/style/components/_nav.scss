@@ -1,18 +1,16 @@
-
 .nav {
     height: 100vh;
     left: 0;
-    bottom: 0; 
+    bottom: 0;
     position: fixed;
     width: 8rem;
-    margin-right: 8rem; 
-    background: $dark;
-    // box-shadow: inset -1px 0px 25px 0px rgba(0,0,0,0.23);
+    margin-right: 8rem;
+    background: linear-gradient(to bottom, $primary, $primary-darker); // box-shadow: inset -1px 0px 25px 0px rgba(0,0,0,0.23);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 3;
-    
+
     @include respond(tablet) {
         display: none;
     }
@@ -21,7 +19,7 @@
         flex-grow: 1;
     }
 
-    
+
 
     &__drawer {
         left: 0;
@@ -56,7 +54,7 @@
             animation: fadeIn;
             animation-duration: .4s;
             z-index: 3;
-           
+
         }
     }
 
@@ -67,7 +65,7 @@
         padding-top: 1rem;
         font-size: 3rem;
     }
-    
+
     &__avatar {
         display: block;
         height: 4rem;
@@ -85,7 +83,7 @@
             font-size: 1.2rem;
         }
     }
-    
+
     &__links {
         display: flex;
         align-items: center;
@@ -104,8 +102,8 @@
         text-decoration: none;
         text-align: center;
         font-size: 1.15rem;
-        border-bottom: 1px solid black;
-    
+        border-bottom: 1px solid $primary-darker;
+
         &__tooltip {
             z-index: 1;
             transition: all .3s;
@@ -123,29 +121,29 @@
             top: 0;
             font-size: .9rem;
             height: 100%;
-            
+
             border-radius: 25px 25px 25px 25px;
-            
+
         }
-        
+
         &:hover {
-            
+
             i {
                 transform: scale(1.1);
             }
-            
+
             .nav__link__tooltip {
                 opacity: 1;
-                visibility: visible; 
+                visibility: visible;
                 transform: scale(1);
             }
         }
 
-        
+
     }
 }
 
-.home-nav { 
+.home-nav {
     background: $white;
     top: 0;
     z-index: 2;
@@ -154,14 +152,14 @@
     padding-right: 1.5rem;
     width: 100%;
     position: fixed;
-    height: 3.4rem;
+    height: 3.6rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     align-content: center;
     align-items: center;
     box-shadow: $box-shadow;
-    
+
     @include respond(tablet) {
         padding-left: 1rem;
         grid-template-columns: 1fr;
@@ -169,7 +167,7 @@
         height: 6.8rem;
         top: 50px;
     }
-    
+
     &__search {
         margin-left: auto;
         width: 100%;
@@ -188,34 +186,35 @@
     width: 100%;
     position: fixed;
     height: 50px;
-    background: $dark;
-    
+    background: linear-gradient(to right, $primary, $primary-darker);
+
     @include respond(tablet) {
         display: flex;
         align-items: center;
         justify-content: center;
     }
-    
+
     &__link {
-       padding: 1rem; 
-       text-align: center;
-       color: $dark;
-       
-       &:hover {
-           background: $primary;
-           color: $white;
-       }
-       
-       &-active {
-           background: $primary;
-           color: $white;
-       }
+        padding: 1rem;
+        text-align: center;
+        color: $dark;
+
+        &:hover {
+            background: $primary;
+            color: $white;
+        }
+
+        &-active {
+            background: $primary;
+            color: $white;
+        }
     }
-    
+
     &__btn {
         z-index: 2;
+        display: none;
         position: fixed;
-        font-size: 1.2rem; 
+        font-size: 1.2rem;
         padding: .6rem;
         top: 8px;
         right: 10px;
@@ -225,28 +224,32 @@
         border-radius: 20%;
         cursor: pointer;
         z-index: 5;
-        
+
+        @include respond(tablet) {
+            display: block;
+        }
+
         &:hover {
             background: $primary;
         }
-        
+
         &:focus {
             background: $primary;
         }
     }
 }
-   
+
 
 
 
 .home-nav__spacer {
-    display: block; 
+    display: block;
     height: 3.5rem;
 }
 
 .active {
-    color: $primary;
-    background: black;
+    color: white;
+    background: $primary-darker;
 }
 
 .show-nav {
@@ -260,7 +263,7 @@
     background: $white;
     box-shadow: $box-shadow;
     width: 100%;
-    
+
     @include respond(tablet) {
         left: 0;
         top: 50px;
@@ -277,12 +280,12 @@
     height: 3.4rem;
     background: $white;
     box-shadow: $box-shadow;
-    
+
     @include respond(tablet) {
         top: 50px;
         padding-left: 1rem;
     }
-    
+
     form {
         height: 100%;
         width: 100%;
@@ -290,6 +293,6 @@
         align-items: center;
         justify-content: flex-start;
     }
-    
-   
+
+
 }

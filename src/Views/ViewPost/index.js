@@ -1,6 +1,6 @@
 import React from 'react';
 
-import isAuthenticated from 'components/hoc/isAuthenticated';
+import isAuthenticated from '../../components/hoc/isAuthenticated';
 import Comments from './cmp/Comments';
 import Post from './cmp/Post';
 import ShowNav from './cmp/ShowNav';

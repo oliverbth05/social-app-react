@@ -1,4 +1,4 @@
-import server from 'api';
+import server from '../../api';
 
 export const fetchEditPost = id => {
     return dispatch => {
@@ -23,7 +23,7 @@ export const fetchEditPost = id => {
 export const updatePost = (data, ownProps) => { //ownProps contains the react-router history object for rerouting
     return dispatch => {
         dispatch({type: 'EDIT_POST_LOADING'})
-        server.patch(`/post/${data._id}`, data)
+        server.patch(`/posts/${data._id}`, data)
         .then(res => {
             dispatch({type: 'HOME_NEEDS_UPDATE'})
             dispatch({type: '!EDIT_POST_LOADING'})

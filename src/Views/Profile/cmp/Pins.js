@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import isAuthenticated from 'components/hoc/isAuthenticated';
-import Loader from 'components/ui/Loader';
+
+import Loader from '../../../components/ui/Loader';
 import Pin from './Pin';
 import { removePin } from '../actions';
 
@@ -39,8 +39,8 @@ const mapStateToProps = state => {
     return {
         pins: state.user.userData.pins,
         user: state.user.userData,
-        loading: state.loading.profile_loading
+        loading: state.profile.loading
     }
 }
 
-export default connect(mapStateToProps, {removePin})(isAuthenticated(Pins));
+export default connect(mapStateToProps, {removePin})(Pins);

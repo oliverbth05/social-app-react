@@ -23,6 +23,8 @@ const PostMenu = (props) => {
                     disabled={!props.canLike}
                     post_id={props.post_id}
                     user_id={props.user_id}
+                    author_id={props.author_id}
+                    user_name={props.user_name}
                 ></LikeButton>
 
                 <PinButton

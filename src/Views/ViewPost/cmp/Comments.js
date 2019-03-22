@@ -3,9 +3,9 @@ import Comment from './Comment';
 import { connect } from 'react-redux';
 import { fetchComments, fetchMoreComments, resetCommentError } from '../actions';
 
-import Loader from 'components/ui/Loader';
+import Loader from '../../../components/ui/Loader';
 import CommentForm from './CommentForm';
-import Error from 'components/ui/Error';
+import Error from '../../../components/ui/Error';
 
 class Comments extends React.Component {
 

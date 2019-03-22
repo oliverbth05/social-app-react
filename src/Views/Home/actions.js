@@ -1,4 +1,4 @@
-import server from 'api'
+import server from '../../api';
 
 export const fetchPosts = (sort, searchTerm) => { //Always fetches the first page of the results, resetting the page counter
   return dispatch => {

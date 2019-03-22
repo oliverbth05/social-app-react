@@ -1,3 +1,4 @@
+
 import './style/index.scss';
 
 import React from 'react';
@@ -6,6 +7,8 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 import App from './App';
+
+
 
 var user = JSON.parse(window.localStorage.getItem('user'));
 var token = JSON.parse(window.localStorage.getItem('token'));

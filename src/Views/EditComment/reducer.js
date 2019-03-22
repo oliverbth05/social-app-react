@@ -1,8 +1,10 @@
 const initialState = {
-    comment : null
+    comment : null,
+    error: false,
+    loading: false,
 }
 
-const edit_comment = (state = initialState, action) => {
+const editComment = (state = initialState, action) => {
     
     switch ( action.type ) {
         case 'FETCH_COMMENT' :
@@ -16,6 +18,30 @@ const edit_comment = (state = initialState, action) => {
                 ...state,
                 comment: null
             }
+            
+        case 'EDIT_COMMENT_ERROR':
+          return {
+            ...state,
+            error: true
+          }
+    
+        case '!EDIT_COMMENT_ERROR':
+          return {
+            ...state,
+            error: false
+          }
+          
+        case 'EDIT_COMMENT_LOADING' :
+            return {
+                ...state,
+                loading: true 
+            }
+        
+        case '!EDIT_COMMENT_LOADING' :
+            return {
+                ...state,
+                loading: false
+            }
     
         default :
             return state
@@ -23,4 +49,4 @@ const edit_comment = (state = initialState, action) => {
     
 }
 
-export default edit_comment;
+export default editComment;

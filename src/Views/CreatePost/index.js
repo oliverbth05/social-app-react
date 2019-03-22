@@ -4,11 +4,10 @@ import { createPost }     from './actions';
 import { reduxForm, Field } from 'redux-form';
 import { formValueSelector } from 'redux-form';
 
-import isAuthenticated    from 'components/hoc/isAuthenticated';
-import Loader             from 'components/ui/Loader';
+import isAuthenticated    from '../../components/hoc/isAuthenticated';
+import Loader             from '../../components/ui/Loader';
 import RulesModal         from './cmp/RulesModal';
-import Tag                from 'components/ui/Tag';
-import Author             from '../Show/cmp/Author';
+import Tag                from '../../components/ui/Tag';
 import Preview            from './cmp/Preview';
 
 class New extends React.Component {
@@ -84,10 +83,26 @@ class New extends React.Component {
       </div>
     )
   }
+  
+  renderSelect({ input, label, type, meta: { touched, error, submitFailed }, children }) {
+    
+    
+    return (
+        <div className = 'post-form__divider'>
+          <label className = 'post-form__label'>{label}
+          {error && submitFailed ? 
+          <span className = 'color-secondary font-light font-small m-l-1'>{error}</span> : null }</label>
+          <select className = 'select' {...input}>
+           {children}
+          </select>
+          
+        </div>
+    )
+  } 
 
   submitPost(formValues) {
 
-    if (!formValues.title || !formValues.body) {
+    if (!formValues.title || !formValues.body || !formValues.category) {
       return false
     }
     
@@ -97,9 +112,9 @@ class New extends React.Component {
       body: formValues.body,
       image: formValues.image,
       tags: this.state.tags,
+      category: formValues.category,
       user_id: this.props.user._id,
-      user_name: `${this.props.user.first_name} ${this.props.user.last_name}`,
-      token: this.props.token
+      user_name: `${this.props.user.first_name} ${this.props.user.last_name}`
     }, this.props)
   }
 
@@ -123,6 +138,22 @@ class New extends React.Component {
             <button onClick = {this.toggleRulesModal.bind(this)} className = 'btn btn-secondary btn-round m-r-s'><i class="fas fa-info-circle"></i> Styling Rules</button>
             <button onClick = {this.togglePreview.bind(this)} className = 'btn btn-primary btn-round'>{!this.state.showPreview ? <i class="far fa-eye-slash"></i> : <i class="fas fa-eye"></i>} Preview</button>
             <form onSubmit={this.props.handleSubmit(this.submitPost.bind(this))} className='post-form'>
+              
+              
+                <Field name='category' label = 'Category' component= {this.renderSelect} className = 'select'>
+                  <option value = ''>Select one</option>
+                  <option value='politics'>Politics</option>
+                  <option value='culture'>Culture</option>
+                  <option value='film'>Film</option>
+                  <option value = 'television'>Television</option>
+                  <option value = 'business'>Business</option>
+                  <option value = 'technology'>Technology</option>
+                  <option value = 'music'>Music</option>
+                  <option value = 'art'>Art</option>
+                </Field>
+
+               
+             
 
               <Field name = 'title' component = {this.renderInput} type = 'text' label = 'Title' />
               
@@ -175,8 +206,9 @@ const mapStateToProps = state => {
   return {
     user: state.user.userData,
     token: state.user.token,
-    loading: state.loading.new_loading,
+    loading: state.createPost.loading,
     title: selector(state, 'title'),
+    category: selector(state, 'category'),
     caption: selector(state, 'caption'),
     body: selector(state, 'body'),
     image: selector(state, 'image'),
@@ -186,9 +218,7 @@ const mapStateToProps = state => {
 const Connected = connect(mapStateToProps, { createPost })(isAuthenticated(New))
 
 const validate = formValues => {
-  const errors = {
-    
-  }
+  const errors = {}
   
   if (!formValues.title) {
     errors.title = 'Post require a title.' 
@@ -196,6 +226,10 @@ const validate = formValues => {
   
   if (!formValues.body) {
     errors.body = 'Post requires body text.'
+  }
+  
+  if (!formValues.category) {
+    errors.category = 'Post requires a category'
   }
   
   return errors;

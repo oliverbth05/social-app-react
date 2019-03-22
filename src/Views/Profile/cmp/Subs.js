@@ -31,7 +31,7 @@ class Subs extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        loading: state.loading.profile_loading,
+        loading: state.profile.loading,
         subs: state.user.userData.subscriptions,
         user: state.user.userData
     }

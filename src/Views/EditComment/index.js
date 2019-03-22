@@ -1,5 +1,5 @@
 import React                    from 'react';
-import isAuthenticated          from 'components/hoc/isAuthenticated';
+import isAuthenticated          from '../../components/hoc/isAuthenticated';
 import moment                   from 'moment';
 import { connect }              from 'react-redux';
 import { 
@@ -9,9 +9,9 @@ import {
     deleteComment,
     resetCommentError }             from './actions';
     
-import Loader                   from 'components/ui/Loader';
-import ActionModal              from 'components/ui/ActionModal';
-import Error from 'components/ui/Error';
+import Loader                   from '../../components/ui/Loader';
+import ActionModal              from '../../components/ui/ActionModal';
+import Error from '../../components/ui/Error';
 
 class EditComment extends React.Component {
     
@@ -114,9 +114,9 @@ class EditComment extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        loading: state.loading.edit_comment_loading,
-        comment: state.edit_comment.comment,
-        error: state.error.edit_comment_error,
+        loading: state.editComment.loading,
+        comment: state.editComment.comment,
+        error: state.editComment.error,
         token: state.user.token
     }
 }

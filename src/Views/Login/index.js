@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { login } from './actions';
 import { Field, reduxForm } from 'redux-form';
 
-import Loader from 'components/ui/Loader';
+import Loader from '../../components/ui/Loader';
 
 class Login extends React.Component {
 
@@ -45,7 +45,7 @@ class Login extends React.Component {
         }
 
         return (
-            <div className='container-flex-center'>
+            <div className='container-flex-center bg-gradient'>
                 <div className='container-700'>
                     <form autoComplete='off' onSubmit={this.props.handleSubmit(this.submitHandler.bind(this))} className='auth-form'>
                         <h2 className='font-light text-center m-b-3'>Log In</h2>

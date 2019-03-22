@@ -44,7 +44,7 @@ const mapStateToProps = state => {
     return {
         sort: state.sort,
         page: state.page,
-        loading: state.loading.search_loading
+        loading: state.search.loading
     }    
 }
 

@@ -49,7 +49,7 @@ class CommentForm extends React.Component {
 const mapStateToProps = state => {
     return {
         user: state.user.userData,
-        loading: state.loading.comments_loading
+        loading: state.comments.loading
     }
 }
 

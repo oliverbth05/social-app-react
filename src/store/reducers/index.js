@@ -1,32 +1,32 @@
 import { combineReducers } from 'redux';
+
 import user from '../../User/reducer';
-import loading from './loading';
 import home from '../../Views/Home/reducer';
-import error from './error';
-
 import login from '../../Views/Login/reducer';
+import createPost from '../../Views/CreatePost/reducer';
 import register from '../../Views/Register/reducer';
-
-import comments from '../../Views/Show/comments_reducer';
-import post from '../../Views/Show/post_reducer';
+import comments from '../../Views/ViewPost/comments_reducer';
+import post from '../../Views/ViewPost/post_reducer';
 import profile from '../../Views/Profile/reducer';
-import edit_comment from '../../Views/EditComment/reducer';
-import edit_post from '../../Views/EditPost/reducer';
+import editComment from '../../Views/EditComment/reducer';
+import editPost from '../../Views/EditPost/reducer';
 import search from '../../Views/Search/reducer';
+import notifications from '../../Views/Notifications/reducer';
+
 import { reducer as formReducer } from 'redux-form';
 
 const appReducer = combineReducers({
     login,
     register,
     user,
-    loading,
-    error,
+    createPost,
     home,
     comments,
     post,
     profile,
-    edit_comment,
-    edit_post,
+    notifications,
+    editComment,
+    editPost,
     search,
     form: formReducer
 });

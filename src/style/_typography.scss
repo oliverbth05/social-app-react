@@ -1,13 +1,16 @@
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     color: $text-heading;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Sarabun', sans-serif;
     line-height: 2.4rem;
     letter-spacing: .4px;
 }
 
 h1 {
     font-size: 3rem;
-} 
+}
 
 h2 {
     font-size: 2.25rem;
@@ -21,11 +24,20 @@ h4 {
     font-size: 1.125rem
 }
 
-p, li, a, button, input, select, option, textarea, label, span {
+p,
+li,
+a,
+button,
+input,
+select,
+option,
+textarea,
+label,
+span {
     font-size: 1rem;
     white-space: pre-wrap;
     color: $text-body;
-   
+
 }
 
 .article-body {
@@ -95,7 +107,7 @@ ul {
     margin-top: 2rem;
     line-height: 2.1rem;
     margin-bottom: 1rem;
-    
+
 }
 
 .post-heading {
@@ -145,5 +157,22 @@ ul {
         margin-right: 10px;
         flex-grow: 2;
         border-bottom: 1px solid $primary;
+    }
+}
+
+.github-link {
+    transition: all .2s;
+    box-shadow: $box-shadow;
+    font-size: 1.1rem;
+    text-align: center;
+    flex-grow: 1;
+    padding: .6rem;
+    background: $secondary;
+    color: $white;
+    cursor: pointer;
+    border-radius: 5px;
+
+    &:hover {
+        background: $secondary-darker;
     }
 }

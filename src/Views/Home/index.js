@@ -1,6 +1,6 @@
 import React from 'react';
 
-import isAuthenticated from 'components/hoc/isAuthenticated';
+import isAuthenticated from '../../components/hoc/isAuthenticated';
 import HomeNav from './cmp/HomeNav';
 import Feed from './cmp/Feed';
 

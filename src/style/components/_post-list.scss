@@ -1,8 +1,8 @@
 .post-list-item {
     transition: all .1s;
-    border: 1px solid $grey;
+    box-shadow: $box-shadow;
     border-radius: 3px;
-    margin-bottom: .5rem;
+    margin-bottom: .7rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -24,7 +24,7 @@
     }
     
     &:hover {
-        border-color: $primary;
+        background: $white;
     }
 } 
 

@@ -1,28 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import isAuthenticated from 'components/hoc/isAuthenticated';
-import Loader from 'components/ui/Loader';
+import isAuthenticated from '../../components/hoc/isAuthenticated';
+import Loader from '../../components/ui/Loader';
 import moment from 'moment';
 import { fetchUserProfile, addSubscription, fetchUserProfilePosts, removeSubscription } from './actions';
 import Pins from './cmp/Pins';
 import Subs from './cmp/Subs';
 import ProfilePosts from './cmp/ProfilePosts';
 import SubButton from './cmp/SubButton';
-import SummaryModal from './cmp/SummaryModal';
-import Error from 'components/ui/Error';
+import Error from '../../components/ui/Error';
 
 class Profile extends React.Component {
-    
-    
-    state = {
-        modal: false,
-    }
-    
-    toggleModal() {
-        this.setState({
-            modal: true
-        })
-    }
     
     componentDidMount() {
         this.props.fetchUserProfile(this.props.match.params.id)
@@ -99,12 +87,6 @@ class Profile extends React.Component {
         
         return (
             <div className = 'container'>
-            
-                { this.state.modal ? 
-                <SummaryModal
-                toggle = {this.toggleModal.bind(this)}/>
-                : null }
-            
                 <div className = 'p-a-1'>
                     <img alt = 'user avatar' className='avatar m-auto m-b-1' src={`https://api.adorable.io/avatars/130/${this.props.profile.first_name} ${this.props.profile.last_name}.png`} />
                     <h2 className = 'font-light text-center m-b-1'>{`${this.props.profile.first_name} ${this.props.profile.last_name}`}</h2>
@@ -119,17 +101,7 @@ class Profile extends React.Component {
                         <SubButton loading = {this.props.subscribe_loading} disabled = {this.isSubscribed()} addSub = {this.addSub.bind(this)} removeSub = {this.removeSub.bind(this)} />
                     </div>
                     : null }
-                    
-                    <div className = 'profile-section'>
-                        <h4 className = 'profile-section__header'>Summary</h4>
-                        <div className = 'profile-section__content'>
-                            <p className = 'p-b-1 text-center'>{this.props.profile.summary}</p>
-                        </div>
-                       { this.isUser() ? 
-                        <button onClick =  {this.toggleModal.bind(this)} className = 'btn btn-round btn-secondary m-a-1'><i class="fas fa-edit"></i> Edit</button>
-                        : null }
-                    </div>
-                    
+                 
                     { this.isUser() ?
                     <div>
                         <Pins />
@@ -139,9 +111,6 @@ class Profile extends React.Component {
                     
                     <ProfilePosts user_id = {this.props.profile._id}/>
                 </div>
-                
-                
-
             </div>
         )
         
@@ -150,11 +119,11 @@ class Profile extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        profile_loading: state.loading.profile_loading,
+        profile_loading: state.profile.loading,
         user: state.user.userData,
         profile: state.profile.profileData,
-        subscribe_loading: state.loading.subscribe_loading,
-        error: state.error.profile_error
+        subscribe_loading: state.profile.subscribe_loading,
+        error: state.profile.error
     }
 }
 

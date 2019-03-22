@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchUserProfilePosts } from '../actions';
 
-import Loader from 'components/ui/Loader';
+import Loader from '../../../components/ui/Loader';
 import PostCard from '../../Home/cmp/PostCard';
-import OtherPosts from '../../Show/cmp/OtherPosts';
+import OtherPosts from '../../ViewPost/cmp/OtherPosts';
 
 class ProfilePosts extends React.Component {
     
@@ -43,7 +43,7 @@ class ProfilePosts extends React.Component {
 const mapStateToProps = state => {
     return {
         posts: state.profile.posts,
-        loading: state.loading.profile_posts_loading,
+        loading: state.profile.posts_loading,
     }
 }
 

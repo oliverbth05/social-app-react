@@ -4,7 +4,7 @@ import { isMember } from 'util';
 import { fetchPosts, fetchMorePosts, homeUpdated} from '../actions';
 import PostCard from './PostCard';
 import PostListItem from './PostListItem';
-import Loader from 'components/ui/Loader';
+import Loader from '../../../components/ui/Loader';
 
 /* Component Summary
 
@@ -12,7 +12,6 @@ import Loader from 'components/ui/Loader';
     based on parameters managed outside the component by the HomeNav
 
 */
-
 
 class Feed extends React.Component {
 
@@ -72,10 +71,9 @@ class Feed extends React.Component {
 
         if (this.props.loading || this.props.posts === null) {
             return (
-                <Loader fullscreen />
+                <Loader fullscreen /> 
             )
         }
-
 
         return (
             <div>

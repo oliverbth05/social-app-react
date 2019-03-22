@@ -7,7 +7,7 @@
     cursor: pointer;
     background: transparent;
     color: $grey;
-    
+
     &__tooltip {
         transition: .2s;
         visibility: hidden;
@@ -21,35 +21,35 @@
         top: 2.3rem;
         font-size: .8rem;
     }
-    
+
     &:hover {
-        
+
         color: $secondary;
-        
+
         .layout-button__tooltip {
             visibility: visible;
             opacity: 1;
         }
-        
-       
+
+
     }
-    
+
     &:focus {
-        outline: none;    
+        outline: none;
     }
-    
+
     &-active {
 
         i {
             color: $secondary;
         }
     }
-    
+
     i {
         font-size: 1.3rem;
     }
-    
-     
+
+
 }
 
 .sort-button {
@@ -61,7 +61,7 @@
     border-radius: 3px;
     color: white;
     background: $grey;
-    
+
     &__tooltip {
         transition: .2s;
         visibility: hidden;
@@ -78,22 +78,22 @@
         left: 0;
         max-width: 80px;
     }
-    
+
     &:hover {
         background: $secondary;
         color: $white;
         cursor: pointer;
-        
+
         .sort-button__tooltip {
             visibility: visible;
             opacity: 1;
         }
     }
-    
+
     &:focus {
         outline: none
     }
-    
+
     &-active {
         background: $secondary;
         color: $white;
@@ -111,23 +111,28 @@
     transition: all .2s;
     display: inline-block;
     text-align: center;
-    font-family: 'Comfortaa', sans-serif;
+    font-family: 'Hind', sans-serif;
     box-shadow: $box-shadow;
     &:focus {
         outline: none;
     }
-    
+
     &:active {
         box-shadow: none;
         transform: translateY(3px);
     }
 }
 
+.btn-center {
+    margin: auto;
+    display: block;
+}
+
 .btn-primary {
     background: $primary;
     color: $white;
-    
-    
+
+
     &:hover {
         background: $primary-darker;
     }
@@ -136,7 +141,7 @@
 .btn-secondary {
     background: $secondary;
     color: $white;
-    
+
     &:hover {
         background: $secondary-darker;
     }
@@ -145,7 +150,7 @@
 .btn-block {
     display: block;
     width: 100%;
-    
+
 }
 
 .btn-round {
@@ -162,9 +167,9 @@
 .btn-primary-disabled {
     background: $primary-faded;
     color: $white-faded;
-    
+
     &:hover {
         background: $primary-faded;
-    color: $white-faded;
+        color: $white-faded;
     }
 }

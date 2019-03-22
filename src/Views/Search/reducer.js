@@ -4,7 +4,8 @@ const initialState = {
     fetchOnLoad: true,
     searchTerm: null,
     sort: null,
-    page: 1
+    page: 1,
+    loading: false
 }
 
 const search = (state = initialState, action) => {
@@ -30,6 +31,18 @@ const search = (state = initialState, action) => {
             return {
                 ...state,
                 fetchOnLoad: false
+            }
+            
+        case 'SEARCH_LOADING' :
+            return {
+                ...state,
+               loading: true
+            }
+            
+        case '!SEARCH_LOADING' :
+            return {
+                ...state,
+               loading: false
             }
         
         default :

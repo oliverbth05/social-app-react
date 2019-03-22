@@ -1,4 +1,4 @@
-import server from 'api';
+import server from '../../api';
 
 export const fetchUserProfile = id => {
     return dispatch => {

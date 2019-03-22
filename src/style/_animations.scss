@@ -56,3 +56,27 @@
     animation-iteration-count: 1;
 }
 
+@keyframes color-pulse {
+    0% {
+        background: $primary;
+        border-radius: 20px;
+    }
+    
+    50% {
+        background: $secondary;
+        border-radius: 10px;
+    }
+    
+    100% {
+        background: $primary;
+        border-radius: 20px;
+    }
+    
+    
+}
+
+.color-pulse {
+    animation: color-pulse;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}

@@ -1,4 +1,3 @@
-
 .container {
     margin: auto;
     max-width: 100%;
@@ -15,9 +14,9 @@
 }
 
 .nav-offset {
-    
+
     margin-top: 50px;
-    
+
     @include respond(tablet) {
         margin-top: 150px;
     }
@@ -36,7 +35,7 @@
 .quarter-section-flex-center {
     height: 25vh;
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
     width: 100%;
 }
@@ -61,7 +60,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    
+
     @include respond(tablet) {
         margin: 0;
         padding: 1rem;
@@ -72,15 +71,20 @@
     max-width: 1000px;
     padding: 2rem 2rem 2rem 10rem;
     margin: auto;
-    
+
     @include respond(phone) {
         padding: 1rem;
     }
-    
+
     @include respond(tablet) {
         padding: 1rem;
         margin-top: 80px;
     }
+}
+
+.container-1000-mauto {
+    max-width: 1000px;
+    margin: auto;
 }
 
 .container-700 {
@@ -93,14 +97,10 @@
     margin: auto;
 }
 
-.container-landing {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
+// .container-landing {
+//     width: 100%;
+//     height: 100vh;
+// }
 .container-profile {
     padding: 1rem;
     margin-left: 8rem;
@@ -113,7 +113,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-} 
+}
 
 
 
@@ -125,14 +125,14 @@
 }
 
 .tag {
-    border-radius: 3px; 
+    border-radius: 3px;
     background: $color5;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 10px;
-    
+
     p {
         padding: .7rem;
         display: inline-block;
@@ -140,14 +140,14 @@
         height: 100%;
         color: white;
     }
-    
+
     i {
         font-size: 1.3rem;
         padding: .7rem;
         display: inline-block;
         height: 100%;
         cursor: pointer;
-        
+
         &:hover {
             background: $color2-dark;
         }
@@ -217,34 +217,108 @@
 }
 
 .profile-section {
-    
+
     width: 100%;
     box-shadow: $box-shadow;
     margin: 1rem 0 1rem 0;
     border-radius: 5px;
-    
+
     &__header {
         padding: .1rem;
         background: $primary;
         border-radius: 4px 4px 0 0;
         font-weight: lighter;
-        font-family: 'Comfortaa', sans-serif;
         color: $white;
         text-align: center;
     }
-    
+
     &__content {
         max-height: 500px;
         overflow: auto;
         padding: 1rem;
-        
+
         &::-webkit-scrollbar {
             width: 10px;
             background: $grey;
         }
-    
+
         &::-webkit-scrollbar-thumb {
             background: $secondary;
         }
+    }
+}
+
+.vid {
+    position: fixed;
+    filter: brightness(.3);
+    height: 100%;
+    width: 100%;
+    object-fit: cover
+}
+
+.vid-overlay {
+    position: absolute;
+    z-index: 4;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.landing-link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 5;
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+.tech-logo {
+    max-height: 3rem;
+    margin: auto;
+    display: block;
+}
+
+.logo-card {
+    background: $white;
+    flex-grow: 1;
+    box-shadow: $box-shadow;
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: 3px;
+
+    p {
+        text-align: center;
+        padding: 1rem;
+    }
+}
+
+.logo-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.logo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    @include respond(tablet) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.about-flex {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    section {
+        flex-grow: 1;
+        flex-basis: 50%;
     }
 }

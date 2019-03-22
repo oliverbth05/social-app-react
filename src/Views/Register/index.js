@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { register } from './actions';
 import { Field, reduxForm } from 'redux-form';
 
-import Loader from 'components/ui/Loader';
+import Loader from '../../components/ui/Loader';
 
 class Register extends React.Component {
 
@@ -50,7 +50,7 @@ class Register extends React.Component {
         }
 
         return (
-            <div className='container-flex-center'>
+            <div className='container-flex-center bg-gradient'>
                 <div className='container-700'>
 
                     <form onSubmit={this.props.handleSubmit(this.submitHandler.bind(this))} className='auth-form'>

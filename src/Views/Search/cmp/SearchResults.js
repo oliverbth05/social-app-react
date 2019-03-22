@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PostListItem from '../../Home/cmp/PostListItem';
-import Loader from 'components/ui/Loader';
+import Loader from '../../../components/ui/Loader';
 
 class SearchResults extends React.Component {
     
@@ -29,7 +29,7 @@ class SearchResults extends React.Component {
 const mapStateToProps = state => {
     return {
         posts: state.search.posts,
-        loading: state.loading.search_loading,
+        loading: state.search.loading,
         searchTerm: state.search.searchTerm
     }
 }

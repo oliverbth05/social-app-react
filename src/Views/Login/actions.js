@@ -1,5 +1,4 @@
-import server from 'api';
-
+import server from '../../api';
 export const login = (email, password) => {
   return dispatch => {
       dispatch({ type: 'LOGIN_LOADING' })

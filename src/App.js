@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import Landing from './Views/Landing/Landing';
-import Login from './Views/Login/Login';
-import Register from './Views/Register/Register';
+import Nav from './components/ui/Nav';
+import PageNotFound from './components/ui/PageNotFound';
+
+import About from './Views/About';
+import Landing from './Views/Landing';
+import Login from './Views/Login';
+import Register from './Views/Register';
 import Home from './Views/Home';
-import Show from './Views/Show/Show';
-import New from './Views/New/New';
-import Profile from './Views/Profile/Profile';
+import ViewPost from './Views/ViewPost';
+import CreatePost from './Views/CreatePost';
+import Profile from './Views/Profile';
 import EditComment from './Views/EditComment';
 import EditPost from './Views/EditPost';
-import Search from './Views/Search/Search';
-import Nav from 'components/ui/Nav';
-import PageNotFound from 'components/ui/PageNotFound';
+import Search from './Views/Search';
+import Notifications from './Views/Notifications';
 
 class App extends React.Component {
 
@@ -24,15 +27,17 @@ class App extends React.Component {
                     <Nav />
                     <Switch>
                         <Route exact path='/' component={Landing} />
+                        <Route exact path='/about' component={About} />
                         <Route exact path='/search/:searchTerm' component={Search} />
                         <Route exact path='/login' component={Login} />
                         <Route exact path='/register' component={Register} />
                         <Route exact path='/home' component={Home} />
-                        <Route exact path='/show/:id' component={Show} />
+                        <Route exact path='/show/:id' component={ViewPost} />
                         <Route exact path='/edit/comment/:post_id/:comment_id' component={EditComment} />
                         <Route exact path='/edit/post/:id' component={EditPost} />
-                        <Route exact path='/new' component={New} />
+                        <Route exact path='/new' component={CreatePost} />
                         <Route exact path='/profile/:id' component={Profile} />
+                        <Route exact path='/notifications' component={Notifications} />
                         <Route path='/*' component={PageNotFound} />
                     </Switch>
                 </div>

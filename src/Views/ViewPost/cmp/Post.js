@@ -7,7 +7,7 @@ import Author from './Author';
 
 
 import { fetchPost, likePost, pinPost, notPostError } from '../actions';
-import Loader from 'components/ui/Loader';
+import Loader from '../../../components/ui/Loader';
 import PostError from './PostError';
 import OtherPosts from './OtherPosts';
 
@@ -54,7 +54,7 @@ class Post extends React.Component {
     if (this.props.post) {
       document.title = this.props.post.title
     }
-  }
+  } 
   
   componentWillUnmount() {
     if (this.props.error) {
@@ -130,7 +130,11 @@ class Post extends React.Component {
             token={this.props.token}
             post_id={this.props.post._id}
             post_title={this.props.post.title}
+            
+            author_id = {this.props.post.user_id}
+            user_name = {`${this.props.user.first_name} ${this.props.user.last_name}`}
             user_id={this.props.user._id}
+            
             like_loading={this.props.like_loading}
             pin_loading={this.props.pin_loading}
             canPin={canPin}
