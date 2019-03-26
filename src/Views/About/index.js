@@ -14,12 +14,12 @@ import babel from '../../assets/Logos/babel-10.svg';
 
 const About = () => {
     return (
-        <div className = 'container bg-dark'>
+        <div className = 'container bg-gradient'>
         <div className = 'container-1000-mauto'>
 
             <section className = 'p-a-3'>
                 <h2 className = 'color-white p-b-1 text-center m-b-1'>About</h2>
-                <p className = 'color-white font-light'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p className = 'color-white font-light'>Ra</p>
                 <h4 className = 'color-white p-t-1'>Features</h4>
                 <ul>
                     <li className = 'color-white font-light'>User authentication via web-tokens.</li>

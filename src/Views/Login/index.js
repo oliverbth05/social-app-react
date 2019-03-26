@@ -2,8 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { login } from './actions';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 
+import AuthInput from '../../components/ui/AuthInput';
 import Loader from '../../components/ui/Loader';
+import LoaderButton from '../../components/ui/LoaderButton';
 
 class Login extends React.Component {
 
@@ -20,17 +23,10 @@ class Login extends React.Component {
         }
     }
 
-    renderInput({ input, label, type, meta }) {
+    renderInput({ input, label, type, meta, placeholder, icon }) {
+        console.log(input)
         return (
-            <div className='auth-form__divider'>
-                <label className='auth-form__label'>
-                    {label}
-                    {meta.touched ?
-                        <span className='m-l-1 font-light font-small color-secondary'>{meta.error}</span>
-                        : null}
-                </label>
-                <input className='input-block' type={type} autoComplete='new-password' {...input} />
-            </div>
+            <AuthInput {...input} error = {meta.touched && meta.error} type = {type} autoComplete = 'new-password' placeholder = {placeholder} icon = {icon}/>
         )
     }
 
@@ -40,22 +36,21 @@ class Login extends React.Component {
 
     render() {
 
-        if (this.props.loading) {
-            return <Loader fullscreen />
-        }
-
         return (
             <div className='container-flex-center bg-gradient'>
                 <div className='container-700'>
                     <form autoComplete='off' onSubmit={this.props.handleSubmit(this.submitHandler.bind(this))} className='auth-form'>
-                        <h2 className='font-light text-center m-b-3'>Log In</h2>
+                        <h2 className='font-light color-white text-center'>Log In</h2>
+                        <h4 className= 'font-light color-white text-center m-b-3'>Welcome Back</h4>
+
                         {this.props.error ? <p className='auth-form__alert'><i className="fas fa-times"></i> {this.props.error}</p> : null}
-                        <Field name='email' type='text' label='Email' component={this.renderInput} />
-                        <Field name='password' type='password' label='Password' component={this.renderInput} />
+                        <Field name='email' type='text' label='Email' placeholder = 'Email' icon = 'fas fa-at' component={this.renderInput} />
+                        <Field name='password' type='password' label='Password' placeholder = 'Password' icon = 'fas fa-lock' component={this.renderInput} />
                         <div className='auth-form__divider'>
-                            <button className='btn btn-primary btn-block'>Submit</button>
+                            <LoaderButton loading = {this.props.loading}/>
                         </div>
                     </form>
+                    <Link to = '/register' className = 'text-center color-white inline'>Create an Account</Link>
 
                 </div>
             </div>

@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { register } from './actions';
 import { Field, reduxForm } from 'redux-form';
-
+import { Link } from 'react-router-dom';
 import Loader from '../../components/ui/Loader';
+import LoaderButton from '../../components/ui/LoaderButton';
+
 
 class Register extends React.Component {
 
@@ -45,16 +47,14 @@ class Register extends React.Component {
 
     render() {
 
-        if (this.props.loading) {
-            return <Loader fullscreen />
-        }
 
         return (
             <div className='container-flex-center bg-gradient'>
                 <div className='container-700'>
 
-                    <form onSubmit={this.props.handleSubmit(this.submitHandler.bind(this))} className='auth-form'>
-                        <h2 className='font-light text-center m-b-3'>Register</h2>
+                    <form onSubmit={this.props.handleSubmit(this.submitHandler.bind(this))} className='auth-form bg-white'>
+                        <h2 className='font-light text-center '>Create an Account</h2>
+                        <h4 className = 'font-light m-b-3 text-center'>You don't have to provide your real e-mail address</h4>
                         {this.props.error ? <p className='auth-form__alert'><i className="fas fa-times"></i> {this.props.error}</p> : null}
                         <Field component={this.renderInput} name='email' type='text' label='Email Address' />
                         <Field component={this.renderInput} name='first_name' type='text' label='First Name' />
@@ -62,11 +62,13 @@ class Register extends React.Component {
                         <Field component={this.renderInput} name='password' type='password' label='Password' />
                         <Field component={this.renderInput} name='confirm_password' type='password' label='Confirm Password' />
                         <div className='auth-form__divider'>
-                            <button className='btn btn-primary btn-block'>Submit</button>
+                            <LoaderButton loading = {this.props.loading} />
                         </div>
                     </form>
-
+                    <Link to = '/login' className = 'text-center color-white p-t-2 inline'>Already have an account?</Link>
                 </div>
+
+
             </div>
         )
     }
