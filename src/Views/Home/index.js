@@ -1,6 +1,6 @@
 import React from 'react';
 
-import isAuthenticated from '../../components/hoc/isAuthenticated';
+import IsAuthenticated from '../../components/hoc/IsAuthenticated';
 import HomeNav from './cmp/HomeNav';
 import Feed from './cmp/Feed';
 
@@ -21,4 +21,4 @@ class Home extends React.Component {
 }
 
 
-export default isAuthenticated(Home)
+export default IsAuthenticated(Home)

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import isAuthenticated from '../../components/hoc/isAuthenticated';
+import IsAuthenticated from '../../components/hoc/IsAuthenticated';
 import Loader from '../../components/ui/Loader';
 import moment from 'moment';
 import { fetchUserProfile, addSubscription, fetchUserProfilePosts, removeSubscription } from './actions';
@@ -127,7 +127,7 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {fetchUserProfile, addSubscription, fetchUserProfilePosts, removeSubscription})(isAuthenticated(Profile))
+export default connect(mapStateToProps, {fetchUserProfile, addSubscription, fetchUserProfilePosts, removeSubscription})(IsAuthenticated(Profile))
 
 
 //   {!this.isUser() ? 

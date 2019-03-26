@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import isAuthenticated from '../../components/hoc/isAuthenticated';
+import IsAuthenticated from '../../components/hoc/IsAuthenticated';
 import { fetchNotifications, updateNotification } from './actions';
 import Loader from '../../components/ui/Loader';
 import Notification from './cmp/Notification';
@@ -57,4 +57,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {fetchNotifications, updateNotification})(isAuthenticated(Notifications));
+export default connect(mapStateToProps, {fetchNotifications, updateNotification})(IsAuthenticated(Notifications));

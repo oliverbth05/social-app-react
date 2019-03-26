@@ -1,18 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { isMember } from 'util';
-import { fetchPosts, fetchMorePosts, homeUpdated} from '../actions';
+import { fetchPosts, fetchMorePosts, homeUpdated } from '../actions';
 import PostCard from './PostCard';
 import PostListItem from './PostListItem';
 import Loader from '../../../components/ui/Loader';
-
+import LoaderButton from '../../../components/ui/LoaderButton';
 /* Component Summary
 
     Responsible for fetching and displaying posts from the server,
     based on parameters managed outside the component by the HomeNav
 
 */
-
 class Feed extends React.Component {
 
     componentDidMount() {
@@ -71,16 +70,21 @@ class Feed extends React.Component {
 
         if (this.props.loading || this.props.posts === null) {
             return (
-                <Loader fullscreen /> 
+                <Loader fullscreen />
             )
         }
 
         return (
             <div>
                 {this.renderPosts(this.props.posts, this.props.layout)}
-                {this.props.more_loading ? <Loader small /> : null}
-                {this.props.reachedEnd ? <h3 className='text-center color-primary font-light m-t-3'>No More Posts</h3> : null}
-                {!this.props.more_loading && !this.props.reachedEnd ? <button disabled={this.props.more_loading ? true : false} onClick={() => { this.props.fetchMorePosts(this.props.sort, this.props.page) }} className='btn btn-primary btn-block btn-round m-t-3'>Show More</button> : null}
+
+                {!this.props.reachedEnd ?
+                    <div className='m-t-2'>
+                        <LoaderButton loading={this.props.more_loading} onClick={() => { this.props.fetchMorePosts(this.props.sort, this.props.page) }}>Show More</LoaderButton>
+                    </div>
+                    :
+                    <h3 className='text-center color-primary font-light p-a-2'>End of list.</h3>
+                }
             </div>
         )
     }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 export default (Child) => {
 
-    class isAuthenticated extends React.Component {
+    class IsAuthenticated extends React.Component {
 
         componentDidMount() {
 
@@ -29,6 +29,6 @@ export default (Child) => {
         }
     }
 
-    return connect(mapStateToProps)(isAuthenticated)
+    return connect(mapStateToProps)(IsAuthenticated)
 }
 

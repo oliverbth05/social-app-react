@@ -8,7 +8,7 @@ import {
 import { reduxForm, Field } from 'redux-form';
 import { formValueSelector } from 'redux-form';
   
-import isAuthenticated    from '../../components/hoc/isAuthenticated';
+import IsAuthenticated    from '../../components/hoc/IsAuthenticated';
 import Loader             from '../../components/ui/Loader';
 import Tag                from '../../components/ui/Tag';
 import RulesModal         from '../CreatePost/cmp/RulesModal';
@@ -278,7 +278,7 @@ const validate = formValues => {
   return errors;
 }
 
-const Connected = connect(mapStateToProps, {fetchEditPost, deletePost, updatePost, resetEditPost})(isAuthenticated(EditPost));
+const Connected = connect(mapStateToProps, {fetchEditPost, deletePost, updatePost, resetEditPost})(IsAuthenticated(EditPost));
 export default reduxForm({
   form: 'editPost',
   validate

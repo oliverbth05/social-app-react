@@ -40,14 +40,14 @@ class Login extends React.Component {
             <div className='container-flex-center bg-gradient'>
                 <div className='container-700'>
                     <form autoComplete='off' onSubmit={this.props.handleSubmit(this.submitHandler.bind(this))} className='auth-form'>
-                        <h2 className='font-light color-white text-center'>Log In</h2>
+                        <h1 className='font-light color-white text-center m-b-1'>Log In</h1>
                         <h4 className= 'font-light color-white text-center m-b-3'>Welcome Back</h4>
 
                         {this.props.error ? <p className='auth-form__alert'><i className="fas fa-times"></i> {this.props.error}</p> : null}
                         <Field name='email' type='text' label='Email' placeholder = 'Email' icon = 'fas fa-at' component={this.renderInput} />
                         <Field name='password' type='password' label='Password' placeholder = 'Password' icon = 'fas fa-lock' component={this.renderInput} />
                         <div className='auth-form__divider'>
-                            <LoaderButton loading = {this.props.loading}/>
+                            <LoaderButton loading = {this.props.loading}>Log In</LoaderButton>
                         </div>
                     </form>
                     <Link to = '/register' className = 'text-center color-white inline'>Create an Account</Link>

@@ -2,6 +2,7 @@ import React from 'react';
 import SearchForm from './cmp/SearchForm';
 import SearchResults from './cmp/SearchResults';
 import {searchPosts, searchUpdated} from './actions';
+import IsAuthenticated from '../../components/hoc/IsAuthenticated';
 
 import { connect } from 'react-redux';
 
@@ -34,4 +35,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {searchPosts, searchUpdated})(Search);
+export default connect(mapStateToProps, {searchPosts, searchUpdated})(IsAuthenticated(Search));

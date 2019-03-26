@@ -29,43 +29,60 @@
 
 .auth-input {
     transition: all .2s;
-    height: 55px;
-    box-shadow: $box-shadow;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: white;
     border-radius: 5px;
     border: none;
     margin-bottom: 1rem;
-    border: 4px solid $primary-faded;
+    border: 1.5px solid $primary;
 
     &-error {
-        border-color: $secondary-faded;
+        border-color: $secondary;
     }
 
 
 
     input {
+        transition: all .2s;
         border: none;
+        font-weight: lighter;
         background: transparent;
         height: 100%;
         width: 100%;
         padding-left: 1rem;
+        font-size: 1.1rem;
+        color: white;
 
-
+    
         &:focus {
             outline: none;
+            color: $white;
+        }
+
+        &::placeholder {
+            color: white;
+        }
+
+        &:focus {
+            
+
+            &::placeholder {
+              
+            }
         }
     }
+
 
     &__icon {
         transition: all .2s;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 50px;
+        width: 80px;
         height: 100%;
+        border-radius: 0 5px 5px 0;
     }
 }
 

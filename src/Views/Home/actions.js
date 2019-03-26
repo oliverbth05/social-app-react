@@ -3,7 +3,7 @@ import server from '../../api';
 export const fetchPosts = (sort, searchTerm) => { //Always fetches the first page of the results, resetting the page counter
   return dispatch => {
     dispatch({ type: 'POSTS_LOADING' })
-    dispatch({ type: '!REACHED_END' }) //If the reachedEnd variable was acheived on another sort type, this ensures a fresh reset
+    dispatch({ type: '!REACHED_END' }) //If the reachedEnd variable was acheived previously, this ensures a fresh reset
     server.get(`/posts?sort=${sort}&page=1&searchTerm=`)
       .then(res => {
         dispatch({ type: '!POSTS_LOADING' })

@@ -4,7 +4,7 @@ import { createPost }     from './actions';
 import { reduxForm, Field } from 'redux-form';
 import { formValueSelector } from 'redux-form';
 
-import isAuthenticated    from '../../components/hoc/isAuthenticated';
+import IsAuthenticated    from '../../components/hoc/IsAuthenticated';
 import Loader             from '../../components/ui/Loader';
 import RulesModal         from './cmp/RulesModal';
 import Tag                from '../../components/ui/Tag';
@@ -42,7 +42,7 @@ class New extends React.Component {
     })
   }
   
-  toggleRulesModal() {
+  toggleRulesModal(){
     this.setState({
       rulesModal: !this.state.rulesModal
     })
@@ -215,7 +215,7 @@ const mapStateToProps = state => {
   }
 }
 
-const Connected = connect(mapStateToProps, { createPost })(isAuthenticated(New))
+const Connected = connect(mapStateToProps, { createPost })(IsAuthenticated(New))
 
 const validate = formValues => {
   const errors = {}

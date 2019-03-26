@@ -4,6 +4,7 @@ const initialState = {
     count: 0,
     noMoreComments: false,
     loading: false,
+    more_loading: false,
     error: false
 }
 
@@ -67,6 +68,18 @@ const comments = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false
+            }
+
+        case 'MORE_COMMENTS_LOADING':
+            return {
+                ...state,
+                more_loading: true
+            }
+
+        case '!MORE_COMMENTS_LOADING':
+            return {
+                ...state,
+                more_loading: false
             }
         default:
             return state

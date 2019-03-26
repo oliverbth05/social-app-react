@@ -1,5 +1,5 @@
 import React                    from 'react';
-import isAuthenticated          from '../../components/hoc/isAuthenticated';
+import IsAuthenticated          from '../../components/hoc/IsAuthenticated';
 import moment                   from 'moment';
 import { connect }              from 'react-redux';
 import { 
@@ -121,4 +121,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {fetchComment, resetComment, resetCommentError, updateComment, deleteComment})(isAuthenticated(EditComment));
+export default connect(mapStateToProps, {fetchComment, resetComment, resetCommentError, updateComment, deleteComment})(IsAuthenticated(EditComment));

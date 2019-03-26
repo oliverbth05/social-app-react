@@ -5,7 +5,7 @@ import moment from 'moment';
 const OtherPosts = (props) => {
     return (
         <div>
-        
+        <h4 className = 'font-normal m-t-2 m-b-1'>Other posts from {props.userName}</h4>
         {props.posts.map(post => {
             if (post._id !== props.exclude_id) {
                   return (

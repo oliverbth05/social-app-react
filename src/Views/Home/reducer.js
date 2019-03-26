@@ -6,7 +6,6 @@ const initialState = {
     page: 1,
     fetchOnLoad: true,
     searchTerm: '',
-
     loading: false,
     more_loading: false,
     error: false

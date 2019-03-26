@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { fetchComments, fetchMoreComments, resetCommentError } from '../actions';
 
 import Loader from '../../../components/ui/Loader';
+import LoaderButton from '../../../components/ui/LoaderButton';
+
 import CommentForm from './CommentForm';
 import Error from '../../../components/ui/Error';
 
@@ -54,24 +56,35 @@ class Comments extends React.Component {
                 <h4 className = 'font-normal m-b-1 m-t-2'>Comments <span className = 'font-light color-primary'>{this.props.comments.length} of {this.props.count}</span></h4>
                 <CommentForm routerparam={this.props.routerparam} />
                 {this.renderComments(this.props.comments)}
-                {!this.props.noMoreComments ? <button className='btn-block btn btn-primary btn-round' onClick = { () => {this.props.fetchMoreComments(this.props.routerparam, this.props.commentsPage)}} >Show More</button> : <p className = 'text-center font-light color-primary p-t-2'>No More Comments</p>}
+                
+                {!this.props.noMoreComments ? 
+                    <LoaderButton 
+                        loading = {this.props.more_loading}
+                        onClick = {() => {this.props.fetchMoreComments(this.props.routerparam, this.props.commentsPage)}}
+                    >Show More
+                    </LoaderButton>
+                : 
+                    <h3 className='text-center color-primary font-light p-a-2'>No More Comments</h3>
+                }
+
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return {
+const mapStateToProps = state => (
+    {
         comments: state.comments.comments,
         count: state.comments.count,
         noMoreComments: state.comments.noMoreComments,
         commentsPage: state.comments.commentsPage,
         post: state.post,
         loading: state.comments.loading, 
+        more_loading: state.comments.more_loading,
         user: state.user.userData,
         comment_error: state.comments.error,
         post_error: state.post.post_error
     }
-}
+)
 
 export default connect(mapStateToProps, { fetchComments, fetchMoreComments, resetCommentError })(Comments);

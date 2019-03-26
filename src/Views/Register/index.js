@@ -62,7 +62,7 @@ class Register extends React.Component {
                         <Field component={this.renderInput} name='password' type='password' label='Password' />
                         <Field component={this.renderInput} name='confirm_password' type='password' label='Confirm Password' />
                         <div className='auth-form__divider'>
-                            <LoaderButton loading = {this.props.loading} />
+                            <LoaderButton loading = {this.props.loading} >Register</LoaderButton>
                         </div>
                     </form>
                     <Link to = '/login' className = 'text-center color-white p-t-2 inline'>Already have an account?</Link>

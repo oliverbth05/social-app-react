@@ -71,7 +71,7 @@ export const fetchComments = (post_id) => {
 
 export const fetchMoreComments = (post_id, page) => {
     return dispatch => {
-        dispatch({ type: 'COMMENTS_LOADING' })
+        dispatch({ type: 'MORE_COMMENTS_LOADING' })
 
         server.get(`/posts/${post_id}/comments?page=${page}`)
             .then(res => {
@@ -79,7 +79,7 @@ export const fetchMoreComments = (post_id, page) => {
                     dispatch({ type: 'END_COMMENTS' })
                 }
                 dispatch({ type: 'FETCH_MORE_COMMENTS', payload: res.data })
-                dispatch({ type: '!COMMENTS_LOADING' })
+                dispatch({ type: '!MORE_COMMENTS_LOADING' })
             })
             .catch(err => {
                 if (err.response) {
@@ -91,7 +91,7 @@ export const fetchMoreComments = (post_id, page) => {
             }
              else {
                     dispatch({type: 'COMMENT_ERROR'})
-                    dispatch({type: '!COMMENTS_LOADING'})
+                    dispatch({type: '!MORE_COMMENTS_LOADING'})
                 }
             })
     }
