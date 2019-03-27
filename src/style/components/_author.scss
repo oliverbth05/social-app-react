@@ -5,22 +5,22 @@
     align-items: center;
     justify-content: flex-start;
     padding: 1rem 0 1rem 0;
+
     img {
         max-height: 4rem;
         border-radius: 50%;
         box-shadow: $box-shadow;
         margin-right: 1rem;
     }
-    
+
     a {
         &:hover {
             text-decoration: underline;
-            color: $color5;
+            color: $primary;
         }
     }
+
     span {
-        padding-top: .2rem;
-        font-size: .9rem;
         font-weight: lighter;
     }
 }

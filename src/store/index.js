@@ -6,10 +6,9 @@ import rootReducer from './rootReducer';
 import axios from 'axios';
 
 const store = createStore(rootReducer, composeWithDevTools(
-  applyMiddleware(thunk, logger)
+  applyMiddleware(thunk, )
 ));
 
-console.log(store)
 
 //Makes sure that the token is attached to every API call by default
 store.subscribe(() => {

@@ -13,22 +13,11 @@
     display: block;
     width: 100%;
 
-    &-error {
-    transition: all .2s;
-    padding: .5rem;
-    height: 40px;
-    display: block;
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid $color2;
-    outline: none;
-    box-shadow: $input-shadow-before;
-            
-        &:focus {
-            outline: none;
-            box-shadow: $input-shadow-after;
-            border-color: $color5;
-        }
+
+    &:focus {
+        outline: none;
+        box-shadow: $input-shadow-after;
+        border-color: $primary;
     }
 }
 
@@ -69,16 +58,16 @@
     width: 30px;
     z-index: 1;
     border: 2px solid transparent;
-    
+
     &:checked {
         border: 2px solid $primary-faded;
         background: $primary;
     }
-    
+
     &:hover {
         border-color: $primary;
     }
-    
+
     &:checked::after {
         position: absolute;
         content: '\02143';
@@ -90,11 +79,11 @@
         z-index: -1;
         font-size: 1rem;
     }
-    
+
     &:focus {
         outline: none;
     }
-    
+
 }
 
 

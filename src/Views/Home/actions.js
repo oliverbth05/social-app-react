@@ -31,9 +31,8 @@ export const fetchPosts = (sort, searchTerm) => dispatch => {
 
 export const fetchMorePosts = (sort, page, searchTerm) => dispatch => {
   dispatch({ type: 'MORE_POSTS_LOADING' })
-  server.get(`/posts?sort=${sort}&page=${page}&searchTerm=${searchTerm}`)
+  server.get(`/posts?sort=${sort}&page=${page}`)
     .then(res => {
-
       if (res.data.length < 25) {
         dispatch({ type: 'REACHED_END' })
       }
@@ -42,6 +41,7 @@ export const fetchMorePosts = (sort, page, searchTerm) => dispatch => {
         type: 'FETCH_MORE_POSTS',
         payload: res.data
       })
+
       dispatch({ type: '!MORE_POSTS_LOADING' })
     })
     .catch(err => {

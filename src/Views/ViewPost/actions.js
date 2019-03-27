@@ -111,6 +111,37 @@ export const postComment = data => dispatch => {
         })
 }
 
+export const likeComment = data => dispatch => {
+    server.post(`/posts/${data.post_id}/comments/${data.comment_id}/likes`, data)
+        .then(res => {
+            dispatch({
+                type: 'LIKE_COMMENT',
+                payload: {
+                    user_id: data.user_id,
+                    comment_id: data.comment_id
+                }
+            })
+        })
+        .catch(err => {
+            if (err.response) {
+                if (err.response.status === 401) {
+                    dispatch({ type: 'TOKEN_ERROR' });
+                    dispatch({ type: 'LOGOUT' })
+                }
+            }
+        })
+}
+
+export const postReply = data => dispatch => {
+    server.post(`/posts/${data.post_id}/comments/${data.comment_id}/replies`, data)
+        .then(res => {
+
+        })
+        .catch(err => {
+
+        })
+}
+
 export const likePost = data => dispatch => {
     dispatch({
         type: 'LIKE_LOADING'

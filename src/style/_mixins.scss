@@ -3,43 +3,52 @@
 // 900-1200px: Tablet Landscape
 // 1200-1800px: Desktop
 // 1800+ : Large Monitors
-
 @mixin respond($breakpoint) {
-    @if $breakpoint == phone {
-        @media (max-width: 26.5625em) { //425px
+    @if $breakpoint==phone {
+        @media (max-width: 26.5625em) {
+            //425px
             @content
         }
-    };
+    }
+    ;
 
-    @if $breakpoint == tablet {
-        @media (max-width: 48em) { //768px
+    @if $breakpoint==tablet {
+        @media (max-width: 48em) {
+            //768px
             @content
         }
-    };
+    }
+    ;
 
-    @if $breakpoint == laptop {
-        @media (max-width: 64em) { // 1024px
+    @if $breakpoint==laptop {
+        @media (max-width: 64em) {
+            // 1024px
             @content
         }
-    };
+    }
+    ;
 
-    @if $breakpoint == desktop {
-        @media (max-width: 90em) { // 1440px
+    @if $breakpoint==desktop {
+        @media (max-width: 90em) {
+            // 1440px
             @content
         }
-    };
+    }
+    ;
 
-    @if $breakpoint == huge {
-        @media (max-width: 160em) { //2560
+    @if $breakpoint==huge {
+        @media (max-width: 160em) {
+            //2560
             @content
         }
-    };
+    }
+    ;
 
 
 }
 
 @mixin inputStyle {
-    
+
     transition: all .2s;
     padding: .7rem .5rem .7rem .5rem;
     height: 2.6rem;
@@ -47,10 +56,10 @@
     border: 1px solid $grey-1;
     outline: none;
     box-shadow: $input-shadow-before;
-    
+
     &:focus {
-            outline: none;
-            box-shadow: $input-shadow-after;
-            border-color: $color5;
+        outline: none;
+        box-shadow: $input-shadow-after;
+        border-color: $primary-faded;
     }
 }

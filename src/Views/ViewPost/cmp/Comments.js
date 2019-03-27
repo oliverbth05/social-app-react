@@ -19,7 +19,6 @@ class Comments extends React.Component {
         if (this.props.comment_error) {
             this.props.resetCommentError()
         }
-
     }
 
     componentDidUpdate(prevProps) {
@@ -33,12 +32,11 @@ class Comments extends React.Component {
             return null
         }
         return comments.map(comment => {
-            return <Comment {...comment} key={comment._id} isUserOwned={this.props.user._id === comment.user_id} />
+            return <Comment {...comment} key={comment._id} />
         })
     }
 
     render() {
-
         if (this.props.post_error) {
             return null
         }
@@ -52,7 +50,7 @@ class Comments extends React.Component {
         }
 
         return (
-            <div className='m-b-3 m-t-1' id = 'comments'>
+            <div className='m-b-3 m-t-3' id = 'comments'>
                 <h4 className = 'font-normal m-b-1 m-t-2'>Comments <span className = 'font-light color-primary'>{this.props.comments.length} of {this.props.count}</span></h4>
                 <CommentForm routerparam={this.props.routerparam} />
                 {this.renderComments(this.props.comments)}
@@ -66,7 +64,6 @@ class Comments extends React.Component {
                 :
                     <h3 className='text-center color-primary font-light p-a-2'>No More Comments</h3>
                 }
-
             </div>
         )
     }

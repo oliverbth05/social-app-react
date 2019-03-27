@@ -1,20 +1,14 @@
 import React from 'react';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { likeComment } from '../actions';
-import ActionButton from './ActionButton';
-import ReplyForm from './ReplyForm';
 
-class Comment extends React.Component {
-
+class Reply extends React.Component {
     render() {
-        var canLike = !this.props.likes.includes(this.props.user._id);
-        var isUserOwned = this.props.user._id === this.props.user_id;
+
+        let isUserOwned = this.props.user_id === this.props.user._id
 
         return (
-            <div>
-                <div className = 'comment'>
+            <div className = 'comment m-l-3'>
                 <img alt='user avatar' className='comment__avatar' src={'https://api.adorable.io/avatars/130/' + this.props.user_name + '.png'} />
                     <div className = 'comment__main'>
                         <div className = 'comment__details'>
@@ -24,8 +18,9 @@ class Comment extends React.Component {
                         <p className = 'comment__body'>{this.props.body}</p>
                         <div className = 'comment__options'>
                             <div>
-                                {isUserOwned ? <Link className='btn btn-small btn-primary inline m-r-s' to={`/edit/comment/${this.props.post_id}/${this.props._id}`}><i class="far fa-edit"></i> Edit</Link>: null}
+                                {isUserOwned ? <Link className='btn btn-small btn-round btn-comment btn-primary inline m-r-s' to={`/edit/reply/${this.props.post_id}/${this.props._id}`}><i class="far fa-edit"></i> Edit</Link>: null}
 
+                                <button onClick = { this.showReplies } className = 'btn btn-small btn-primary btn-round btn-comment inline m-r-s'><i class="fas fa-comment-dots"></i> Reply</button>
                                 <ActionButton
                                 disabledMessage = {'Liked'}
                                 array = {this.props.likes}
@@ -46,11 +41,10 @@ class Comment extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div>
         )
     }
 }
 
 const mapStateToProps = state => ({ user: state.auth.userData })
 
-export default connect(mapStateToProps, { likeComment })(Comment);
+export default connect(mapStateToProps, {})(Reply)

@@ -55,7 +55,7 @@
         font-size: 1.1rem;
         color: white;
 
-    
+
         &:focus {
             outline: none;
             color: $white;
@@ -66,11 +66,9 @@
         }
 
         &:focus {
-            
 
-            &::placeholder {
-              
-            }
+
+            &::placeholder {}
         }
     }
 
@@ -96,16 +94,4 @@
     &__divider {
         margin-top: 1.5rem;
     }
-}
-
-.comment-form {
-    width: 100%;
-    box-shadow: $box-shadow;
-    padding: 2rem;
-    border-radius: 3px;
-}
-
-.summary-form {
-    display: block;
-    width: 100%;
 }

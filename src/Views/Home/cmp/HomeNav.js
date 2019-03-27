@@ -7,7 +7,7 @@ import { changeLayout, changeSort, fetchPosts, searchTermHandler } from '../acti
 /* Component Summary
 
     Configures how items in the Posts Component are displayed in terms of layout
-    and query paramaters. 
+    and query paramaters.
 
 */
 

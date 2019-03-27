@@ -6,7 +6,6 @@ import { reduxForm, Field } from 'redux-form';
 class CommentForm extends React.Component {
 
     renderInput({ input, meta, label, type }) {
-        console.log(meta)
         return (
             <div  className = 'm-b-s'>
                 {meta.submitFailed  ?
@@ -34,7 +33,6 @@ class CommentForm extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div>
                 <form onSubmit = {this.props.handleSubmit(this.submitHandler.bind(this))} className = 'm-b-2'>

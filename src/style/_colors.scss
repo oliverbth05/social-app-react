@@ -12,11 +12,14 @@ $white: rgb(250, 250, 250);
 $white-faded: rgba(245, 245, 245, 0.8);
 
 $grey: rgb(194, 195, 195);
+$grey-1: rgb(210, 210, 210);
+$grey-2: rgb(220, 220, 220);
+$grey-3: rgb(230, 230, 230);
+$grey-4: rgb(240, 240, 240);
+$grey-5: rgb(250, 250, 250);
 
 $dark: rgb(22, 34, 34);
 $dark-faded: rgba(29, 37, 37, 0.7);
-
-$shadow-primary: 0px 0px 0px 3px $primary;
 
 $text-heading: #16343C;
 $text-body: #214E5A;
@@ -32,6 +35,8 @@ $input-shadow-before: 0px 0px 1px -1px $primary-faded;
 .bg-gradient {
   background: linear-gradient(to left, $primary-darker-faded, $secondary-darker-faded), url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
   background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 }
 
 

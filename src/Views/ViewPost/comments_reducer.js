@@ -46,6 +46,21 @@ const comments = (state = initialState, action) => {
                 count: state.count + 1
             }
 
+        case 'LIKE_COMMENT':
+
+            var comments = state.comments.map(comment => {
+                if (comment._id === action.payload.comment_id) {
+                    comment.likes.push(action.payload.user_id)
+                }
+
+                return comment
+            })
+
+            return {
+                ...state,
+                comments
+            }
+
         case 'COMMENT_ERROR':
             return {
                 ...state,

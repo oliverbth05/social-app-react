@@ -42,10 +42,6 @@ class Nav extends React.Component {
 
     render() {
 
-        if (this.props.location.pathname === '/') { //Hide Navigation on Landing Page
-            return null
-        }
-
         if (!this.props.authenticated) {
             return (
                 <div>

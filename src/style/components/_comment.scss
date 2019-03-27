@@ -3,7 +3,7 @@
     padding: 0;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     padding: .8rem;
     border-radius: 3px;
     margin-bottom: .5rem;
@@ -17,14 +17,18 @@
 
     &__main {
         margin-left: 1rem;
+        flex-grow: 1;
     }
-    
+
     &__details {
         padding-bottom: .5rem;
     }
 
     &__options {
         padding-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
     &__user {
@@ -33,7 +37,7 @@
         font-size: .8rem;
 
         &:hover {
-            color: $color5;
+            color: $primary;
             text-decoration: underline;
         }
     }
