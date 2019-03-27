@@ -6,7 +6,7 @@ import Pin from './Pin';
 import { removePin } from '../actions';
 
 class Pins extends React.Component {
-    
+
     renderPins(pins) {
         if (pins.length === 0) {
             return <p>You don't have any pins</p>
@@ -15,32 +15,30 @@ class Pins extends React.Component {
             return <Pin {...pin} removePin = {this.props.removePin.bind(this)} user_id = {this.props.user._id} />
         })
     }
-    
-    render() { 
-        
+
+    render() {
+
         if (this.props.loading) {
             return <Loader />
         }
         return (
             <div className = 'profile-section'>
-            
+
                 <h4 className = 'profile-section__header'>Pins</h4>
-            
+
                 <div className = 'profile-section__content'>
                     {this.renderPins(this.props.pins)}
                 </div>
-                
+
             </div>
         )
     }
 }
 
-const mapStateToProps = state => { 
-    return {
-        pins: state.user.userData.pins,
-        user: state.user.userData,
-        loading: state.profile.loading
-    }
-}
+const mapStateToProps = state => ({
+    pins: state.auth.userData.pins,
+    user: state.auth.userData,
+    loading: state.profile.loading
+})
 
-export default connect(mapStateToProps, {removePin})(Pins);
+export default connect(mapStateToProps, { removePin })(Pins);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout, resetToken } from '../../User/actions';
+import { logout, resetToken } from '../../authStore/actions';
 
 class Nav extends React.Component {
 
@@ -149,8 +149,8 @@ class Nav extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.user.userData,
-        authenticated: state.user.authenticated
+        user: state.auth.userData,
+        authenticated: state.auth.authenticated
     }
 }
 

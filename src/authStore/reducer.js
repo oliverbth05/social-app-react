@@ -4,22 +4,18 @@ const initialState = {
     userData: null
 }
 
-const user = (state = initialState, action) => {
+const auth = (state = initialState, action) => {
     switch (action.type) {
 
 
-        case 'RESET_TOKEN' :
-
+        case 'RESET_TOKEN':
             window.localStorage.setItem('token', JSON.stringify('Bullshit'))
-
             return {
                 ...state,
-                token: 'BULLSHIT'
+                token: 'This is not a valid token.'
             }
 
-
         case 'LOGIN':
-
             window.localStorage.setItem('authenticated', JSON.stringify(true))
             window.localStorage.setItem('user', JSON.stringify(action.payload.user))
             window.localStorage.setItem('token', JSON.stringify(action.payload.token))
@@ -31,7 +27,6 @@ const user = (state = initialState, action) => {
             }
 
         case 'KEEP_LOGGED_IN':
-
             return {
                 authenticated: true,
                 token: action.payload.token,
@@ -40,10 +35,8 @@ const user = (state = initialState, action) => {
 
 
         case 'PIN_POST':
-            console.log(action.payload)
             var userData = { ...state.userData }
             userData.pins.push(action.payload)
-
             window.localStorage.setItem('user', JSON.stringify(userData))
 
             return {
@@ -62,20 +55,19 @@ const user = (state = initialState, action) => {
                 ...state,
                 userData
             }
-            
-        case 'ADD_SUB' :
-            var userData = {...state.userData}
+
+        case 'ADD_SUB':
+            var userData = { ...state.userData }
             userData.subscriptions.push(action.payload);
-            
             window.localStorage.setItem('user', JSON.stringify(userData))
 
             return {
                 ...state,
                 userData
             }
-            
-        case 'REMOVE_SUB' :
-            var userData = {...state.userData}
+
+        case 'REMOVE_SUB':
+            var userData = { ...state.userData }
             userData.subscriptions = userData.subscriptions.filter(sub => {
                 return sub.creator_id !== action.payload.creator_id
             })
@@ -89,8 +81,6 @@ const user = (state = initialState, action) => {
         default:
             return state
     }
-
-
 }
 
-export default user;
+export default auth;

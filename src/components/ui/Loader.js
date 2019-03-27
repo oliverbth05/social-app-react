@@ -5,7 +5,7 @@ const Loader = (props) => {
     if (props.fullscreen) {
         return (
             <div className='container-flex-center'>
-                <i className="fas fa-spinner loader"></i>
+                <div className = 'loader'></div>
             </div>
         )
     }
@@ -13,7 +13,7 @@ const Loader = (props) => {
     if (props.halfscreen) {
         return (
             <div className='half-section-flex-center'>
-                <i className="fas fa-spinner loader"></i>
+                <div className = 'loader'></div>
             </div>
         )
     }
@@ -21,12 +21,12 @@ const Loader = (props) => {
     if (props.small) {
         return (
             <div className='small-flex-center'>
-                <i className="fas fa-spinner loader"></i>
+                <div className = 'loader'></div>
             </div>
         )
     }
 
-    return <i className="fas fa-spinner loader"></i>
+    return <div className = 'loader'></div>
 
 }
 

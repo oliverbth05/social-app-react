@@ -4,26 +4,26 @@ import { postComment } from '../actions';
 import { reduxForm, Field } from 'redux-form';
 
 class CommentForm extends React.Component {
-    
-    renderInput({input, meta, label, type}) {
+
+    renderInput({ input, meta, label, type }) {
         console.log(meta)
         return (
             <div  className = 'm-b-s'>
                 {meta.submitFailed  ?
                 <span className='font-light font-small color-secondary'>{meta.error}</span>
                 : null}
-                <textarea className = 'textarea-small' {...input} type = {type} placeholder = 'Leave a comment'/> 
+                <textarea className = 'textarea-small' {...input} type = {type} placeholder = 'Leave a comment'/>
             </div>
-            
+
         )
     }
-    
+
     submitHandler(formValues) {
-        
+
         if (!formValues.comment) {
             return false
         }
-        
+
         var data = {
             body: formValues.comment,
             user_id: this.props.user._id,
@@ -32,7 +32,7 @@ class CommentForm extends React.Component {
         }
         this.props.postComment(data);
     }
-    
+
     render() {
         console.log(this.props)
         return (
@@ -48,26 +48,23 @@ class CommentForm extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.user.userData,
+        user: state.auth.userData,
         loading: state.comments.loading
     }
 }
 
 const validate = (formValues) => {
     const errors = {
-        
+
     }
-    
+
     if (!formValues.comment) {
         errors.comment = 'Cannot submit empty comment.'
     }
-    
+
     return errors
 }
 
-const Connected = connect(mapStateToProps, {postComment})(CommentForm);
+const Connected = connect(mapStateToProps, { postComment })(CommentForm);
 
-export default reduxForm({
-    form: 'comment',
-    validate
-})(Connected)
+export default reduxForm({ form: 'comment', validate })(Connected)

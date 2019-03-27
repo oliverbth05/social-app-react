@@ -1,8 +1,11 @@
 @keyframes spin {
-    from {
+    0 {
         transform: rotate(0deg);
+        color: $primary;
     }
+
     to {
+        color: $primary;
         transform: rotate(360deg);
     }
 }
@@ -11,7 +14,7 @@
     from {
         opacity: 0;
     }
-    
+
     to {
         opacity: 1;
     }
@@ -21,11 +24,11 @@
     0% {
         transform: scale(1);
     }
-    
+
     50% {
         transform: scale(1.2);
     }
-    
+
     100% {
         transform: scale(1);
     }
@@ -61,18 +64,18 @@
         background: $primary;
         border-radius: 20px;
     }
-    
+
     50% {
         background: $secondary;
         border-radius: 10px;
     }
-    
+
     100% {
         background: $primary;
         border-radius: 20px;
     }
-    
-    
+
+
 }
 
 .color-pulse {

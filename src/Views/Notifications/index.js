@@ -6,33 +6,33 @@ import Loader from '../../components/ui/Loader';
 import Notification from './cmp/Notification';
 
 class Notifications extends React.Component {
-    
+
     componentDidMount() {
         this.props.fetchNotifications(this.props.user._id)
     }
-    
+
     updateNotification(id) {
-        this.props.updateNotification({user_id: this.props.user._id, notification_id: id})
+        this.props.updateNotification({ user_id: this.props.user._id, notification_id: id })
     }
-    
+
     renderUnreadNotifications(notifications) {
         return notifications.map(item => {
             return <Notification {...item} update = {this.updateNotification.bind(this)}/>
         })
     }
-    
+
     renderReadNotifications(notifications) {
         return notifications.map(item => {
             return <Notification {...item} />
         })
     }
-    
+
     render() {
-        
+
         if (this.props.loading || !this.props.read || !this.props.unread) {
             return <Loader fullscreen />
         }
-        
+
         return (
             <div className = 'container-1000'>
                 <p className = 'alert color-primary text-center m-b-1'>This feature is still in development</p>
@@ -48,7 +48,7 @@ class Notifications extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.user.userData,
+        user: state.auth.userData,
         loading: state.notifications.loading,
         notifications: state.notifications.notifications,
         firstLoaded: state.notifications.firstLoaded,
@@ -57,4 +57,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {fetchNotifications, updateNotification})(IsAuthenticated(Notifications));
+export default connect(mapStateToProps, { fetchNotifications, updateNotification })(IsAuthenticated(Notifications));

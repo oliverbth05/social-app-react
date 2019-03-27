@@ -102,17 +102,12 @@ const validate = (formValues) => {
     return errors
 }
 
-const mapStateToProps = state => {
-    return {
-        authenticated: state.user.authenticated,
-        loading: state.register.loading,
-        error: state.register.error
-    }
-}
+const mapStateToProps = state => ({
+    authenticated: state.auth.authenticated,
+    loading: state.register.loading,
+    error: state.register.error
+})
 
 const Connected = connect(mapStateToProps, { register })(Register);
 
-export default reduxForm({
-    form: 'Register',
-    validate
-})(Connected);
+export default reduxForm({ form: 'Register', validate })(Connected)

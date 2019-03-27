@@ -25,10 +25,9 @@ export default (Child) => {
 
     const mapStateToProps = state => {
         return {
-            authenticated: state.user.authenticated
+            authenticated: state.auth.authenticated
         }
     }
 
     return connect(mapStateToProps)(IsAuthenticated)
 }
-

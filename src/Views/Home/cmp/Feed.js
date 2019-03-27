@@ -100,7 +100,7 @@ const mapStateToProps = state => {
         searchTerm: state.home.searchTerm,
         loading: state.home.loading,
         more_loading: state.home.more_loading,
-        user: state.user.userData,
+        user: state.auth.userData,
         reachedEnd: state.home.reachedEnd,
         error: state.home.error
     }

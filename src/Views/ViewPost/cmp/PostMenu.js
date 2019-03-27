@@ -52,15 +52,13 @@ class PostMenu extends React.Component {
     }
 }
 
-const mapStateToProps = state => (
-    {
-        post: state.post.data,
-        user: state.user.userData,
-        token: state.user.token,
-        post_loading: state.post.post_loading,
-        like_loading: state.post.like_loading,
-        pin_loading: state.post.pin_loading,
-    }
-)
+const mapStateToProps = state => ({
+    post: state.post.data,
+    user: state.auth.userData,
+    token: state.auth.token,
+    post_loading: state.post.post_loading,
+    like_loading: state.post.like_loading,
+    pin_loading: state.post.pin_loading,
+})
 
 export default connect(mapStateToProps, { likePost, pinPost })(PostMenu);

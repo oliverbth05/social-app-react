@@ -7,7 +7,6 @@ const Logo = (props) => {
             <p>{props.name}</p>
         </div>
     )
-    
 }
 
 export default Logo;
