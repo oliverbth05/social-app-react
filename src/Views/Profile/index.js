@@ -33,7 +33,7 @@ class Profile extends React.Component {
             return false
         }
     }
-
+ 
     isSubscribed() {
         var user_id = this.props.user._id;
         var creator_id = this.props.profile._id;
@@ -88,10 +88,10 @@ class Profile extends React.Component {
         return (
             <div className = 'container'>
                 <div className = 'p-a-1'>
-                    <img alt = 'user avatar' className='avatar m-auto m-b-1' src={`https://api.adorable.io/avatars/130/${this.props.profile.first_name} ${this.props.profile.last_name}.png`} />
-                    <h2 className = 'font-light text-center m-b-1'>{`${this.props.profile.first_name} ${this.props.profile.last_name}`}</h2>
+                    <img alt = 'user avatar' className='avatar m-auto m-b-1' src={`https://api.adorable.io/avatars/130/${this.props.profile.firstName} ${this.props.profile.lastName}.png`} />
+                    <h2 className = 'font-light text-center m-b-1'>{`${this.props.profile.firstName} ${this.props.profile.lastName}`}</h2>
                     <p className = 'text-center'>Subscribers: {this.props.profile.subscribers.length}</p>
-                    <p className = 'text-center'>Joined {new moment(this.props.profile.join_date).fromNow()}</p>
+                    <p className = 'text-center'>Joined {new moment(this.props.profile.joinDate).fromNow()}</p>
                 </div>
 
                 <div className = 'container-700-res'>

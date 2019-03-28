@@ -25,9 +25,13 @@ class CommentForm extends React.Component {
 
         var data = {
             body: formValues.comment,
-            user_id: this.props.user._id,
-            user_name: `${this.props.user.first_name} ${this.props.user.last_name}`,
-            post_id: this.props.routerparam,
+            author : {
+                _id: this.props.user._id,
+                userName:  `${this.props.user.firstName} ${this.props.user.lastName}`
+            },
+            post: {
+                _id: this.props.routerparam
+            },
         }
         this.props.postComment(data);
     }

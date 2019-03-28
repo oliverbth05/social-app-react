@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 const OtherPosts = (props) => {
     return (
@@ -22,6 +23,11 @@ const OtherPosts = (props) => {
         })}
         </div>
     )
+}
+
+OtherPosts.propTypes = {
+    posts: PropTypes.array,
+    exludeId: PropTypes.string,
 }
 
 export default OtherPosts;

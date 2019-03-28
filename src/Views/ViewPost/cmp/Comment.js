@@ -4,27 +4,27 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { likeComment } from '../actions';
 import ActionButton from './ActionButton';
-import ReplyForm from './ReplyForm';
+import PropTypes from 'prop-types';
 
 class Comment extends React.Component {
 
     render() {
         var canLike = !this.props.likes.includes(this.props.user._id);
-        var isUserOwned = this.props.user._id === this.props.user_id;
+        var isUserOwned = this.props.user._id === this.props.author._id;
 
         return (
             <div>
                 <div className = 'comment'>
-                <img alt='user avatar' className='comment__avatar' src={'https://api.adorable.io/avatars/130/' + this.props.user_name + '.png'} />
+                <img alt='user avatar' className='comment__avatar' src={'https://api.adorable.io/avatars/130/' + this.props.author.userName + '.png'} />
                     <div className = 'comment__main'>
                         <div className = 'comment__details'>
-                            <Link className='comment__user' to={'/profile/' + this.props.user_id}>{isUserOwned ? 'You' : this.props.user_name}</Link>
+                            <Link className='comment__user' to={'/profile/' + this.props.author._id}>{isUserOwned ? 'You' : this.props.author.userName}</Link>
                             <span className='comment__date'>{moment(this.props.date).fromNow()}</span>
                         </div>
                         <p className = 'comment__body'>{this.props.body}</p>
                         <div className = 'comment__options'>
                             <div>
-                                {isUserOwned ? <Link className='btn btn-small btn-primary inline m-r-s' to={`/edit/comment/${this.props.post_id}/${this.props._id}`}><i class="far fa-edit"></i> Edit</Link>: null}
+                                {isUserOwned ? <Link className='btn btn-small btn-primary inline m-r-s' to={`/edit/comment/${this.props.post._id}/${this.props._id}`}><i class="far fa-edit"></i> Edit</Link>: null}
 
                                 <ActionButton
                                 disabledMessage = {'Liked'}
@@ -49,6 +49,13 @@ class Comment extends React.Component {
             </div>
         )
     }
+}
+
+Comment.propTypes = {
+    user: PropTypes.object,
+    likes: PropTypes.array,
+
+    
 }
 
 const mapStateToProps = state => ({ user: state.auth.userData })

@@ -40,8 +40,8 @@ class Register extends React.Component {
         this.props.register({
             email: formValues.email,
             password: formValues.password,
-            first_name: formValues.first_name,
-            last_name: formValues.last_name
+            firstName: formValues.firstName,
+            lastName: formValues.lastName
         });
     }
 
@@ -57,8 +57,8 @@ class Register extends React.Component {
                         <h4 className = 'font-light m-b-3 text-center'>You don't have to provide your real e-mail address</h4>
                         {this.props.error ? <p className='auth-form__alert'><i className="fas fa-times"></i> {this.props.error}</p> : null}
                         <Field component={this.renderInput} name='email' type='text' label='Email Address' />
-                        <Field component={this.renderInput} name='first_name' type='text' label='First Name' />
-                        <Field component={this.renderInput} name='last_name' type='text' label='Last Name' />
+                        <Field component={this.renderInput} name='firstName' type='text' label='First Name' />
+                        <Field component={this.renderInput} name='lastName' type='text' label='Last Name' />
                         <Field component={this.renderInput} name='password' type='password' label='Password' />
                         <Field component={this.renderInput} name='confirm_password' type='password' label='Confirm Password' />
                         <div className='auth-form__divider'>
@@ -67,8 +67,6 @@ class Register extends React.Component {
                     </form>
                     <Link to = '/login' className = 'text-center color-white p-t-2 inline'>Already have an account?</Link>
                 </div>
-
-
             </div>
         )
     }
@@ -83,11 +81,11 @@ const validate = (formValues) => {
         errors.email = 'Please provide a valid email address'
     }
 
-    if (!formValues.first_name) {
+    if (!formValues.firstName) {
         errors.first_name = 'Please provide your first name'
     }
 
-    if (!formValues.last_name) {
+    if (!formValues.lastName) {
         errors.last_name = 'Please provide your last name'
     }
 

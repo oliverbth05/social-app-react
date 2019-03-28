@@ -4,9 +4,10 @@ export const fetchPost = id => dispatch => {
     let data;
     dispatch({ type: 'POST_LOADING' })
     server.get(`/posts/${id}`)
-        .then(res => {
+        .then(res => { 
             data = { ...res.data }
-            return server.get(`/user/${data.user_id}/posts?limit=5`)
+            console.log(data)
+            return server.get(`/user/${data.author._id}/posts?limit=5`)
         })
         .then(res => {
             data.otherPosts = [...res.data]
@@ -37,10 +38,10 @@ export const notPostError = () => ({
     type: '!POST_ERROR'
 })
 
-export const fetchComments = post_id => dispatch => {
+export const fetchComments = postId => dispatch => {
     dispatch({ type: '!END_COMMENTS' })
     dispatch({ type: 'COMMENTS_LOADING' })
-    server.get(`/posts/${post_id}/comments?page=1`)
+    server.get(`/posts/${postId}/comments?page=1`)
         .then(res => {
             dispatch({ type: 'FETCH_COMMENTS', payload: res.data })
             if (res.data.comments.length < 10) {
@@ -88,8 +89,9 @@ export const fetchMoreComments = (post_id, page) => dispatch => {
 
 
 export const postComment = data => dispatch => {
+    console.log(data)
     dispatch({ type: 'COMMENTS_LOADING' })
-    server.post(`/posts/${data.post_id}/comments`, data)
+    server.post(`/posts/${data.post._id}/comments`, data)
         .then(res => {
             dispatch({
                 type: 'POST_COMMENT',
@@ -165,8 +167,9 @@ export const likePost = data => dispatch => {
 }
 
 export const pinPost = data => dispatch => {
+
     dispatch({ type: 'PIN_LOADING' })
-    server.post(`/user/${data.user_id}/pins`, data)
+    server.post(`/user/${data.userId}/pins`, data)
         .then(res => {
             dispatch({
                 type: 'PIN_POST',
@@ -174,7 +177,7 @@ export const pinPost = data => dispatch => {
                     post_id: data.post_id,
                     post_title: data.post_title,
                     pin_date: new Date()
-                }
+                } 
             })
             dispatch({ type: '!PIN_LOADING' })
         })

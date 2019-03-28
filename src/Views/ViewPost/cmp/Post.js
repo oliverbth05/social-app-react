@@ -42,13 +42,13 @@ class Post extends React.Component {
       return <Loader halfscreen />
     }
 
-    let isUserOwned = this.props.user._id === this.props.post.user_id;
+    let isUserOwned = this.props.user._id === this.props.post.author._id;
 
     return (
       <div className='m-t-3'>
         <div className='m-t-3 m-b-1'>
           <div>
-            {isUserOwned ? <UserOwned post_id={this.props.post._id} /> : null}
+            {isUserOwned ? <UserOwned postId={this.props.post._id} /> : null}
 
             { this.props.post.category ?
             <h3 className = 'font-light color-primary text-center p-a-1'>{`${this.props.post.category[0].toUpperCase()}${this.props.post.category.slice(1)}`}</h3>
@@ -56,18 +56,18 @@ class Post extends React.Component {
 
             <h2 className='post-heading'>{this.props.post.title}</h2>
             {this.props.post.caption ? <h4 className='post-caption'>{this.props.post.caption}</h4> : null}
-            <Author date={this.props.post.date} user_name={this.props.post.user_name} user_id={this.props.post.user_id} />
+            <Author date={this.props.post.date} authorName={this.props.post.author.userName} authorId={this.props.post.author._id} />
             {this.props.post.image ? <img src={this.props.post.image} className='post-image' /> : null}
             <p className='post-body'>{this.props.post.body}</p>
             {this.props.post.tags.map(tag => {
               return <span className='color-primary font-light m-r-s'>{tag}</span>
             })}
-
+ 
           </div>
 
           <PostMenu />
-          <h4 className = 'font-normal m-t-2 m-b-1'>Other posts from {this.props.post.user_name}</h4>
-          <OtherPosts posts={this.props.post.otherPosts} userName={this.props.post.user_name} exclude_id={this.props.post._id} />
+          <h4 className = 'font-normal m-t-2 m-b-1'>Other posts from {this.props.post.author.userName}</h4>
+          <OtherPosts posts={this.props.post.otherPosts} excludeId={this.props.post._id} />
 
         </div>
       </div>

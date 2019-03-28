@@ -11,7 +11,7 @@ import Tag from '../../components/ui/Tag';
 class New extends React.Component {
 
   constructor() {
-    super();
+    super(); 
     this.state = {
       tags: [],
       tagField: ''
@@ -93,8 +93,10 @@ class New extends React.Component {
       image: formValues.image,
       tags: this.state.tags,
       category: formValues.category,
-      user_id: this.props.user._id,
-      user_name: `${this.props.user.first_name} ${this.props.user.last_name}`
+      author: {
+        _id: this.props.user._id,
+        userName: `${this.props.user.firstName} ${this.props.user.lastName}`
+      }
     }, this.props)
   }
 

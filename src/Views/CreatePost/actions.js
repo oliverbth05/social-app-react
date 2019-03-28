@@ -1,8 +1,8 @@
 import server from '../../api';
 
-export const createPost = (post, ownProps) => dispatch => {
+export const createPost = (data, ownProps) => dispatch => {
   dispatch({ type: 'CREATE_POST_LOADING' })
-  server.post('/posts', post)
+  server.post('/posts', data)
     .then(res => {
       dispatch({ type: 'HOME_NEEDS_UPDATE' })
       ownProps.history.push(`/show/${res.data._id}`)
@@ -17,3 +17,4 @@ export const createPost = (post, ownProps) => dispatch => {
       }
     })
 }
+ 

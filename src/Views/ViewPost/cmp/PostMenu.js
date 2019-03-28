@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { likePost, pinPost } from '../actions';
 import ActionButton from './ActionButton';
 
@@ -43,11 +42,14 @@ class PostMenu extends React.Component {
                     array = {this.props.user.pins.map(pin => pin.post_id)}
                     item = {this.props.post._id}
                     loading = {this.props.pin_loading}
-                    onClick = {() => {this.props.pinPost({
-                        post_id: this.props.post._id,
-                        user_id: this.props.user._id,
-                        post_title: this.props.post.title
-                    })}}>
+                    onClick = {() => {
+                        this.props.pinPost({
+                            post: {
+                                _id: this.props.post._id,
+                                title: this.props.post.title
+                            },
+                            userId: this.props.user._id,
+                        })}}>
                         <i className="fas fa-map-pin"></i> Pin
                     </ActionButton>
                 </div>
