@@ -4,7 +4,8 @@ const initialState = {
     count: 0,
     noMoreComments: false,
     loading: false,
-    more_loading: false,
+    moreLoading: false,
+    commentFormLoading: false,
     error: false
 }
 
@@ -50,7 +51,7 @@ const comments = (state = initialState, action) => {
 
             var comments = state.comments.map(comment => {
                 if (comment._id === action.payload.comment_id) {
-                    comment.likes.push(action.payload.user_id)
+                    comment.likes.push(action.payload.userId)
                 }
 
                 return comment
@@ -88,14 +89,28 @@ const comments = (state = initialState, action) => {
         case 'MORE_COMMENTS_LOADING':
             return {
                 ...state,
-                more_loading: true
+                moreLoading: true
             }
 
         case '!MORE_COMMENTS_LOADING':
             return {
                 ...state,
-                more_loading: false
+                moreLoading: false
             }
+
+        case 'COMMENT_FORM_LOADING':
+            return {
+                ...state,
+                commentFormLoading: true
+            }
+
+        case '!COMMENT_FORM_LOADING':
+            return {
+                ...state,
+                commentFormLoading: false
+            }
+
+
         default:
             return state
     }

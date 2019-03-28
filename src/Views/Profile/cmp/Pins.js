@@ -12,7 +12,7 @@ class Pins extends React.Component {
             return <p>You don't have any pins</p>
         }
         return pins.map(pin => {
-            return <Pin {...pin} removePin = {this.props.removePin.bind(this)} user_id = {this.props.user._id} />
+            return <Pin {...pin} removePin = {this.props.removePin.bind(this)} userId = {this.props.user._id} />
         })
     }
 

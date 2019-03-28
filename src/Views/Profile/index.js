@@ -8,6 +8,8 @@ import Pins from './cmp/Pins';
 import Subs from './cmp/Subs';
 import ProfilePosts from './cmp/ProfilePosts';
 import SubButton from './cmp/SubButton';
+import ActionButton from '../../components/ui/ActionButton';
+
 import Error from '../../components/ui/Error';
 
 class Profile extends React.Component {
@@ -21,7 +23,7 @@ class Profile extends React.Component {
             this.props.fetchUserProfile(this.props.match.params.id)
         }
         if (this.props.profile) {
-            document.title = this.props.profile.first_name
+            document.title = this.props.profile.firstName
         }
     }
 
@@ -33,15 +35,15 @@ class Profile extends React.Component {
             return false
         }
     }
- 
+
     isSubscribed() {
-        var user_id = this.props.user._id;
-        var creator_id = this.props.profile._id;
+        var userId = this.props.user._id;
+        var creatorId = this.props.profile._id;
         var subs = this.props.user.subscriptions.map(item => {
-            return item.creator_id
+            return item.creator._id
         })
 
-        if (subs.indexOf(creator_id) === -1) {
+        if (subs.indexOf(creatorId) === -1) {
             return false
         }
 
@@ -61,13 +63,15 @@ class Profile extends React.Component {
 
     addSub() {
         var data = {
-            creator_id: this.props.profile._id,
-            creator_name: `${this.props.profile.first_name} ${this.props.profile.last_name}`,
-            user_id: this.props.user._id,
-            subscriber_id: this.props.user._id,
-            subscriber_name: `${this.props.user.first_name} ${this.props.user.last_name}`
+            creator: {
+                _id: this.props.profile._id,
+                userName: `${this.props.profile.firstName} ${this.props.profile.lastName}`
+            },
+            subscriber: {
+                _id: this.props.user._id,
+                userName: `${this.props.user.firstName} ${this.props.user.lastName}`
+            }
         }
-
         this.props.addSubscription(data)
     }
 
@@ -98,7 +102,17 @@ class Profile extends React.Component {
 
                     {!this.isUser() ?
                     <div className = 'm-t-1'>
-                        <SubButton loading = {this.props.subscribe_loading} disabled = {this.isSubscribed()} addSub = {this.addSub.bind(this)} removeSub = {this.removeSub.bind(this)} />
+
+                        <ActionButton
+                        loading = {this.props.subscribe_loading}
+                        array = {this.props.user.subscriptions.map(item => item.creator._id)}
+                        item = {this.props.profile._id}
+                        onClick = {this.addSub.bind(this)}
+                        disabledMessage = 'Subscribed'
+                        >
+                        Subscribe
+                        </ActionButton>
+
                     </div>
                     : null }
 

@@ -7,11 +7,12 @@ import { formValueSelector } from 'redux-form';
 import IsAuthenticated from '../../components/hoc/IsAuthenticated';
 import Loader from '../../components/ui/Loader';
 import Tag from '../../components/ui/Tag';
+import SubmitButton from '../../components/ui/SubmitButton';
 
 class New extends React.Component {
 
   constructor() {
-    super(); 
+    super();
     this.state = {
       tags: [],
       tagField: ''
@@ -49,7 +50,7 @@ class New extends React.Component {
     })
   }
 
-  renderInput({ input, meta, label, type }) {
+  renderInput({ input, meta, label, type, disabled }) {
 
     return (
       <div className= 'post-form__divider'>
@@ -58,22 +59,22 @@ class New extends React.Component {
         <span className = 'color-secondary font-light font-small m-l-1'>{meta.error}</span> : null }
         </label>
         {input.name === 'body' ?
-        <textarea {...input} className = 'textarea-large' type = {type}></textarea>
+        <textarea {...input} disabled = {disabled} className = 'textarea-large' type = {type}></textarea>
         :
-        <input {...input} className = 'input-block' type = {type}/>
+        <input {...input} disabled = {disabled} className = 'input-block' type = {type}/>
         }
       </div>
     )
   }
 
-  renderSelect({ input, label, type, meta: { touched, error, submitFailed }, children }) {
+  renderSelect({ input, label, type, meta: { touched, error, submitFailed }, children, disabled }) {
 
     return (
       <div className = 'post-form__divider'>
           <label className = 'post-form__label'>{label}
           {error && submitFailed ?
           <span className = 'color-secondary font-light font-small m-l-1'>{error}</span> : null }</label>
-          <select className = 'select' {...input}>
+          <select className = 'select' disabled = {disabled} {...input}>
            {children}
           </select>
 
@@ -101,9 +102,6 @@ class New extends React.Component {
   }
 
   render() {
-    if (this.props.loading) {
-      return <Loader fullscreen />
-    }
     return (
 
       <div className = 'container'>
@@ -111,7 +109,7 @@ class New extends React.Component {
           <div className = 'flex-item m-a-1 p-a-1'>
             <h3 className = 'font-normal text-center p-b-2'>Editor</h3>
             <form onSubmit={this.props.handleSubmit(this.submitPost.bind(this))} className='post-form'>
-              <Field name='category' label = 'Category' component= {this.renderSelect} className = 'select'>
+              <Field name='category' label = 'Category' disabled = {this.props.loading} component= {this.renderSelect} className = 'select'>
                 <option value = ''>Select one</option>
                 <option value='politics'>Politics</option>
                 <option value='culture'>Culture</option>
@@ -122,13 +120,13 @@ class New extends React.Component {
                 <option value = 'music'>Music</option>
                 <option value = 'art'>Art</option>
               </Field>
-              <Field name = 'title' component = {this.renderInput} type = 'text' label = 'Title' />
-              <Field name = 'caption' component = {this.renderInput} type = 'text' label = 'Caption' />
-              <Field name = 'body' component = {this.renderInput} type = 'text' label = 'Body' />
-              <Field name = 'image' component = {this.renderInput} type = 'text' label = 'Image URL' />
+              <Field name = 'title' component = {this.renderInput} disabled = {this.props.loading} type = 'text' label = 'Title' />
+              <Field name = 'caption' component = {this.renderInput} disabled = {this.props.loading} type = 'text' label = 'Caption' />
+              <Field name = 'body' component = {this.renderInput} disabled = {this.props.loading} type = 'text' label = 'Body' />
+              <Field name = 'image' component = {this.renderInput} disabled = {this.props.loading} type = 'text' label = 'Image URL' />
               <div class='post-form__divider'>
                 <label className='post-form__label'>Tags</label>
-                <input onChange={this.inputHandler} className='input-block' type='text' value={this.state.tagField} name='tagField' />
+                <input onChange={this.inputHandler} disabled = {this.props.loading} className='input-block' type='text' value={this.state.tagField} name='tagField' />
                 <button onClick={this.addTag} className='btn btn-primary m-t-1' >Add tag</button>
                 <div class='tag__container'>
                   {this.state.tags.length > 0 ?
@@ -139,7 +137,7 @@ class New extends React.Component {
                 </div>
               </div>
               <div className='post-form__divider'>
-                <button className='btn-block btn btn-primary'>Submit</button>
+                <SubmitButton loading = {this.props.loading}>Create Post</SubmitButton>
               </div>
             </form>
           </div>

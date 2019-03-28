@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchComments, fetchMoreComments, resetCommentError } from '../actions';
 
 import Loader from '../../../components/ui/Loader';
-import LoaderButton from '../../../components/ui/LoaderButton';
+import SubmitButton from '../../../components/ui/SubmitButton';
 
 import CommentForm from './CommentForm';
 import Error from '../../../components/ui/Error';
@@ -56,11 +56,11 @@ class Comments extends React.Component {
                 {this.renderComments(this.props.comments)}
 
                 {!this.props.noMoreComments ?
-                    <LoaderButton
-                        loading = {this.props.more_loading}
+                    <SubmitButton
+                        loading = {this.props.moreLoading}
                         onClick = {() => {this.props.fetchMoreComments(this.props.routerparam, this.props.commentsPage)}}
                     >Show More
-                    </LoaderButton>
+                    </SubmitButton>
                 :
                     <h3 className='text-center color-primary font-light p-a-2'>No More Comments</h3>
                 }
@@ -76,7 +76,7 @@ const mapStateToProps = state => ({
     commentsPage: state.comments.commentsPage,
     post: state.post,
     loading: state.comments.loading,
-    more_loading: state.comments.more_loading,
+    moreLoading: state.comments.moreLoading,
     user: state.auth.userData,
     comment_error: state.comments.error,
     post_error: state.post.post_error

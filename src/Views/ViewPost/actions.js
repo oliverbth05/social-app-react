@@ -1,10 +1,11 @@
 import server from '../../api';
+import { reset } from 'redux-form';
 
 export const fetchPost = id => dispatch => {
     let data;
     dispatch({ type: 'POST_LOADING' })
     server.get(`/posts/${id}`)
-        .then(res => { 
+        .then(res => {
             data = { ...res.data }
             console.log(data)
             return server.get(`/user/${data.author._id}/posts?limit=5`)
@@ -90,14 +91,15 @@ export const fetchMoreComments = (post_id, page) => dispatch => {
 
 export const postComment = data => dispatch => {
     console.log(data)
-    dispatch({ type: 'COMMENTS_LOADING' })
+    dispatch({ type: 'COMMENT_FORM_LOADING' })
     server.post(`/posts/${data.post._id}/comments`, data)
         .then(res => {
             dispatch({
                 type: 'POST_COMMENT',
                 payload: res.data
             })
-            dispatch({ type: '!COMMENTS_LOADING' })
+            dispatch({ type: '!COMMENT_FORM_LOADING' })
+            dispatch(reset('comment'));
         })
         .catch(err => {
             if (err.response) {
@@ -108,19 +110,19 @@ export const postComment = data => dispatch => {
             }
             else {
                 dispatch({ type: 'COMMENT_ERROR' })
-                dispatch({ type: '!COMMENTS_LOADING' })
+                dispatch({ type: '!COMMENT_FORM_LOADING' })
             }
         })
 }
 
 export const likeComment = data => dispatch => {
-    server.post(`/posts/${data.post_id}/comments/${data.comment_id}/likes`, data)
+    server.post(`/posts/${data.post._id}/comments/${data.commentId}/likes`, data)
         .then(res => {
             dispatch({
                 type: 'LIKE_COMMENT',
                 payload: {
-                    user_id: data.user_id,
-                    comment_id: data.comment_id
+                    userId: data.user._id,
+                    commentId: data.commentId
                 }
             })
         })
@@ -148,12 +150,12 @@ export const likePost = data => dispatch => {
     dispatch({
         type: 'LIKE_LOADING'
     })
-    server.post(`/posts/${data.post_id}/likes`, data)
+    server.post(`/posts/${data.post._id}/likes`, data)
         .then(res => {
             dispatch({ type: '!LIKE_LOADING' })
             dispatch({
                 type: 'LIKE_POST',
-                payload: data.user_id
+                payload: data.user._id
             })
         })
         .catch(err => {
@@ -167,17 +169,16 @@ export const likePost = data => dispatch => {
 }
 
 export const pinPost = data => dispatch => {
-
+    console.log(data)
     dispatch({ type: 'PIN_LOADING' })
     server.post(`/user/${data.userId}/pins`, data)
         .then(res => {
             dispatch({
                 type: 'PIN_POST',
                 payload: {
-                    post_id: data.post_id,
-                    post_title: data.post_title,
-                    pin_date: new Date()
-                } 
+                    post: data.post,
+                    pinDate: new Date()
+                }
             })
             dispatch({ type: '!PIN_LOADING' })
         })

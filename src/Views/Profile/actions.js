@@ -58,8 +58,9 @@ export const removePin = data => dispatch => {
 }
 
 export const addSubscription = data => dispatch => {
+    console.log(data)
     dispatch({ type: 'SUBSCRIBE_LOADING' })
-    server.post(`/user/${data.user_id}/subscriptions`, data)
+    server.post(`/user/${data.subscriber._id}/subscriptions/${data.creator._id}`, data)
         .then(res => {
             dispatch({ type: 'ADD_SUB', payload: data })
             dispatch({ type: '!SUBSCRIBE_LOADING' })
@@ -76,7 +77,7 @@ export const addSubscription = data => dispatch => {
 
 export const removeSubscription = data => dispatch => {
     dispatch({ type: 'SUBSCRIBE_LOADING' })
-    server.delete(`/user/${data.subscriber_id}/subscriptions/${data.creator_id}`)
+    server.delete(`/user/${data.subscriberId}/subscriptions/${data.creatorId}`)
         .then(res => {
             dispatch({ type: 'REMOVE_SUB', payload: data })
             dispatch({ type: '!SUBSCRIBE_LOADING' })

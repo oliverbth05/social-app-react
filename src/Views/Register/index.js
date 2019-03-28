@@ -4,7 +4,7 @@ import { register } from './actions';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import Loader from '../../components/ui/Loader';
-import LoaderButton from '../../components/ui/LoaderButton';
+import SubmitButton from '../../components/ui/SubmitButton';
 
 
 class Register extends React.Component {
@@ -62,7 +62,7 @@ class Register extends React.Component {
                         <Field component={this.renderInput} name='password' type='password' label='Password' />
                         <Field component={this.renderInput} name='confirm_password' type='password' label='Confirm Password' />
                         <div className='auth-form__divider'>
-                            <LoaderButton loading = {this.props.loading} >Register</LoaderButton>
+                            <SubmitButton loading = {this.props.loading} >Register</SubmitButton>
                         </div>
                     </form>
                     <Link to = '/login' className = 'text-center color-white p-t-2 inline'>Already have an account?</Link>

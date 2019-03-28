@@ -2,7 +2,7 @@ import server from '../../api';
 
 export const fetchComment = data => dispatch => {
     dispatch({ type: 'EDIT_COMMENT_LOADING' })
-    server.get(`posts/${data.post_id}/comments/${data.comment_id}`)
+    server.get(`posts/${data.postId}/comments/${data.commentId}`)
         .then(res => {
             dispatch({ type: 'FETCH_COMMENT', payload: res.data })
             dispatch({ type: '!EDIT_COMMENT_LOADING' })
@@ -28,9 +28,9 @@ export const fetchComment = data => dispatch => {
 
 export const updateComment = (data, ownProps) => dispatch => {
     dispatch({ type: 'EDIT_COMMENT_LOADING' })
-    server.patch(`/posts/${data.post_id}/comments/${data.comment_id}`, data)
+    server.patch(`/posts/${data.post._id}/comments/${data._id}`, data)
         .then(res => {
-            ownProps.history.push(`/show/${data.post_id}`);
+            ownProps.history.push(`/show/${data.post._id}`);
             dispatch({ type: '!EDIT_COMMENT_LOADING' });
         })
         .catch(err => {
@@ -54,9 +54,9 @@ export const resetCommentError = () => ({
 
 export const deleteComment = (data, ownProps) => dispatch => {
     dispatch({ type: 'EDIT_COMMENT_LOADING' })
-    server.delete(`posts/${data.post_id}/comments/${data._id}`)
+    server.delete(`posts/${data.post._id}/comments/${data._id}`)
         .then(res => {
-            ownProps.history.push(`/show/${data.post_id}`);
+            ownProps.history.push(`/show/${data.post._id}`);
             dispatch('!EDIT_COMMENT_LOADING');
         })
         .catch(err => {

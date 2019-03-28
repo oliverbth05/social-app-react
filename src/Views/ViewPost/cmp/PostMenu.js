@@ -1,19 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { likePost, pinPost } from '../actions';
-import ActionButton from './ActionButton';
+import ActionButton from '../../../components/ui/ActionButton';
 
 class PostMenu extends React.Component {
 
     render() {
 
-        let likes = this.props.post.likes;
-        let user_id = this.props.user._id;
-        let canLike = !likes.includes(user_id);
-
-        let pins = this.props.user.pins.map(pin => pin.post_id);
-        let post_id = this.props.post._id;
-        let canPin = !pins.includes(post_id);
 
         return (
             <div className='post-menu m-b-3'>
@@ -29,17 +22,24 @@ class PostMenu extends React.Component {
                     item = {this.props.user._id}
                     loading = {this.props.like_loading}
                     onClick = {() => {this.props.likePost({
-                        post_id : this.props.post._id,
-                        user_id: this.props.user._id,
-                        user_name: this.props.post.user_name,
-                        author_id: this.props.post.author_id
+                        post: {
+                            _id: this.props.post._id
+                        },
+                        user: {
+                            _id: this.props.user._id,
+                            userName: `${this.props.user.firstName} ${this.props.user.lastName}`
+                        },
+                        author: {
+                            _id: this.props.post.author._id,
+                            userName: this.props.post.author.userName
+                        }
                     })}}>
                         <i className="far fa-thumbs-up"></i> Like
                     </ActionButton>
 
                     <ActionButton
                     disabledMessage = 'Pinned'
-                    array = {this.props.user.pins.map(pin => pin.post_id)}
+                    array = {this.props.user.pins.map(pin => pin.post._id)}
                     item = {this.props.post._id}
                     loading = {this.props.pin_loading}
                     onClick = {() => {

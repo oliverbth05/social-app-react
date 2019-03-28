@@ -3,15 +3,18 @@ import { connect } from 'react-redux';
 import { postComment } from '../actions';
 import { reduxForm, Field } from 'redux-form';
 
+
+import SubmitButton from '../../../components/ui/SubmitButton';
+
 class CommentForm extends React.Component {
 
-    renderInput({ input, meta, label, type }) {
+    renderInput({ input, meta, label, type, disabled }) {
         return (
             <div  className = 'm-b-s'>
                 {meta.submitFailed  ?
                 <span className='font-light font-small color-secondary'>{meta.error}</span>
                 : null}
-                <textarea className = 'textarea-small' {...input} type = {type} placeholder = 'Leave a comment'/>
+                <textarea disabled = {disabled} className = 'textarea-small' {...input} type = {type} placeholder = 'Leave a comment'/>
             </div>
 
         )
@@ -25,9 +28,9 @@ class CommentForm extends React.Component {
 
         var data = {
             body: formValues.comment,
-            author : {
+            author: {
                 _id: this.props.user._id,
-                userName:  `${this.props.user.firstName} ${this.props.user.lastName}`
+                userName: `${this.props.user.firstName} ${this.props.user.lastName}`
             },
             post: {
                 _id: this.props.routerparam
@@ -40,8 +43,8 @@ class CommentForm extends React.Component {
         return (
             <div>
                 <form onSubmit = {this.props.handleSubmit(this.submitHandler.bind(this))} className = 'm-b-2'>
-                    <Field component = {this.renderInput} name = 'comment' type = 'text' label = 'Comment' />
-                    <button  disabled = {this.props.loading ? true : false} className = 'btn btn-block btn-primary'>Post</button>
+                    <Field component = {this.renderInput} name = 'comment' type = 'text' label = 'Comment' disabled = {this.props.commentFormLoading} />
+                    <SubmitButton loading = {this.props.commentFormLoading}>Post Comment</SubmitButton>
                 </form>
             </div>
         )
@@ -51,7 +54,8 @@ class CommentForm extends React.Component {
 const mapStateToProps = state => {
     return {
         user: state.auth.userData,
-        loading: state.comments.loading
+        loading: state.comments.loading,
+        commentFormLoading: state.comments.commentFormLoading
     }
 }
 

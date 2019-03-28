@@ -7,7 +7,7 @@ const OtherPosts = (props) => {
     return (
         <div>
         {props.posts.map(post => {
-            if (post._id !== props.exclude_id) {
+            if (post._id !== props.excludeId) {
                   return (
                 <Link to = {`/show/${post._id}`} className = 'other-post'>
                     <img src = {post.image}/>

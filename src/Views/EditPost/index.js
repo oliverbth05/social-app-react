@@ -14,7 +14,7 @@ import IsAuthenticated from '../../components/hoc/IsAuthenticated';
 import Loader from '../../components/ui/Loader';
 import Tag from '../../components/ui/Tag';
 import ActionModal from '../../components/ui/ActionModal';
-
+import SubmitButton from '../../components/ui/SubmitButton';
 
 class EditPost extends React.Component {
 
@@ -36,6 +36,12 @@ class EditPost extends React.Component {
   componentDidMount() {
     this.props.fetchEditPost(this.props.match.params.id)
     document.title = 'Edit Post'
+  }
+
+  inputHandler(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
   componentWillUnmount() {
@@ -118,7 +124,7 @@ class EditPost extends React.Component {
     })
   }
 
-  renderInput({ input, meta, label, type }) {
+  renderInput({ input, meta, label, type, disabled }) {
     return (
       <div className= 'post-form__divider'>
         <label className = 'post-form__label'>{label}
@@ -126,21 +132,21 @@ class EditPost extends React.Component {
         <span className = 'color-secondary font-light font-small m-l-1'>{meta.error}</span> : null }
         </label>
         {input.name === 'body' ?
-        <textarea {...input} className = 'textarea-large' type = {type}></textarea>
+        <textarea {...input} disabled=  {disabled} className = 'textarea-large' type = {type}></textarea>
         :
-        <input {...input} className = 'input-block' type = {type}/>
+        <input {...input} disabled=  {disabled} className = 'input-block' type = {type}/>
         }
       </div>
     )
   }
 
-  renderSelect({ input, label, type, meta: { touched, error, submitFailed }, children }) {
+  renderSelect({ input, label, type, meta: { touched, error, submitFailed }, children, disabled }) {
     return (
       <div className = 'post-form__divider'>
           <label className = 'post-form__label'>{label}
           {error && submitFailed ?
           <span className = 'color-secondary font-light font-small m-l-1'>{error}</span> : null }</label>
-          <select className = 'select' {...input}>
+          <select className = 'select' {...input} disabled=  {disabled} >
            {children}
           </select>
 
@@ -150,12 +156,12 @@ class EditPost extends React.Component {
 
   render() {
 
-    if (this.props.loading) {
+
+    if (!this.state.firstLoaded) {
       return <Loader fullscreen />
     }
 
     return (
-
       <div className = 'container'>
         { this.state.deleteModal ?
         <ActionModal
@@ -182,14 +188,14 @@ class EditPost extends React.Component {
                   <option value = 'music'>Music</option>
                   <option value = 'art'>Art</option>
               </Field>
-              <Field name = 'title' component = {this.renderInput} type = 'text' label = 'Title' />
-              <Field name = 'caption' component = {this.renderInput} type = 'text' label = 'Caption' />
-              <Field name = 'body' component = {this.renderInput} type = 'text' label = 'Body' />
-              <Field name = 'image' component = {this.renderInput} type = 'text' label = 'Image URL' />
+              <Field name = 'title' disabled = {!this.state.firstLoaded || this.props.loading } component = {this.renderInput} type = 'text' label = 'Title' />
+              <Field name = 'caption' disabled = {!this.state.firstLoaded || this.props.loading } component = {this.renderInput} type = 'text' label = 'Caption' />
+              <Field name = 'body' disabled = {!this.state.firstLoaded || this.props.loading } component = {this.renderInput} type = 'text' label = 'Body' />
+              <Field name = 'image' disabled = {!this.state.firstLoaded || this.props.loading } component = {this.renderInput} type = 'text' label = 'Image URL' />
               <div class='post-form__divider'>
                 <label className='post-form__label'>Tags</label>
-                <input onChange={this.inputHandler} className='input-block' type='text' value={this.state.tagField} name='tagField' />
-                <button onClick={this.addTag} className='btn btn-primary m-t-1' >Add tag</button>
+                <input onChange={this.inputHandler.bind(this)} disabled = {!this.state.firstLoaded || this.props.loading } className='input-block' type='text' value={this.state.tagField} name='tagField' />
+                <button onClick={this.addTag} disabled = {!this.state.firstLoaded || this.props.loading } className='btn btn-primary m-t-1' >Add tag</button>
                 <div class='tag__container'>
                   {this.state.tags.length > 0 ?
                     this.state.tags.map((tag, index) => {
@@ -199,11 +205,11 @@ class EditPost extends React.Component {
                 </div>
               </div>
               <div className='post-form__divider'>
-                <button className='btn-block btn btn-primary'><i class="fas fa-save"></i> Save Changes</button>
+                <SubmitButton loading = {this.props.loading}>Save Changes</SubmitButton>
               </div>
             </form>
             <div className = 'post-form__divider'>
-                <button onClick = { this.toggleDeleteModal.bind(this)}  className = 'btn btn-secondary'><i class="fas fa-trash"></i> Delete Post</button>
+                <button disabled = {!this.state.firstLoaded || this.props.loading } onClick = { this.toggleDeleteModal.bind(this)}  className = 'btn btn-secondary'><i class="fas fa-trash"></i> Delete Post</button>
             </div>
           </div>
       </div>

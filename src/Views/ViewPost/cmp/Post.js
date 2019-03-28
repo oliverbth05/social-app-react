@@ -62,12 +62,18 @@ class Post extends React.Component {
             {this.props.post.tags.map(tag => {
               return <span className='color-primary font-light m-r-s'>{tag}</span>
             })}
- 
+
           </div>
 
           <PostMenu />
-          <h4 className = 'font-normal m-t-2 m-b-1'>Other posts from {this.props.post.author.userName}</h4>
-          <OtherPosts posts={this.props.post.otherPosts} excludeId={this.props.post._id} />
+
+          { this.props.post.otherPosts.length > 1 ?
+          <div>
+            <h4 className = 'font-normal m-t-2 m-b-1'>Other posts from {this.props.post.author.userName}</h4>
+            <OtherPosts posts={this.props.post.otherPosts} excludeId={this.props.post._id} />
+          </div>
+          : null }
+
 
         </div>
       </div>

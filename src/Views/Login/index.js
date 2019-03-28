@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import AuthInput from '../../components/ui/AuthInput';
 import Loader from '../../components/ui/Loader';
-import LoaderButton from '../../components/ui/LoaderButton';
+import SubmitButton from '../../components/ui/SubmitButton';
 
 class Login extends React.Component {
 
@@ -47,7 +47,7 @@ class Login extends React.Component {
                         <Field name='email' type='text' label='Email' placeholder = 'Email' icon = 'fas fa-at' component={this.renderInput} />
                         <Field name='password' type='password' label='Password' placeholder = 'Password' icon = 'fas fa-lock' component={this.renderInput} />
                         <div className='auth-form__divider'>
-                            <LoaderButton loading = {this.props.loading}>Log In</LoaderButton>
+                            <SubmitButton loading = {this.props.loading}>Log In</SubmitButton>
                         </div>
                     </form>
                     <Link to = '/register' className = 'text-center color-white inline'>Create an Account</Link>

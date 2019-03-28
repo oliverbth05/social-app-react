@@ -1,24 +1,25 @@
 const initialState = {
-    loading: false
+    loading: false,
+
 }
 
 const createPost = (state = initialState, action) => {
-    switch(action.type) {
-        
-        
-        case 'CREATE_POST_LOADING' :
+    switch (action.type) {
+
+
+        case 'CREATE_POST_LOADING':
             return {
                 ...state,
                 loading: true
             }
-            
-        case '!CREATE_POST_LOADING' :
+
+        case '!CREATE_POST_LOADING':
             return {
                 ...state,
                 loading: false
             }
-        
-        default :
+
+        default:
             return state
     }
 }

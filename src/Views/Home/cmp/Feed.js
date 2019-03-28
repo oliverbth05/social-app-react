@@ -5,7 +5,7 @@ import { fetchPosts, fetchMorePosts, homeUpdated } from '../actions';
 import PostCard from './PostCard';
 import PostListItem from './PostListItem';
 import Loader from '../../../components/ui/Loader';
-import LoaderButton from '../../../components/ui/LoaderButton';
+import SubmitButton from '../../../components/ui/SubmitButton';
 /* Component Summary
 
     Responsible for fetching and displaying posts from the server,
@@ -80,7 +80,7 @@ class Feed extends React.Component {
 
                 {!this.props.reachedEnd ?
                     <div className='m-t-2'>
-                        <LoaderButton loading={this.props.more_loading} onClick={() => { this.props.fetchMorePosts(this.props.sort, this.props.page) }}>Show More</LoaderButton>
+                        <SubmitButton loading={this.props.more_loading} onClick={() => { this.props.fetchMorePosts(this.props.sort, this.props.page) }}>Show More</SubmitButton>
                     </div>
                     :
                     <h3 className='text-center color-primary font-light p-a-2'>End of list.</h3>

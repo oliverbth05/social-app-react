@@ -3,13 +3,12 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { likeComment } from '../actions';
-import ActionButton from './ActionButton';
+import ActionButton from '../../../components/ui/ActionButton';
 import PropTypes from 'prop-types';
 
 class Comment extends React.Component {
 
     render() {
-        var canLike = !this.props.likes.includes(this.props.user._id);
         var isUserOwned = this.props.user._id === this.props.author._id;
 
         return (
@@ -32,11 +31,18 @@ class Comment extends React.Component {
                                 item = {this.props.user._id}
                                 onClick = {() => {
                                     this.props.likeComment({
-                                        comment_id: this.props._id,
-                                        user_id: this.props.user._id,
-                                        post_id: this.props.post_id,
-                                        user_name: this.props.user_name,
-                                        author_id: this.props.author_id
+                                        commentId: this.props._id,
+                                        author: {
+                                            _id: this.props.author._id,
+                                            userName: this.props.author.userName
+                                        },
+                                        user: {
+                                            _id: this.props.user._id,
+                                            userName: `${this.props.user.firstName} ${this.props.user.lastName}`
+                                        },
+                                        post: {
+                                            _id: this.props.post._id
+                                        },
                                     })
                                 }}>
                                 <i className="far fa-thumbs-up"></i> Like
@@ -54,8 +60,6 @@ class Comment extends React.Component {
 Comment.propTypes = {
     user: PropTypes.object,
     likes: PropTypes.array,
-
-    
 }
 
 const mapStateToProps = state => ({ user: state.auth.userData })

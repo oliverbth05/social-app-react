@@ -12,7 +12,7 @@ class Subs extends React.Component {
         }
 
         return subs.map(sub => {
-            return <Sub {...sub} removeSub = {this.props.removeSubscription} subscriber_id = {this.props.user._id} />
+            return <Sub {...sub} removeSub = {this.props.removeSubscription} subscriberId = {this.props.user._id} />
         })
     }
 

@@ -6,11 +6,12 @@ import { fetchComment, resetComment, updateComment, deleteComment, resetCommentE
 import Loader from '../../components/ui/Loader';
 import ActionModal from '../../components/ui/ActionModal';
 import Error from '../../components/ui/Error';
+import SubmitButton from '../../components/ui/SubmitButton';
 
 class EditComment extends React.Component {
 
     componentDidMount() {
-        this.props.fetchComment({ post_id: this.props.match.params.post_id, comment_id: this.props.match.params.comment_id });
+        this.props.fetchComment({ post_id: this.props.match.params.postId, commentId: this.props.match.params.commentId });
         document.title = 'Edit Comment'
     }
 
@@ -39,12 +40,12 @@ class EditComment extends React.Component {
     submitHandler(e) {
         e.preventDefault();
         if (this.state.body) {
-            this.props.updateComment({ ...this.props.comment, body: this.state.body, token: this.props.token }, this.props)
+            this.props.updateComment({ ...this.props.comment, body: this.state.body }, this.props)
         }
     }
 
     deleteComment() {
-        this.props.deleteComment({ ...this.props.comment, token: this.props.token }, this.props)
+        this.props.deleteComment({ ...this.props.comment }, this.props)
     }
 
     toggleModal() {
@@ -69,7 +70,7 @@ class EditComment extends React.Component {
             )
         }
 
-        if (this.props.loading || this.props.comment === null) {
+        if (!this.state.firstLoaded || this.props.comment === null) {
             return <Loader fullscreen />
         }
 
@@ -79,8 +80,8 @@ class EditComment extends React.Component {
                     <form onSubmit = {this.submitHandler.bind(this)} className = 'm-t-2 box'>
                         <h3 className = 'font-normal'>Edit Comment</h3>
                         <span className = 'color-primary'>Posted on {moment(this.props.comment.date).format('MM/DD/YYYY')}</span>
-                        <textarea onChange = {this.inputHandler.bind(this)} value = {this.state.body} className = 'textarea-small m-b-s m-t-1'></textarea>
-                        <button className = 'btn-block btn btn-primary'><i class="fas fa-save"></i> Save Changes</button>
+                        <textarea disabled = {!this.state.firstLoaded || this.props.loading} onChange = {this.inputHandler.bind(this)} value = {this.state.body} className = 'textarea-large m-b-s m-t-1'></textarea>
+                        <SubmitButton loading = {this.props.loading}>Save Changes</SubmitButton>
                     </form>
                     <button onClick = {this.toggleModal.bind(this)} className = 'btn btn-secondary m-t-2 m-r-s'><i class="fas fa-trash"></i> Delete</button>
                     <button onClick = {() => {this.props.history.go(-1)}} className = 'btn btn-primary m-t-2'>Cancel Changes</button>
