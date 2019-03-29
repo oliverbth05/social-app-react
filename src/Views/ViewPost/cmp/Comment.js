@@ -58,7 +58,10 @@ class Comment extends React.Component {
 }
 
 Comment.propTypes = {
-    user: PropTypes.object,
+    user: {
+        _id: PropTypes.string,
+    },
+
     likes: PropTypes.array,
 }
 

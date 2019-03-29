@@ -32,6 +32,7 @@ class Comments extends React.Component {
             return null
         }
         return comments.map(comment => {
+            console.log(comment.likes)
             return <Comment {...comment} key={comment._id} />
         })
     }
