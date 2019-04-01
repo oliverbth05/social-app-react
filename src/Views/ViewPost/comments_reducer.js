@@ -49,14 +49,19 @@ const comments = (state = initialState, action) => {
 
         case 'LIKE_COMMENT':
 
-            var comments = state.comments.map(comment => {
+            // var comments = state.comments.map(comment => {
+            //     if (comment._id === action.payload.commentId) {
+            //         comment.likes.push(action.payload.userId)
+            //     }
+            //     return comment
+            // })
+
+            var comments = [...state.comments]
+            for (let comment of comments) {
                 if (comment._id === action.payload.commentId) {
                     comment.likes.push(action.payload.userId)
                 }
-                return comment
-            })
-
-            console.log(comments)
+            }
 
             return {
                 ...state,

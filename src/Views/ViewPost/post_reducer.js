@@ -1,6 +1,6 @@
 const initialState = {
     data: null,
-    post_loading: null,
+    postLoading: null,
     like_loading: null,
     pin_loading: null,
     error: null
@@ -26,13 +26,13 @@ const post = (state = initialState, action) => {
         case 'POST_LOADING':
             return {
                 ...state,
-                post_loading: true
+                postLoading: true
             }
 
         case '!POST_LOADING':
             return {
                 ...state,
-                post_loading: false
+                postLoading: false
             }
 
         case 'LIKE_LOADING':

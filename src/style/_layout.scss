@@ -119,7 +119,10 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-top: 10px;
+    flex-wrap: wrap;
+    border: 1px solid $primary;
+    border-radius: 4px;
+
 }
 
 .tag {
@@ -129,7 +132,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 10px;
+    margin: 1rem;
 
     p {
         padding: .7rem;
@@ -152,6 +155,20 @@
     }
 }
 
+.post-tag {
+    padding: .5rem 1rem .5rem 1rem;
+    font-size: .9rem;
+    border: 1px solid $primary;
+    color: $primary;
+    border-radius: 5px;
+    display: inline-block;
+    margin: .3rem;
+    &:hover {
+        background: $primary;
+        color: white;
+    }
+}
+
 .box {
     padding: 1rem;
     border-radius: 5px;
@@ -160,6 +177,7 @@
 .avatar {
     display: block;
     height: 8rem;
+    box-shadow: $box-shadow;
     width: 8rem;
     background: rgb(220, 220, 220);
     border-radius: 50%;

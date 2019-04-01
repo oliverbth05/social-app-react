@@ -47,7 +47,7 @@ const auth = (state = initialState, action) => {
         case 'REMOVE_PIN':
             var userData = { ...state.userData }
             userData.pins = state.userData.pins.filter(pin => {
-                return pin.post_id !== action.payload.post_id
+                return pin.post._id !== action.payload.postId
             })
             window.localStorage.setItem('user', JSON.stringify(userData))
 

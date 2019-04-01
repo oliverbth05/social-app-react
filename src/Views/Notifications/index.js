@@ -55,6 +55,6 @@ const mapStateToProps = state => {
         read: state.notifications.read,
         unread: state.notifications.unread
     }
-}
+} 
 
 export default connect(mapStateToProps, { fetchNotifications, updateNotification })(IsAuthenticated(Notifications));

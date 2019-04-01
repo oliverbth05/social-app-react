@@ -6,7 +6,7 @@ import {
   updatePost,
   resetEditPost
 }
-from './actions';
+  from './actions';
 import { reduxForm, Field } from 'redux-form';
 import { formValueSelector } from 'redux-form';
 
@@ -126,15 +126,15 @@ class EditPost extends React.Component {
 
   renderInput({ input, meta, label, type, disabled }) {
     return (
-      <div className= 'post-form__divider'>
-        <label className = 'post-form__label'>{label}
-        {meta.error && meta.submitFailed ?
-        <span className = 'color-secondary font-light font-small m-l-1'>{meta.error}</span> : null }
+      <div className='post-form__divider'>
+        <label className='post-form__label'>{label}
+          {meta.error && meta.submitFailed ?
+            <span className='color-secondary font-light font-small m-l-1'>{meta.error}</span> : null}
         </label>
         {input.name === 'body' ?
-        <textarea {...input} disabled=  {disabled} className = 'textarea-large' type = {type}></textarea>
-        :
-        <input {...input} disabled=  {disabled} className = 'input-block' type = {type}/>
+          <textarea {...input} disabled={disabled} className='textarea-large' type={type}></textarea>
+          :
+          <input {...input} disabled={disabled} className='input-block' type={type} />
         }
       </div>
     )
@@ -142,15 +142,15 @@ class EditPost extends React.Component {
 
   renderSelect({ input, label, type, meta: { touched, error, submitFailed }, children, disabled }) {
     return (
-      <div className = 'post-form__divider'>
-          <label className = 'post-form__label'>{label}
+      <div className='post-form__divider'>
+        <label className='post-form__label'>{label}
           {error && submitFailed ?
-          <span className = 'color-secondary font-light font-small m-l-1'>{error}</span> : null }</label>
-          <select className = 'select' {...input} disabled=  {disabled} >
-           {children}
-          </select>
+            <span className='color-secondary font-light font-small m-l-1'>{error}</span> : null}</label>
+        <select className='select' {...input} disabled={disabled} >
+          {children}
+        </select>
 
-        </div>
+      </div>
     )
   }
 
@@ -162,57 +162,61 @@ class EditPost extends React.Component {
     }
 
     return (
-      <div className = 'container'>
-        { this.state.deleteModal ?
-        <ActionModal
-        toggle = {this.toggleDeleteModal.bind(this)}
-        action = {() => {this.deletePost()}}
-        actionType = {'Delete'}
-        title = {'Delete Post'}
-        content = {'Are you sure you want to delete this post?'}/>
-        : null }
+      <div className='container'>
+        {this.state.deleteModal ?
+          <ActionModal
+            toggle={this.toggleDeleteModal.bind(this)}
+            action={() => { this.deletePost() }}
+            actionType={'Delete'}
+            title={'Delete Post'}
+            content={'Are you sure you want to delete this post?'} />
+          : null}
 
-        <h4 className = 'text-center font-normal alert p-a-1 color-primary m-b-2'>Editing Post</h4>
+        <h4 className='text-center font-normal alert p-a-1 color-primary m-b-2'>Editing Post</h4>
         <div className='flex-2 '>
-          <div className = 'flex-item m-a-1 p-a-1'>
-            <h3 className = 'font-normal text-center'>Editor</h3>
+          <div className='flex-item m-a-1 p-a-1'>
+            <h3 className='font-normal text-center'>Editor</h3>
             <form onSubmit={this.props.handleSubmit(this.updatePost.bind(this))} className='post-form'>
-              <Field name='category' label = 'Category' component= {this.renderSelect} className = 'select'>
-                  <option value = ''>Select one</option>
-                  <option value='politics'>Politics</option>
-                  <option value='culture'>Culture</option>
-                  <option value='film'>Film</option>
-                  <option value = 'television'>Television</option>
-                  <option value = 'business'>Business</option>
-                  <option value = 'technology'>Technology</option>
-                  <option value = 'music'>Music</option>
-                  <option value = 'art'>Art</option>
+              <Field name='category' label='Category' component={this.renderSelect} className='select'>
+                <option value=''>Select one</option>
+                <option value='politics'>Politics</option>
+                <option value='culture'>Culture</option>
+                <option value='film'>Film</option>
+                <option value='television'>Television</option>
+                <option value='business'>Business</option>
+                <option value='technology'>Technology</option>
+                <option value='music'>Music</option>
+                <option value='art'>Art</option>
               </Field>
-              <Field name = 'title' disabled = {!this.state.firstLoaded || this.props.loading } component = {this.renderInput} type = 'text' label = 'Title' />
-              <Field name = 'caption' disabled = {!this.state.firstLoaded || this.props.loading } component = {this.renderInput} type = 'text' label = 'Caption' />
-              <Field name = 'body' disabled = {!this.state.firstLoaded || this.props.loading } component = {this.renderInput} type = 'text' label = 'Body' />
-              <Field name = 'image' disabled = {!this.state.firstLoaded || this.props.loading } component = {this.renderInput} type = 'text' label = 'Image URL' />
+              <Field name='title' disabled={!this.state.firstLoaded || this.props.loading} component={this.renderInput} type='text' label='Title' />
+              <Field name='caption' disabled={!this.state.firstLoaded || this.props.loading} component={this.renderInput} type='text' label='Caption' />
+              <Field name='body' disabled={!this.state.firstLoaded || this.props.loading} component={this.renderInput} type='text' label='Body' />
+              <Field name='image' disabled={!this.state.firstLoaded || this.props.loading} component={this.renderInput} type='text' label='Image URL' />
               <div class='post-form__divider'>
                 <label className='post-form__label'>Tags</label>
-                <input onChange={this.inputHandler.bind(this)} disabled = {!this.state.firstLoaded || this.props.loading } className='input-block' type='text' value={this.state.tagField} name='tagField' />
-                <button onClick={this.addTag} disabled = {!this.state.firstLoaded || this.props.loading } className='btn btn-primary m-t-1' >Add tag</button>
-                <div class='tag__container'>
-                  {this.state.tags.length > 0 ?
-                    this.state.tags.map((tag, index) => {
+                <input onChange={this.inputHandler.bind(this)} disabled={!this.state.firstLoaded || this.props.loading} className='input-block' type='text' value={this.state.tagField} name='tagField' />
+                <button onClick={this.addTag} disabled={!this.state.firstLoaded || this.props.loading} className='btn btn-primary btn-small m-t-1' >Add tag</button>
+
+                {this.state.tags.length > 0 ?
+                  <div class='tag__container'>
+
+                    {this.state.tags.map((tag, index) => {
                       return <Tag onClick={this.removeTag} index={index}>{tag}</Tag>
                     })
-                    : null}
-                </div>
+                    }
+                  </div>
+                  : null}
               </div>
               <div className='post-form__divider'>
-                <SubmitButton loading = {this.props.loading}>Save Changes</SubmitButton>
+                <SubmitButton loading={this.props.loading}>Save Changes</SubmitButton>
               </div>
             </form>
-            <div className = 'post-form__divider'>
-                <button disabled = {!this.state.firstLoaded || this.props.loading } onClick = { this.toggleDeleteModal.bind(this)}  className = 'btn btn-secondary'><i class="fas fa-trash"></i> Delete Post</button>
+            <div className='post-form__divider'>
+              <button className='btn btn-primary btn-small m-r-s' disabled={!this.state.firstLoaded || this.props.loading} onClick={() => { this.props.history.go(-1) }}>Cancel Changes</button>
+              <button disabled={!this.state.firstLoaded || this.props.loading} onClick={this.toggleDeleteModal.bind(this)} className='btn btn-small btn-secondary'><i class="fas fa-trash"></i> Delete Post</button>
             </div>
           </div>
-      </div>
+        </div>
       </div>
     )
   }

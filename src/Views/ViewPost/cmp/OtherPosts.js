@@ -4,25 +4,34 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 const OtherPosts = (props) => {
-    return (
-        <div>
-        {props.posts.map(post => {
-            if (post._id !== props.excludeId) {
-                  return (
-                <Link to = {`/show/${post._id}`} className = 'other-post'>
-                    <img src = {post.image}/>
 
-                    <div className = 'other-post__content'>
-                        <p>{post.title}</p>
-                        <span className = 'font-small m-r-s'><i className = "far fa-eye "></i> {post.views}</span> <span className = 'font-light font-small'>{new moment(post.date).fromNow()}</span>
-                    </div>
+    if (props.posts.length > 0) {
+        return (
 
-                </Link>
-            )
-            }
-        })}
-        </div>
-    )
+            <div>
+                <h4 className='m-t-2 m-b-1'>Other posts from {props.author}</h4>
+                {props.posts.map(post => {
+                    if (post._id !== props.excludeId) {
+                        return (
+                            <Link to={`/show/${post._id}`} key={post._id} className='other-post'>
+                                <img src={post.image} />
+
+                                <div className='other-post__content'>
+                                    <p>{post.title}</p>
+                                    <span className='font-small m-r-s'><i className="far fa-eye "></i> {post.views}</span> <span className='font-light font-small'>{new moment(post.date).fromNow()}</span>
+                                </div>
+
+                            </Link>
+                        )
+                    }
+                })}
+            </div>
+        )
+    }
+
+    return null
+
+
 }
 
 OtherPosts.propTypes = {

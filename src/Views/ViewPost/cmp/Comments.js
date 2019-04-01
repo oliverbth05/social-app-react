@@ -1,7 +1,7 @@
 import React from 'react';
 import Comment from './Comment';
 import { connect } from 'react-redux';
-import { fetchComments, fetchMoreComments, resetCommentError } from '../actions';
+import { fetchComments, fetchMoreComments, resetCommentError, likeComment } from '../actions';
 
 import Loader from '../../../components/ui/Loader';
 import SubmitButton from '../../../components/ui/SubmitButton';
@@ -16,7 +16,7 @@ class Comments extends React.Component {
     }
 
     componentWillUnmount() {
-        if (this.props.comment_error) {
+        if (this.props.comment_error) { 
             this.props.resetCommentError()
         }
     }
@@ -32,8 +32,16 @@ class Comments extends React.Component {
             return null
         }
         return comments.map(comment => {
-            console.log(comment.likes)
-            return <Comment {...comment} key={comment._id} />
+            return (
+                <Comment
+                {...comment}
+                key={comment._id}
+                user = {{
+                    _id: this.props.user._id,
+                    userName: `${this.props.user.firstName} ${this.props.user.lastName}`
+                }}
+                likeComment = {this.props.likeComment} />
+            )
         })
     }
 
@@ -43,7 +51,7 @@ class Comments extends React.Component {
         }
 
         if (this.props.comment_error) {
-            return <Error message = {'Error communicating with server'} />
+            return <Error message={'Error communicating with server'} />
         }
 
         else if (this.props.loading || this.props.comments === null) {
@@ -51,18 +59,18 @@ class Comments extends React.Component {
         }
 
         return (
-            <div className='m-b-3 m-t-3' id = 'comments'>
-                <h4 className = 'font-normal m-b-1 m-t-2'>Comments <span className = 'font-light color-primary'>{this.props.comments.length} of {this.props.count}</span></h4>
+            <div className='m-b-3 m-t-3' id='comments'>
+                <h4 className='m-b-1 m-t-2'>Comments <span className='font-light color-primary'>{this.props.comments.length} of {this.props.count}</span></h4>
                 <CommentForm routerparam={this.props.routerparam} />
                 {this.renderComments(this.props.comments)}
 
                 {!this.props.noMoreComments ?
                     <SubmitButton
-                        loading = {this.props.moreLoading}
-                        onClick = {() => {this.props.fetchMoreComments(this.props.routerparam, this.props.commentsPage)}}
+                    loading={this.props.moreLoading}
+                    onClick={() => { this.props.fetchMoreComments(this.props.routerparam, this.props.commentsPage) }}
                     >Show More
                     </SubmitButton>
-                :
+                    :
                     <h3 className='text-center color-primary font-light p-a-2'>No More Comments</h3>
                 }
             </div>
@@ -83,4 +91,4 @@ const mapStateToProps = state => ({
     post_error: state.post.post_error
 })
 
-export default connect(mapStateToProps, { fetchComments, fetchMoreComments, resetCommentError })(Comments);
+export default connect(mapStateToProps, { fetchComments, fetchMoreComments, resetCommentError, likeComment })(Comments);

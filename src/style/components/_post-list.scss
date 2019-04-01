@@ -1,7 +1,7 @@
 .post-list-item {
     transition: all .1s;
     box-shadow: $box-shadow;
-    border-radius: 3px;
+    border-radius: 5px;
     margin-bottom: .7rem;
     display: flex;
     align-items:  center;
@@ -43,7 +43,7 @@
     align-items: center;
     justify-content: flex-start;
     box-shadow: $box-shadow;
-    border-radius: 4px;
+    border-radius: 5px;
     min-height: 4rem;
 
     &__content {

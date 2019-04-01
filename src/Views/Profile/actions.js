@@ -41,11 +41,10 @@ export const fetchUserProfilePosts = id => dispatch => {
 }
 
 export const removePin = data => dispatch => {
-    dispatch({ type: 'PROFILE_LOADING' })
-    server.delete(`/user/${data.user_id}/pins/${data.post_id}`)
+    console.log(data)
+    server.delete(`/user/${data.userId}/pins/${data.postId}`)
         .then(res => {
             dispatch({ type: 'REMOVE_PIN', payload: data })
-            dispatch({ type: '!PROFILE_LOADING' })
         })
         .catch(err => {
             if (err.response) {

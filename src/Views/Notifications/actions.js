@@ -1,8 +1,8 @@
 import server from '../../api';
 
-export const fetchNotifications = user_id => dispatch => {
+export const fetchNotifications = userId => dispatch => {
     dispatch({ type: 'NOTIFICATIONS_LOADING' })
-    server.get(`/user/${user_id}/notifications`)
+    server.get(`/user/${userId}/notifications`)
         .then(res => {
             dispatch({
                 type: 'FETCH_NOTIFICATIONS',
@@ -22,5 +22,5 @@ export const updateNotification = data => dispatch => {
         })
         .catch(err => {
 
-        })
+        }) 
 }

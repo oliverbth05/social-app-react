@@ -16,12 +16,11 @@ const SubmitButton = (props) => {
     }
 
     else {
-        return ( <
-            button onClick = {
+        return ( <button onClick = {
                 () => { props.onClick() }
             }
             type = 'submit'
-            className = 'btn btn-block btn-primary' > { props.children } < /button>
+            className = 'btn btn-block btn-primary'> { props.children } </button>
         )
     }
 }

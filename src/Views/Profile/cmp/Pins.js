@@ -14,13 +14,14 @@ class Pins extends React.Component {
         return pins.map(pin => {
             return <Pin {...pin} removePin = {this.props.removePin.bind(this)} userId = {this.props.user._id} />
         })
-    }
+    } 
 
     render() {
 
         if (this.props.loading) {
             return <Loader />
         }
+        
         return (
             <div className = 'profile-section'>
 

@@ -7,7 +7,6 @@ export const fetchPost = id => dispatch => {
     server.get(`/posts/${id}`)
         .then(res => {
             data = { ...res.data }
-            console.log(data)
             return server.get(`/user/${data.author._id}/posts?limit=5`)
         })
         .then(res => {
@@ -90,7 +89,6 @@ export const fetchMoreComments = (post_id, page) => dispatch => {
 
 
 export const postComment = data => dispatch => {
-    console.log(data)
     dispatch({ type: 'COMMENT_FORM_LOADING' })
     server.post(`/posts/${data.post._id}/comments`, data)
         .then(res => {
@@ -169,7 +167,6 @@ export const likePost = data => dispatch => {
 }
 
 export const pinPost = data => dispatch => {
-    console.log(data)
     dispatch({ type: 'PIN_LOADING' })
     server.post(`/user/${data.userId}/pins`, data)
         .then(res => {
