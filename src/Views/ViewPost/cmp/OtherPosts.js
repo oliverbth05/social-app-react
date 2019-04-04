@@ -9,7 +9,7 @@ const OtherPosts = (props) => {
         return (
 
             <div>
-                <h4 className = 'm-b-1'>Other posts from {props.author}</h4>
+               
                 {props.posts.map(post => {
                     if (post._id !== props.excludeId) {
                         return (

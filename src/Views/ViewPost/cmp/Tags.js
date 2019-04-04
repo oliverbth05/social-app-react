@@ -6,7 +6,7 @@ export default function Tags(props) {
 
 
   return (
-    <div className = 'm-t-3 m-b-3'>
+    <div>
       <h4>Tags</h4>
       <div className='post-tag-container'>
         {props.tags.map(tag =>

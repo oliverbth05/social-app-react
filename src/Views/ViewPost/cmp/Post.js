@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Author from './Author';
 
 const Post = (props) => 
 
@@ -7,7 +8,6 @@ const Post = (props) =>
     <h4 className='post-category'>{`${props.category[0].toUpperCase()}${props.category.slice(1)}`}</h4>
     <h2 className='post-heading'>{props.title}</h2>
     <h4 className='post-caption'>{props.caption}</h4>
-    
     {props.image ? <img src={props.image} className='post-image' /> : null}
     <p className='post-body'>{props.body}</p>
   </div>

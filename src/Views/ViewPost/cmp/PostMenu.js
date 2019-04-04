@@ -15,7 +15,7 @@ class PostMenu extends React.Component {
                     <span className='font-light'><i className="far fa-eye"></i>  Views: {this.props.post.views}</span>
                 </div>
 
-                <div>
+                <div> 
                     <ActionButton
                     disabledMessage = 'Liked'
                     array = {this.props.post.likes}

@@ -1,35 +1,32 @@
 .author {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  box-shadow: $box-shadow;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+  background: linear-gradient(to right, $primary, $primary-darker);
+
+  img {
+    max-height: 4rem;
+    border-radius: 50%;
     box-shadow: $box-shadow;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 1rem;
-    background: $grey-5;
+    margin-right: 1rem;
+  }
 
-    img {
-        max-height: 4rem;
-        border-radius: 50%;
-        box-shadow: $box-shadow;
-        margin-right: 1rem;
+  p {
+    color: white;
+  }
+
+  a {
+    color: white;
+    &:hover {
+      color: $secondary;
     }
+  }
 
-    p {
-       
-    }
-
-    a {
- 
-
-        &:hover {
-            color: $secondary;
-        }
-    }
-
-    span {
-      
-        font-weight: lighter;
-    }
+  span {
+    color: white;
+    font-weight: lighter;
+  }
 }

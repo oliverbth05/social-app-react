@@ -59,8 +59,8 @@ class Comments extends React.Component {
         }
 
         return (
-            <div className='m-b-3 m-t-3' id='comments'>
-                <h4 className='m-b-1 m-t-2'>Comments <span className='font-light color-primary'>{this.props.comments.length} of {this.props.count}</span></h4>
+            <div id='comments'>
+                <h4>Comments <span className='font-light color-primary'>{this.props.comments.length} of {this.props.count}</span></h4>
                 <CommentForm routerparam={this.props.routerparam} />
                 {this.renderComments(this.props.comments)}
 

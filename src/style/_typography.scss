@@ -92,24 +92,26 @@ ul {
     font-size: 1.1rem;
     color: $text-body;
     line-height: 2.1rem;
-    padding: 2rem;
+    margin-top: 1rem;
 }
 
 .post-heading {
     font-size: 2.3rem;
     color: $text-heading;
+
     font-weight: normal;
     line-height: 2.8rem;
-    padding: 2rem 2rem 1rem 2rem;
+    padding-top: 2rem;
+    padding-bottom: .5rem;
 }
 
 .post-category {
-    background: $primary;
-    color: $white;
-    border-radius: 5px 5px 0 0;
-    padding: 1rem;
-    font-weight: lighter;
+    border-bottom: 1.2px solid $primary;
+    background: $grey-5;
+    color: $primary;
+    padding: .6rem;
     text-align: left;
+    text-align: center;
 }
 
 .post-caption {
@@ -117,7 +119,7 @@ ul {
     color: $text-caption;
     font-weight: lighter;
     line-height: 2.3rem;
-    padding: 0 2rem 1rem 2rem;
+    padding-bottom: 1rem;
 } 
 
 .post-image {

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchPost, notPostError } from './actions';
@@ -21,7 +20,7 @@ class ViewPost extends React.Component {
     componentDidMount() {
         this.props.fetchPost(this.props.match.params.id)
         window.scrollTo(0, 0)
-    } 
+    }
 
     componentDidUpdate(prevProps) {
         if (this.props.match.params.id !== prevProps.match.params.id) {
@@ -35,35 +34,38 @@ class ViewPost extends React.Component {
 
     componentWillUnmount() {
         if (this.props.error) {
-            this.props.notPostError() 
+            this.props.notPostError()
         }
     }
 
     render() {
         if (this.props.error) return <PostError error={this.props.error} />
 
-
         return (
             <React.Fragment>
                 <Nav history={this.props.history} />
-                
-                { this.props.loading || this.props.post === null ? <Loader fullscreen/> : 
-                <div className='post-container'>
-                    <Author date={this.props.post.date} authorName={this.props.post.author.userName} authorId={this.props.post.author._id} postId={this.props.post._id} userId={this.props.user._id} />
-                    
-                    <div className = 'box'>
-                        <Post {...this.props.post} />
-                        <PostMenu />
-                    </div> 
-                     
-                    <Tags tags={this.props.post.tags} />
-                    
-                    <div className = 'm-t-3 m-b-3'>
-                        <OtherPosts posts={this.props.post.otherPosts} excludeId={this.props.post._id} author={this.props.post.author.userName} />
-                    </div>
-                    
-                    <Comments routerparam={this.props.match.params.id} />
-                </div >
+                {this.props.loading || this.props.post === null ? <Loader fullscreen /> :
+                    <div className='post-container'>
+                        <section className='m-t-1 m-b-1'>
+                            <Author date={this.props.post.date} authorName={this.props.post.author.userName} authorId={this.props.post.author._id} postId={this.props.post._id} userId={this.props.user._id} />
+                        </section>
+                        <section className='m-t-2 m-b-3'>
+                            <div className='m-b-2'>
+                                <Post {...this.props.post} />
+                            </div>
+                            <PostMenu />
+                        </section>
+                        <section className='m-t-3 m-b-3'>
+                            <Tags tags={this.props.post.tags} />
+                        </section>
+                        <section className='m-t-3 m-b-3'>
+                            <h4>Other posts from {this.props.post.author.userName}</h4>
+                            <OtherPosts posts={this.props.post.otherPosts} excludeId={this.props.post._id} author={this.props.post.author.userName} />
+                        </section>
+                        <section className='m-t-3 m-b-3'>
+                            <Comments routerparam={this.props.match.params.id} />
+                        </section>
+                    </div >
                 }
             </React.Fragment>
         )
@@ -76,6 +78,5 @@ const mapStateToProps = state => ({
     loading: state.post.postLoading,
     error: state.post.error
 })
-
 
 export default connect(mapStateToProps, { fetchPost, notPostError })(IsAuthenticated(ViewPost))

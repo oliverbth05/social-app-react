@@ -20,8 +20,6 @@
     }
 }
 
-
-
 .half-section-flex-center {
     height: 50vh;
     display: flex;
@@ -81,19 +79,18 @@
 }
 
 .post-container {
-    
     max-width: 1100px;
-    padding: 1rem 1rem 1rem 9rem;
     margin: auto;
-    margin-top: 3rem;
+    margin-top: 55px;
+    padding: 2rem 2rem 2rem 10rem;
     
     @include respond(phone) {
-        padding: .5rem;
+        padding: 1.5rem; 
     }
 
     @include respond(tablet) {
-        padding: .5rem;
-        margin-top: 100px;
+        padding: 2rem;
+        margin-top: 105px;
     }
 }
 
