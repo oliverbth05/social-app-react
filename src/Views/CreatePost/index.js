@@ -34,7 +34,7 @@ class New extends React.Component {
 
   addTag(e) {
     e.preventDefault();
-    if (this.state.tagField) {
+    if (this.state.tagField && !this.state.tags.includes(this.state.tagField) && this.state.tags.length <5) {
       this.setState({
         tags: this.state.tags.concat(this.state.tagField),
         tagField: ''
@@ -83,9 +83,7 @@ class New extends React.Component {
   }
 
   submitPost(formValues) {
-    if (!formValues.title || !formValues.body || !formValues.category) {
-      return false
-    }
+    if (!formValues.title || !formValues.body || !formValues.category) return false
 
     this.props.createPost({
       title: formValues.title,
@@ -101,9 +99,8 @@ class New extends React.Component {
     }, this.props)
   }
 
-  render() {
+  render() { 
     return (
-
       <div className='editor-container'>
         <div className='flex-2'>
           <div className='flex-item m-a-1 p-a-1'>
@@ -125,12 +122,12 @@ class New extends React.Component {
               <Field name='body' component={this.renderInput} disabled={this.props.loading} type='text' label='Body' />
               <Field name='image' component={this.renderInput} disabled={this.props.loading} type='text' label='Image URL' />
               <div class='post-form__divider'>
-                <label className='post-form__label'>Tags</label>
-                <input onChange={this.inputHandler} disabled={this.props.loading} className='input-block' type='text' value={this.state.tagField} name='tagField' />
+                <label className='post-form__label'>Tags <span className = 'font-small color-primary'>{5 - this.state.tags.length} left</span></label>
+                <input onChange={this.inputHandler} disabled={this.props.loading || this.state.tags.length === 5} className='input-block' type='text' value={this.state.tagField} name='tagField' />
                 <button onClick={this.addTag} className='btn btn-primary m-t-1' >Add tag</button>
 
                 {this.state.tags.length > 0 ?
-                  <div class='tag__container'>
+                  <div class='tag__container m-t-1'>
 
                     {this.state.tags.map((tag, index) => {
                       return <Tag onClick={this.removeTag} index={index}>{tag}</Tag>

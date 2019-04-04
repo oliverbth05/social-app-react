@@ -79,7 +79,7 @@ class EditPost extends React.Component {
 
   addTag(e) {
     e.preventDefault();
-    if (this.state.tagField) {
+    if (this.state.tagField && !this.state.tags.includes(this.state.tagField) && this.state.tags.length < 5) {
       this.setState({
         tags: this.state.tags.concat(this.state.tagField),
         tagField: ''
@@ -186,19 +186,19 @@ class EditPost extends React.Component {
                 <option value='business'>Business</option>
                 <option value='technology'>Technology</option>
                 <option value='music'>Music</option>
-                <option value='art'>Art</option>
+                <option value='art'>Art</option> 
               </Field>
               <Field name='title' disabled={!this.state.firstLoaded || this.props.loading} component={this.renderInput} type='text' label='Title' />
               <Field name='caption' disabled={!this.state.firstLoaded || this.props.loading} component={this.renderInput} type='text' label='Caption' />
               <Field name='body' disabled={!this.state.firstLoaded || this.props.loading} component={this.renderInput} type='text' label='Body' />
               <Field name='image' disabled={!this.state.firstLoaded || this.props.loading} component={this.renderInput} type='text' label='Image URL' />
               <div class='post-form__divider'>
-                <label className='post-form__label'>Tags</label>
-                <input onChange={this.inputHandler.bind(this)} disabled={!this.state.firstLoaded || this.props.loading} className='input-block' type='text' value={this.state.tagField} name='tagField' />
-                <button onClick={this.addTag} disabled={!this.state.firstLoaded || this.props.loading} className='btn btn-primary btn-small m-t-1' >Add tag</button>
+                <label className='post-form__label'>Tags <span className = 'font-small color-primary'>{5 - this.state.tags.length} left</span></label>
+                <input onChange={this.inputHandler.bind(this)} disabled={!this.state.firstLoaded || this.props.loading || this.state.tags.length === 5} className='input-block' type='text' value={this.state.tagField} name='tagField' />
+                <button onClick={this.addTag} disabled={!this.state.firstLoaded || this.props.loading} className='btn btn-primary m-t-1' >Add tag</button>
 
                 {this.state.tags.length > 0 ?
-                  <div class='tag__container'>
+                  <div class='tag__container m-t-1'>
 
                     {this.state.tags.map((tag, index) => {
                       return <Tag onClick={this.removeTag} index={index}>{tag}</Tag>
@@ -212,8 +212,8 @@ class EditPost extends React.Component {
               </div>
             </form>
             <div className='post-form__divider'>
-              <button className='btn btn-primary btn-small m-r-s' disabled={!this.state.firstLoaded || this.props.loading} onClick={() => { this.props.history.go(-1) }}>Cancel Changes</button>
-              <button disabled={!this.state.firstLoaded || this.props.loading} onClick={this.toggleDeleteModal.bind(this)} className='btn btn-small btn-secondary'><i class="fas fa-trash"></i> Delete Post</button>
+              <button className='btn btn-primary m-r-s' disabled={!this.state.firstLoaded || this.props.loading} onClick={() => { this.props.history.go(-1) }}>Cancel Changes</button>
+              <button disabled={!this.state.firstLoaded || this.props.loading} onClick={this.toggleDeleteModal.bind(this)} className='btn btn-secondary'><i class="fas fa-trash"></i> Delete Post</button>
             </div>
           </div>
         </div>

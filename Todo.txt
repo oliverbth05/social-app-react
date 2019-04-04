@@ -1,3 +1,0 @@
-Create category index View
-
-Recommend by category in ViewPost

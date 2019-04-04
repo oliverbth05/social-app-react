@@ -63,6 +63,12 @@ const home = (state = initialState, action) => {
                 ...state,
                 sort: action.payload
             }
+            
+        case 'CHANGE_SEARCH_TERM' :
+            return {
+                ...state,
+                searchTerm: action.payload
+            }
 
         case 'POSTS_ERROR':
             return {

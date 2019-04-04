@@ -17,7 +17,7 @@ class Home extends React.Component {
                 <Feed />
             </div>
         )
-    }
+    } 
 }
 
 

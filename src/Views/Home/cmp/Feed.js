@@ -19,11 +19,11 @@ class Feed extends React.Component {
             this.props.fetchPosts(this.props.sort, this.props.searchTerm)
             this.props.homeUpdated();
         }
-    }
+    } 
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.sort !== this.props.sort) {
-            this.props.fetchPosts(this.props.sort, this.props.page)
+            this.props.fetchPosts(this.props.sort, this.props.searchTerm)
         }
     }
 
@@ -65,14 +65,10 @@ class Feed extends React.Component {
     render() {
 
         if (this.props.error) {
-            return <h3 className='alert-error font-normal text-center '><i class="fas fa-exclamation-circle"></i> Error Fetching Posts</h3>
+            return <div className = 'container-flex-center'><h3 className='font-normal color-secondary text-center '><i class="fas fa-exclamation-circle"></i> Error Fetching Posts</h3></div>
         }
 
-        if (this.props.loading || this.props.posts === null) {
-            return (
-                <Loader fullscreen />
-            )
-        }
+        if (this.props.loading || this.props.posts === null) return <Loader fullscreen />
 
         return (
             <div>
@@ -80,7 +76,7 @@ class Feed extends React.Component {
 
                 {!this.props.reachedEnd ?
                     <div className='m-t-2'>
-                        <SubmitButton loading={this.props.more_loading} onClick={() => { this.props.fetchMorePosts(this.props.sort, this.props.page) }}>Show More</SubmitButton>
+                        <SubmitButton loading={this.props.more_loading} onClick={() => { this.props.fetchMorePosts(this.props.sort, this.props.page, this.props.searchTerm) }}>Show More</SubmitButton>
                     </div>
                     :
                     <h3 className='text-center color-primary font-light p-a-2'>End of list.</h3>

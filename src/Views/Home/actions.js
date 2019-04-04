@@ -2,9 +2,10 @@ import server from '../../api';
 
 //This action always resets the page counter and the reached-end variable
 export const fetchPosts = (sort, searchTerm) => dispatch => {
+  window.scrollTo(0, 0)
   dispatch({ type: 'POSTS_LOADING' })
   dispatch({ type: '!REACHED_END' })
-  server.get(`/posts?sort=${sort}&page=1&searchTerm=`)
+  server.get(`/posts?sort=${sort}&page=1&searchTerm=${searchTerm}`)
     .then(res => {
       dispatch({ type: '!POSTS_LOADING' })
       dispatch({ type: '!POSTS_ERROR' })
@@ -16,7 +17,7 @@ export const fetchPosts = (sort, searchTerm) => dispatch => {
       if (res.data.length < 25) { //If the server returns less than a full page, we can assume that it is the last one
         dispatch({ type: 'REACHED_END' })
       }
-    })
+    }) 
     .catch(err => {
       if (err.response) {
         if (err.response.status = 401) {
@@ -27,11 +28,11 @@ export const fetchPosts = (sort, searchTerm) => dispatch => {
       dispatch({ type: 'POSTS_ERROR' })
       dispatch({ type: '!POSTS_LOADING' })
     })
-}
+} 
 
 export const fetchMorePosts = (sort, page, searchTerm) => dispatch => {
   dispatch({ type: 'MORE_POSTS_LOADING' })
-  server.get(`/posts?sort=${sort}&page=${page}`)
+  server.get(`/posts?sort=${sort}&page=${page}&searchTerm=${searchTerm}`)
     .then(res => {
       if (res.data.length < 25) {
         dispatch({ type: 'REACHED_END' })
@@ -58,20 +59,12 @@ export const fetchMorePosts = (sort, page, searchTerm) => dispatch => {
     })
 }
 
-export const changeLayout = (style) => ({
-  type: 'CHANGE_LAYOUT',
-  payload: style
-})
+export const changeLayout = style => ({type: 'CHANGE_LAYOUT',payload: style})
 
-export const changeSort = (sort) => ({
-  type: 'CHANGE_SORT',
-  payload: sort
-})
+export const changeSort = sort => ({type: 'CHANGE_SORT', payload: sort})
 
-export const homeUpdated = () => ({
-  type: '!HOME_NEEDS_UPDATE'
-})
+export const changeSearchTerm = searchTerm => ({type: 'CHANGE_SEARCH_TERM', payload: searchTerm})
 
-export const homeNeedsUpdate = () => ({
-  type: 'HOME_NEEDS_UPDATE'
-})
+export const homeUpdated = () => ({type: '!HOME_NEEDS_UPDATE'})
+
+export const homeNeedsUpdate = () => ({type: 'HOME_NEEDS_UPDATE'})

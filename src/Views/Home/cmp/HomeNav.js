@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
-import { changeLayout, changeSort, fetchPosts, searchTermHandler } from '../actions';
+import { changeLayout, changeSort, changeSearchTerm, fetchPosts, searchTermHandler } from '../actions';
 
 /* Component Summary
 
@@ -16,7 +16,7 @@ class HomeNav extends React.Component {
 
 
     state = {
-        searchTerm: ''
+        searchTerm: '' 
     }
 
     inputHandler(e) {
@@ -27,8 +27,9 @@ class HomeNav extends React.Component {
 
     submitHandler(e) {
         e.preventDefault();
-        this.props.history.push(`/search/${this.state.searchTerm}`)
-    }
+        this.props.changeSearchTerm(this.state.searchTerm)
+        this.props.fetchPosts(this.props.sort, this.state.searchTerm)
+    } 
 
 
     render() {
@@ -74,12 +75,8 @@ class HomeNav extends React.Component {
 
 
                 <form onSubmit={this.submitHandler.bind(this)} className='home-nav__search'>
-                    <input onChange={this.inputHandler.bind(this)} className='input-block m-r-s' placeholder='Search posts' />
-                    {this.state.searchTerm ?
-                        <button type='submit' className='btn btn-primary' className='btn btn-primary'>Search</button>
-                        :
-                        <button disabled className='btn btn-primary btn-primary-disabled'>Search</button>
-                    }
+                    <input onChange={this.inputHandler.bind(this)} className='input-block m-r-s' placeholder='Search posts'/>
+                    <button disabled = {this.props.loading} type='submit' className='btn btn-primary' className='btn btn-primary'>Search</button>
                 </form>
 
             </nav>
@@ -88,13 +85,22 @@ class HomeNav extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        posts: state.home.posts,
-        layout: state.home.layout,
-        sort: state.home.sort,
-        page: state.home.page,
-    }
-}
+const mapStateToProps = state => ({
+    posts: state.home.posts,
+    layout: state.home.layout,
+    sort: state.home.sort,
+    page: state.home.page,
+    loading: state.home.loading
+})
 
-export default connect(mapStateToProps, { changeLayout, changeSort, fetchPosts })(withRouter(HomeNav));
+const mapDispatchToProps = dispatch => ({
+    changeLayout,
+    changeSort,
+    changeSearchTerm,
+    fetchPosts
+})
+
+export default connect(mapStateToProps, {changeLayout,
+    changeSort,
+    changeSearchTerm,
+    fetchPosts})(withRouter(HomeNav));

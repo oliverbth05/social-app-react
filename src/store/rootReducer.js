@@ -10,7 +10,6 @@ import post from '../Views/ViewPost/post_reducer';
 import profile from '../Views/Profile/reducer';
 import editComment from '../Views/EditComment/reducer';
 import editPost from '../Views/EditPost/reducer';
-import search from '../Views/Search/reducer';
 import notifications from '../Views/Notifications/reducer';
 
 import { reducer as formReducer } from 'redux-form';
@@ -27,7 +26,6 @@ const rootReducer = combineReducers({
     notifications,
     editComment,
     editPost,
-    search,
     form: formReducer
 });
 

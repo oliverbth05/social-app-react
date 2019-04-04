@@ -46,47 +46,6 @@
     resize: none;
 }
 
-.radio {
-    transition: all .2s;
-    position: relative;
-    appearance: none;
-    cursor: pointer;
-    margin-right: .5rem;
-    background: rgb(230, 230, 230);
-    border-radius: 25px;
-    height: 30px;
-    width: 30px;
-    z-index: 1;
-    border: 2px solid transparent;
-
-    &:checked {
-        border: 2px solid $primary-faded;
-        background: $primary;
-    }
-
-    &:hover {
-        border-color: $primary;
-    }
-
-    &:checked::after {
-        position: absolute;
-        content: '\02143';
-        transform: rotate(40deg);
-        color: $white;
-        text-align: center;
-        top: 2px;
-        left: 9px;
-        z-index: -1;
-        font-size: 1rem;
-    }
-
-    &:focus {
-        outline: none;
-    }
-
-}
-
-
 .select {
     @include inputStyle;
     display: block;

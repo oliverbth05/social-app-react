@@ -2,6 +2,8 @@ import React from 'react';
 import Logo from '../../components/ui/Logo';
 import Stats from './cmp/Stats';
 import { Link } from 'react-router-dom';
+
+//LOGOS
 import redux from '../../assets/Logos/redux.svg';
 import express from '../../assets/Logos/express-109.svg';
 import nodejs from '../../assets/Logos/nodejs-icon.svg';
@@ -12,14 +14,21 @@ import sass from '../../assets/Logos/sass-1.svg';
 import git from '../../assets/Logos/git-icon.svg';
 import webpack from '../../assets/Logos/webpack-icon.svg';
 import babel from '../../assets/Logos/babel-10.svg';
+//
 
-const About = () => {
-    return (
+class About extends React.Component {
+    
+    componentDidMount() {
+        document.title = 'Rag | About'
+    }
+    
+    render() {
+        return (
         <div>
             <div className='container-flex-center bg-gradient'>
                 <div>
                     <h1 className='logo color-white text-center'>Rag</h1>
-                    <Link className='btn btn-primary btn-small m-a-2 color-pulse' to='/login'>Get Started</Link>
+                    <Link className='btn btn-primary m-a-2 color-pulse' to='/login'>Get Started</Link>
                 </div>
             </div>
 
@@ -39,11 +48,11 @@ const About = () => {
 
                         <h4 className='p-t-1 m-b-1 font-normal '><i class="fab fa-github"></i> GitHub</h4>
                         <div className='logo-flex'>
-                            <a className='github-link m-r-s'>Client</a>
-                            <a className='github-link'>API</a>
+                            <a href = 'https://github.com/oliverbth05/social-app-react' className='github-link m-r-s'>Client</a>
+                            <a href = 'https://github.com/oliverbth05/social-app-api' className='github-link'>API</a>
                         </div>
 
-                    </section>
+                    </section> 
 
 
 
@@ -83,6 +92,8 @@ const About = () => {
             </div>
         </div>
     )
+    }
+    
 }
 
 export default About;

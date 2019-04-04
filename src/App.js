@@ -14,7 +14,6 @@ import CreatePost from './Views/CreatePost';
 import Profile from './Views/Profile'; 
 import EditComment from './Views/EditComment';
 import EditPost from './Views/EditPost';
-import Search from './Views/Search';
 import Notifications from './Views/Notifications';
 
 class App extends React.Component {
@@ -26,7 +25,6 @@ class App extends React.Component {
                     <Nav />
                     <Switch>
                         <Route exact path='/' component={Landing} />
-                        <Route exact path='/search/:searchTerm' component={Search} />
                         <Route exact path='/login' component={Login} />
                         <Route exact path='/register' component={Register} />
                         <Route exact path='/home' component={Home} />
