@@ -8,8 +8,8 @@ class PostMenu extends React.Component {
     render() {
 
 
-        return (
-            <div className='post-menu m-b-3'>
+        return ( 
+            <div className='post-menu'>
                 <div>
                     <span className='m-r-1 font-light'><i className="far fa-thumbs-up"></i> Likes: {this.props.post.likes.length}</span>
                     <span className='font-light'><i className="far fa-eye"></i>  Views: {this.props.post.views}</span>

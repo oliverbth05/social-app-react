@@ -162,7 +162,7 @@ class EditPost extends React.Component {
     }
 
     return (
-      <div className='container'>
+      <div className='editor-container'>
         {this.state.deleteModal ?
           <ActionModal
             toggle={this.toggleDeleteModal.bind(this)}

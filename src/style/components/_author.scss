@@ -1,12 +1,13 @@
 .author {
     margin-top: 1rem;
+    margin-bottom: 1rem;
     box-shadow: $box-shadow;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     padding: 1rem;
-    background: $primary;
+    background: $grey-5;
 
     img {
         max-height: 4rem;
@@ -16,11 +17,11 @@
     }
 
     p {
-        color: white;
+       
     }
 
     a {
-        color: white;
+ 
 
         &:hover {
             color: $secondary;
@@ -28,7 +29,7 @@
     }
 
     span {
-        color: white;
+      
         font-weight: lighter;
     }
 }

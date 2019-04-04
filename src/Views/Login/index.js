@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import AuthInput from '../../components/ui/AuthInput';
 import Loader from '../../components/ui/Loader';
 import SubmitButton from '../../components/ui/SubmitButton';
+import Alert from '../../components/ui/Alert';
 
 class Login extends React.Component {
 
@@ -27,7 +28,7 @@ class Login extends React.Component {
         console.log(input)
         return (
             <AuthInput {...input} error = {meta.touched && meta.error} type = {type} autoComplete = 'new-password' placeholder = {placeholder} icon = {icon}/>
-        )
+        ) 
     }
 
     submitHandler(formValues) {
@@ -43,7 +44,7 @@ class Login extends React.Component {
                         <h1 className='font-light color-white text-center m-b-1'>Log In</h1>
                         <h4 className= 'font-light color-white text-center m-b-3'>Welcome Back</h4>
 
-                        {this.props.error ? <p className='auth-form__alert'><i className="fas fa-times"></i> {this.props.error}</p> : null}
+                        {this.props.error && !this.props.loading ? <Alert type = 'danger'><i className="fas fa-times"></i> {this.props.error}</Alert> : null}
                         <Field name='email' type='text' label='Email' placeholder = 'Email' icon = 'fas fa-at' component={this.renderInput} />
                         <Field name='password' type='password' label='Password' placeholder = 'Password' icon = 'fas fa-lock' component={this.renderInput} />
                         <div className='auth-form__divider'>

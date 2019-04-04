@@ -9,7 +9,7 @@ const OtherPosts = (props) => {
         return (
 
             <div>
-                <h4 className='m-t-2 m-b-1'>Other posts from {props.author}</h4>
+                <h4 className = 'm-b-1'>Other posts from {props.author}</h4>
                 {props.posts.map(post => {
                     if (post._id !== props.excludeId) {
                         return (
@@ -37,6 +37,11 @@ const OtherPosts = (props) => {
 OtherPosts.propTypes = {
     posts: PropTypes.array,
     exludeId: PropTypes.string,
+    author: PropTypes.string
+}
+
+OtherPosts.defaultProps = {
+    author: 'user'
 }
 
 export default OtherPosts;

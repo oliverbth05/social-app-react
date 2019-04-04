@@ -14,7 +14,7 @@ class Search extends React.Component {
             this.props.searchUpdated();
         } 
         document.title = `Search | ${this.props.match.params.searchTerm}`
-    }  
+    }   
     
     render() {
         return (

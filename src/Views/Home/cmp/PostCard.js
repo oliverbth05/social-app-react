@@ -25,7 +25,7 @@ const PostCard = (props) => {
                 </div>
                 {props.isPinned ? <span className='color-primary'><i className="fas fa-map-pin"></i> Pinned</span> : null}
             </div>
-        </Link>
+        </Link> 
     )
 }
 

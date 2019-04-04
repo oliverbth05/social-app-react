@@ -1,14 +1,22 @@
 .alert {
-    border: 2px solid $primary;
+    border-left: 15px solid;
     padding: 1rem;
     border-radius: 5px;
+    box-shadow: $box-shadow;
+    margin: 1rem 0 1rem 0;
+    text-align: center;
     
-    &-error {
+    &-danger {
+        background: $grey-5;
+        border-color: $secondary;
         color: $secondary;
-        border: 2px solid $secondary;
-        padding: 1rem;
-        border-radius: 5px;
     }
+    
+    &-default {
+        background: $grey-5;
+        border-color: $primary;
+    }
+    
 }
 
 
@@ -21,5 +29,5 @@
 .error-spinner {
     color: $secondary;
     margin: auto;
-    font-size: 4rem;
+    font-size: 4rem; 
 }

@@ -3,21 +3,21 @@ h2,
 h3,
 h4 {
     color: $text-heading;
-    font-family: 'Sarabun', sans-serif;
-    line-height: 2.4rem;
+    font-family: 'Nunito Sans', sans-serif;
+    line-height: 2rem;
     letter-spacing: .4px;
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 h2 {
-    font-size: 2.25rem;
+    font-size: 2.2rem;
 }
 
 h3 {
-    font-size: 1.75rem
+    font-size: 1.55rem
 }
 
 h4 {
@@ -89,29 +89,36 @@ ul {
 }
 
 .post-body {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: $text-body;
-    margin-top: 2rem;
     line-height: 2.1rem;
-    margin-bottom: 1rem;
-
+    padding: 2rem;
 }
 
 .post-heading {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     color: $text-heading;
     font-weight: normal;
-    margin-bottom: .5rem;
     line-height: 2.8rem;
+    padding: 2rem 2rem 1rem 2rem;
+}
+
+.post-category {
+    background: $primary;
+    color: $white;
+    border-radius: 5px 5px 0 0;
+    padding: 1rem;
+    font-weight: lighter;
+    text-align: left;
 }
 
 .post-caption {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: $text-caption;
     font-weight: lighter;
     line-height: 2.3rem;
-
-}
+    padding: 0 2rem 1rem 2rem;
+} 
 
 .post-image {
     width: 100%;

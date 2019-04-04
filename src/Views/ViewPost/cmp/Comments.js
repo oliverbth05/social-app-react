@@ -71,7 +71,7 @@ class Comments extends React.Component {
                     >Show More
                     </SubmitButton>
                     :
-                    <h3 className='text-center color-primary font-light p-a-2'>No More Comments</h3>
+                    <h4 className='text-center color-primary font-light p-a-2'>No More Comments</h4>
                 }
             </div>
         )

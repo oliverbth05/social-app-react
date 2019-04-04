@@ -1,17 +1,18 @@
 .post-list-item {
     transition: all .1s;
     box-shadow: $box-shadow;
-    border-radius: 5px;
+    border-radius: 0px;
     margin-bottom: .7rem;
     display: flex;
     align-items:  center;
+    background: $grey-5;
 
     &__content {
         flex-grow: 1;
     }
 
     h4 {
-        padding: 1rem;
+        padding: 1rem 1rem .5rem 1rem;
     }
      
     &__img { 
@@ -20,8 +21,9 @@
     }
     
     &__details {
-        padding: 0 1rem 0 1rem;
+        padding: .5rem 1rem .5rem 1rem;
         width: 100%;
+        border-top: 1px solid $grey-3;
     }
 
     &__stats {
@@ -33,9 +35,9 @@
     }   
     
     &:hover {
-        background: $white;
+        background: $grey-4;
     }
-} 
+    } 
 
 .other-post {
     margin-bottom: .5rem;
@@ -43,8 +45,13 @@
     align-items: center;
     justify-content: flex-start;
     box-shadow: $box-shadow;
-    border-radius: 5px;
+    border-radius: 0px;
     min-height: 4rem;
+    background: $grey-5;
+
+    &:hover {
+        background: $grey-4;
+    }
 
     &__content {
         padding: 1rem

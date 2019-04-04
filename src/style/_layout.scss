@@ -62,7 +62,7 @@
     @include respond(tablet) {
         margin: 0;
         padding: 1rem;
-    }
+    } 
 }
 
 .container-1000 {
@@ -79,6 +79,39 @@
         margin-top: 80px;
     }
 }
+
+.post-container {
+    
+    max-width: 1100px;
+    padding: 1rem 1rem 1rem 9rem;
+    margin: auto;
+    margin-top: 3rem;
+    
+    @include respond(phone) {
+        padding: .5rem;
+    }
+
+    @include respond(tablet) {
+        padding: .5rem;
+        margin-top: 100px;
+    }
+}
+
+.editor-container {
+    max-width: 1100px;
+    padding: 1rem 1rem 1rem 9rem;
+    margin: auto;
+    
+    @include respond(phone) {
+        padding: .5rem;
+    }
+
+    @include respond(tablet) {
+        padding: .5rem;
+        margin-top: 3.5rem;
+    }
+}
+
 
 .container-1000-mauto {
     max-width: 1000px;
@@ -170,7 +203,6 @@
 }
 
 .box {
-    padding: 1rem;
     border-radius: 5px;
 }
 

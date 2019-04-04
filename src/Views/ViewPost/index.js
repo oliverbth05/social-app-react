@@ -6,7 +6,7 @@ import { fetchPost, notPostError } from './actions';
 
 import IsAuthenticated from '../../components/hoc/IsAuthenticated';
 import Comments from './cmp/Comments';
-import ShowNav from './cmp/ShowNav';
+import Nav from './cmp/ShowNav';
 import Post from './cmp/Post';
 import PostMenu from './cmp/PostMenu';
 import Author from './cmp/Author';
@@ -21,7 +21,7 @@ class ViewPost extends React.Component {
     componentDidMount() {
         this.props.fetchPost(this.props.match.params.id)
         window.scrollTo(0, 0)
-    }
+    } 
 
     componentDidUpdate(prevProps) {
         if (this.props.match.params.id !== prevProps.match.params.id) {
@@ -35,31 +35,37 @@ class ViewPost extends React.Component {
 
     componentWillUnmount() {
         if (this.props.error) {
-            this.props.notPostError()
+            this.props.notPostError() 
         }
     }
 
     render() {
-        if (this.props.error) {
-            return <PostError error={this.props.error} />
-        }
+        if (this.props.error) return <PostError error={this.props.error} />
 
-        else if (this.props.loading || this.props.post === null) {
-            return <Loader />
-        }
-
-        let isUserOwned = this.props.user._id === this.props.post.author._id;
 
         return (
-            <div className='container-1000 m-t-3'>
-                <ShowNav history={this.props.history} />
-                <Author date={this.props.post.date} authorName={this.props.post.author.userName} authorId={this.props.post.author._id} postId={this.props.post._id} userId={this.props.user._id} />
-                <Post {...this.props.post} />
-                <PostMenu />
-                <Tags tags={this.props.post.tags} />
-                <OtherPosts posts={this.props.post.otherPosts} excludeId={this.props.post._id} author={this.props.post.author.userName} />
-                <Comments routerparam={this.props.match.params.id} />
-            </div >
+            <React.Fragment>
+                <Nav history={this.props.history} />
+                
+                { this.props.loading || this.props.post === null ? <Loader fullscreen/> : 
+                <div className='post-container'>
+                    <Author date={this.props.post.date} authorName={this.props.post.author.userName} authorId={this.props.post.author._id} postId={this.props.post._id} userId={this.props.user._id} />
+                    
+                    <div className = 'box'>
+                        <Post {...this.props.post} />
+                        <PostMenu />
+                    </div> 
+                     
+                    <Tags tags={this.props.post.tags} />
+                    
+                    <div className = 'm-t-3 m-b-3'>
+                        <OtherPosts posts={this.props.post.otherPosts} excludeId={this.props.post._id} author={this.props.post.author.userName} />
+                    </div>
+                    
+                    <Comments routerparam={this.props.match.params.id} />
+                </div >
+                }
+            </React.Fragment>
         )
     }
 }

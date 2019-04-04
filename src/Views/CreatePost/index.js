@@ -104,7 +104,7 @@ class New extends React.Component {
   render() {
     return (
 
-      <div className='container'>
+      <div className='editor-container'>
         <div className='flex-2'>
           <div className='flex-item m-a-1 p-a-1'>
             <h3 className='font-normal text-center p-b-2'>Editor</h3>

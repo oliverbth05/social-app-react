@@ -2,7 +2,7 @@ import React, { lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import Nav from './components/ui/Nav';
+import Nav from './components/ui/Nav'; 
 import PageNotFound from './components/ui/PageNotFound';
 
 import Landing from './Views/Landing';
@@ -11,7 +11,7 @@ import Register from './Views/Register';
 import Home from './Views/Home';
 import ViewPost from './Views/ViewPost';
 import CreatePost from './Views/CreatePost';
-import Profile from './Views/Profile';
+import Profile from './Views/Profile'; 
 import EditComment from './Views/EditComment';
 import EditPost from './Views/EditPost';
 import Search from './Views/Search';

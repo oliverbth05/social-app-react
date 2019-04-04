@@ -6,8 +6,8 @@ export default function Tags(props) {
 
 
   return (
-    <div>
-      <h4 className = 'm-t-2 m-b-1'>Tags</h4>
+    <div className = 'm-t-3 m-b-3'>
+      <h4>Tags</h4>
       <div className='post-tag-container'>
         {props.tags.map(tag =>
           <Link className='post-tag' to='/'>{tag}</Link>

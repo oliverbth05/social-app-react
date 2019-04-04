@@ -1,6 +1,8 @@
 import React from 'react';
 
 const Loader = (props) => {
+    
+    console.log('Loader loaded')
 
     if (props.fullscreen) {
         return (
@@ -8,7 +10,7 @@ const Loader = (props) => {
                 <div className = 'loader'></div>
             </div>
         )
-    }
+    } 
 
     if (props.halfscreen) {
         return (
